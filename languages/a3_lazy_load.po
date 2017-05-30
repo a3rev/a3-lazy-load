@@ -1,0 +1,622 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: a3 Lazy Load\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-01 15:57+0700\n"
+"PO-Revision-Date: 2016-03-01 15:57+0700\n"
+"Last-Translator: Nguyen Cong Tuan <mr.nguyencongtuan@gmail.com>\n"
+"Language-Team: a3rev\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/admin-interface.php:171
+msgid "Great! You have the latest version installed."
+msgstr ""
+
+#: admin/admin-interface.php:236
+#: admin/settings/template-settings/global-settings.php:81
+msgid "Settings successfully saved."
+msgstr ""
+
+#: admin/admin-interface.php:244
+#: admin/settings/template-settings/global-settings.php:82
+msgid "Error: Settings can not save."
+msgstr ""
+
+#: admin/admin-interface.php:252
+#: admin/settings/template-settings/global-settings.php:83
+msgid "Settings successfully reseted."
+msgstr ""
+
+#: admin/admin-interface.php:273
+msgid "Thin"
+msgstr ""
+
+#: admin/admin-interface.php:274
+msgid "Thin/Italic"
+msgstr ""
+
+#: admin/admin-interface.php:275
+msgid "Normal"
+msgstr ""
+
+#: admin/admin-interface.php:276
+msgid "Italic"
+msgstr ""
+
+#: admin/admin-interface.php:277
+msgid "Bold"
+msgstr ""
+
+#: admin/admin-interface.php:278
+msgid "Bold/Italic"
+msgstr ""
+
+#: admin/admin-interface.php:288
+msgid "Solid"
+msgstr ""
+
+#: admin/admin-interface.php:289
+msgid "Double"
+msgstr ""
+
+#: admin/admin-interface.php:290
+msgid "Dashed"
+msgstr ""
+
+#: admin/admin-interface.php:291
+msgid "Dotted"
+msgstr ""
+
+#: admin/admin-interface.php:292
+msgid "Groove"
+msgstr ""
+
+#: admin/admin-interface.php:293
+msgid "Ridge"
+msgstr ""
+
+#: admin/admin-interface.php:294
+msgid "Inset"
+msgstr ""
+
+#: admin/admin-interface.php:295
+msgid "Outset"
+msgstr ""
+
+#: admin/admin-interface.php:1552 admin/admin-interface.php:1638
+#: admin/admin-interface.php:1738 admin/admin-interface.php:1886
+#: admin/admin-interface.php:1976 admin/admin-interface.php:2005
+#: admin/settings/template-settings/global-settings.php:224
+#: admin/settings/template-settings/global-settings.php:242
+#: admin/settings/template-settings/global-settings.php:261
+#: admin/settings/template-settings/global-settings.php:276
+#: admin/settings/template-settings/global-settings.php:286
+#: admin/settings/template-settings/global-settings.php:296
+#: admin/settings/template-settings/global-settings.php:306
+#: admin/settings/template-settings/global-settings.php:324
+#: admin/settings/template-settings/global-settings.php:345
+#: admin/settings/template-settings/global-settings.php:360
+#: admin/settings/template-settings/global-settings.php:370
+#: admin/settings/template-settings/global-settings.php:388
+#: admin/settings/template-settings/global-settings.php:426
+#: admin/settings/template-settings/global-settings.php:437
+msgid "ON"
+msgstr ""
+
+#: admin/admin-interface.php:1553 admin/admin-interface.php:1639
+#: admin/admin-interface.php:1739 admin/admin-interface.php:1887
+#: admin/admin-interface.php:1977 admin/admin-interface.php:2006
+#: admin/settings/template-settings/global-settings.php:225
+#: admin/settings/template-settings/global-settings.php:243
+#: admin/settings/template-settings/global-settings.php:262
+#: admin/settings/template-settings/global-settings.php:277
+#: admin/settings/template-settings/global-settings.php:287
+#: admin/settings/template-settings/global-settings.php:297
+#: admin/settings/template-settings/global-settings.php:307
+#: admin/settings/template-settings/global-settings.php:325
+#: admin/settings/template-settings/global-settings.php:346
+#: admin/settings/template-settings/global-settings.php:361
+#: admin/settings/template-settings/global-settings.php:371
+#: admin/settings/template-settings/global-settings.php:389
+#: admin/settings/template-settings/global-settings.php:427
+#: admin/settings/template-settings/global-settings.php:438
+msgid "OFF"
+msgstr ""
+
+#: admin/admin-interface.php:1558
+msgid "Google Fonts API"
+msgstr ""
+
+#: admin/admin-interface.php:1570
+msgid ""
+"ON to connect to Google Fonts API and have auto font updates direct from "
+"Google."
+msgstr ""
+
+#: admin/admin-interface.php:1574
+#, php-format
+msgid ""
+"Enter your existing Google Fonts API Key below. Don't have a key? Visit <a "
+"href='%s' target='_blank'>Google Developer API</a> to create a key"
+msgstr ""
+
+#: admin/admin-interface.php:1591
+msgid "Google Fonts API Key"
+msgstr ""
+
+#: admin/admin-interface.php:1594
+msgid "Your Google API Key is valid and automatic font updates are enabled."
+msgstr ""
+
+#: admin/admin-interface.php:1595
+msgid "Please enter a valid Google API Key."
+msgstr ""
+
+#: admin/admin-interface.php:1614
+msgid "Check New Version"
+msgstr ""
+
+#: admin/admin-interface.php:1625
+msgid "Check Now"
+msgstr ""
+
+#: admin/admin-interface.php:1644
+msgid "Open Box Display"
+msgstr ""
+
+#: admin/admin-interface.php:1657
+msgid ""
+"ON and each admin panel setting box OPEN | CLOSED position are saved each "
+"time changes are SAVED."
+msgstr ""
+
+#: admin/admin-interface.php:2041
+msgid "Width"
+msgstr ""
+
+#: admin/admin-interface.php:2043
+msgid "Height"
+msgstr ""
+
+#: admin/admin-interface.php:2045
+msgid "Hard Crop"
+msgstr ""
+
+#: admin/admin-interface.php:2118
+msgid "-- Default Fonts --"
+msgstr ""
+
+#: admin/admin-interface.php:2129
+msgid "-- Google Fonts --"
+msgstr ""
+
+#: admin/admin-interface.php:2170
+msgid "Preview your customized typography settings"
+msgstr ""
+
+#: admin/admin-interface.php:2279 admin/admin-interface.php:2513
+msgid "Preview your customized border settings"
+msgstr ""
+
+#: admin/admin-interface.php:2288 admin/admin-interface.php:2504
+msgid "Rounded"
+msgstr ""
+
+#: admin/admin-interface.php:2289 admin/admin-interface.php:2505
+msgid "Square"
+msgstr ""
+
+#: admin/admin-interface.php:2299 admin/admin-interface.php:2518
+msgid "Top Left Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2319 admin/admin-interface.php:2538
+msgid "Top Right Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2339 admin/admin-interface.php:2558
+msgid "Bottom Right Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2359 admin/admin-interface.php:2578
+msgid "Bottom Left Corner"
+msgstr ""
+
+#: admin/admin-interface.php:2446
+msgid "Preview your customized border styles settings"
+msgstr ""
+
+#: admin/admin-interface.php:2629
+msgid "YES"
+msgstr ""
+
+#: admin/admin-interface.php:2630
+msgid "NO"
+msgstr ""
+
+#: admin/admin-interface.php:2644
+msgid "Horizontal Shadow"
+msgstr ""
+
+#: admin/admin-interface.php:2662
+msgid "Vertical Shadow"
+msgstr ""
+
+#: admin/admin-interface.php:2680
+msgid "Blur Distance"
+msgstr ""
+
+#: admin/admin-interface.php:2698
+msgid "Spread Size"
+msgstr ""
+
+#: admin/admin-interface.php:2716
+msgid "INNER"
+msgstr ""
+
+#: admin/admin-interface.php:2717
+msgid "OUTER"
+msgstr ""
+
+#: admin/admin-interface.php:2735
+msgid "Preview your customized box shadow settings"
+msgstr ""
+
+#: admin/admin-interface.php:3003
+msgid "Save changes"
+msgstr ""
+
+#: admin/admin-interface.php:3004
+msgid "Reset Settings"
+msgstr ""
+
+#: admin/admin-pages/admin-settings-page.php:62
+#: admin/admin-pages/admin-settings-page.php:63
+msgid "a3 Lazy Load"
+msgstr ""
+
+#: admin/admin-ui.php:109 admin/admin-ui.php:112
+msgid "Premium Version Enhanced Features"
+msgstr ""
+
+#: admin/admin-ui.php:113
+msgid "WooCommerce Dynamic Gallery Premium"
+msgstr ""
+
+#: admin/admin-ui.php:114
+msgid ""
+"Quick Video showing the main (not all) enhanced features that are built into "
+"the WooCommerce Dynamic Gallery Premium version"
+msgstr ""
+
+#: admin/admin-ui.php:115
+msgid "Developer Support and Premium Features"
+msgstr ""
+
+#: admin/admin-ui.php:116
+msgid ""
+"Limited Time Offer. Purchase the Premium Version Lifetime License. That is a "
+"Lifetime of maintenance updates, feature upgrades and developer support for "
+"a once only fee. Offer ending soon."
+msgstr ""
+
+#: admin/admin-ui.php:117
+msgid "Get Premium Features and Support"
+msgstr ""
+
+#: admin/admin-ui.php:264
+#, php-format
+msgid ""
+"Advanced Settings - Upgrade to the <a href=\"%s\" target=\"_blank\">%s "
+"License</a> to activate these settings."
+msgstr ""
+
+#: admin/admin-ui.php:267
+msgid "Pro Version"
+msgstr ""
+
+#: admin/admin-ui.php:317 admin/admin-ui.php:336
+msgid "You should check now to see if have any new version is available"
+msgstr ""
+
+#: admin/admin-ui.php:319
+#, php-format
+msgid ""
+"Connection Failure! Please try again. If this issue persists please create a "
+"support request on the plugin <a href=\"%s\" target=\"_blank\">a3rev support "
+"forum</a>."
+msgstr ""
+
+#: admin/admin-ui.php:327
+#, php-format
+msgid ""
+"There is a new version <span class=\"a3rev-ui-new-plugin-version\">%s</span> "
+"available, <a href=\"%s\" target=\"_blank\">update now</a> or download "
+"direct from <a href=\"%s\" target=\"_blank\">My Account</a> on a3rev.com"
+msgstr ""
+
+#: admin/includes/uploader/class-uploader.php:101
+msgid "Upload"
+msgstr ""
+
+#: admin/includes/uploader/class-uploader.php:121
+msgid "View File"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:153
+#: admin/tabs/template-settings/global-settings-tab.php:78
+msgid "Global Settings"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:196
+msgid "Plugin Framework Global Settings"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:203
+msgid "Customize Admin Setting Box Display"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:204
+msgid ""
+"By default each admin panel will open with all Setting Boxes in the CLOSED "
+"position."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:211
+msgid "House Keeping"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:215
+msgid "Clean up on Deletion"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:216
+msgid ""
+"On deletion (not deactivate) the plugin will completely remove all tables "
+"and data it created, leaving no trace it was ever here."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:229
+msgid "Lazy Load Activation"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:235
+msgid "Enable Lazy Load"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:247
+msgid "Lazy Load Images"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:254
+msgid "Enable Lazy Load for Images"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:270
+msgid "Images in Content"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:280
+msgid "Images in Widgets"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:290
+msgid "Post Thumbnails"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:300
+msgid "Gravatars"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:310
+msgid "Skip Images Classes"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:312
+msgid "Comma separated. Example: \"no-lazy, lazy-ignore, image-235\""
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:317
+#: admin/settings/template-settings/global-settings.php:381
+msgid "Noscript Support"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:319
+msgid ""
+"Turn ON to activate Noscript tag as a fallback to show images for users who "
+"have JavaScript disabled in their browser."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:330
+msgid "Lazy Load Videos and iframes"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:337
+msgid "Video and iframes"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:338
+#, php-format
+msgid ""
+"Turn ON to activate Lazy Load for <a href=\"%s\" target=\"_blank\">WordPress "
+"Embeds</a>, <a href=\"%s\" target=\"_blank\">HTML5 Video</a> and content "
+"loaded by iframe from all sources. Note: WordPress Shortcode is not "
+"supported."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:354
+msgid "In Content"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:364
+msgid "In Widgets"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:374
+msgid "Skip Videos Classes"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:376
+msgid "Comma separated. Example: \"no-lazy, lazy-ignore, video-235\""
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:383
+msgid ""
+"Turn ON to activate Noscript tag as a fallback to show WordPress Embeds, "
+"HTML 5 Video and iframe loaded content for users who have JavaScript "
+"disabled in their browser."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:393
+msgid "Script Load Optimization"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:400
+msgid "Theme Loader Function"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:401
+msgid ""
+"Your theme must have the wp_footer() function if you select FOOTER load."
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:407
+msgid "HEADER"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:408
+msgid "FOOTER"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:412
+msgid "WordPress Mobile Template Plugins"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:419
+msgid "Disable On WPTouch"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:420
+msgid "Disables a3 Lazy Load when the WPTouch mobile theme is used"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:430
+msgid "Disable On MobilePress"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:431
+msgid "Disables a3 Lazy Load when the MobilePress mobile theme is used"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:442
+msgid "Effect & Style"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:449
+msgid "Loading Effect"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:455
+msgid "FADE IN"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:456
+msgid "SPINNER"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:459
+msgid "Loading Background Colour"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:466
+msgid "Image Load Threshold"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:473
+msgid "Threshold"
+msgstr ""
+
+#: admin/settings/template-settings/global-settings.php:475
+msgid ""
+"Expands visible page area (viewport) in vertical direction by the amount of "
+"pixels set. Elements start to load as soon as the reach the threshold "
+"instead of when they reach the actual viewport."
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:23
+#: classes/addons/class-a3-lazy-load-addons-page.php:38
+msgid "a3 Lazy Load Add-ons/Extensions"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:23
+#: classes/addons/class-a3-lazy-load-addons-page.php:58
+msgid "Add-ons"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:198
+msgid "Installed"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:200
+msgid "Activate"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:203
+msgid "Get this extension"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:209
+msgid "Free"
+msgstr ""
+
+#: classes/addons/class-a3-lazy-load-addons-page.php:217
+msgid "Comming Soon"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:13
+msgid "Go to Support Forum"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:19
+msgid "Free WordPress Plugins"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:26
+msgid "Free WooCommerce Plugins"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:33
+msgid "Is this plugin is just what you needed? If so"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:34
+msgid "Submit Review for Plugin on WordPress"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:41
+msgid "Connect with us via"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:42
+msgid "a3rev Facebook"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:43
+msgid "a3rev Twitter"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:57
+msgid "Support"
+msgstr ""
+
+#: classes/class-a3-lazy-load-filter.php:62
+msgid "Settings"
+msgstr ""

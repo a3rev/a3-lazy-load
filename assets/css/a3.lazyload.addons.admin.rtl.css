@@ -1,0 +1,22 @@
+.clear {
+  clear: both;
+}
+.nobr {
+  white-space: nowrap;
+}
+.a3-lazyload-addons-tab-wrap .extension-card {
+  float: right;
+  margin: 10px 0 10px 20px;
+}
+.a3-lazyload-addons-tab-wrap .extension-card h3 {
+  padding: 20px 120px 0 10px;
+}
+.a3-lazyload-addons-tab-wrap .extension-card h3 span.extension-title {
+  left: auto;
+  right: 10px;
+}
+.a3-lazyload-addons-tab-wrap .extension-card .free-extension {
+	bottom: 10px;
+	left: 10px;
+	right: auto;
+}

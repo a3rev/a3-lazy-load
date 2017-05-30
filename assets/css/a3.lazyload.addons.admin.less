@@ -1,0 +1,82 @@
+@import "mixins.less";
+
+.a3-lazyload-addons-tab-wrap {
+	.extension-card {
+		float: left;
+		.borderbox();
+		width: 300px;
+		height: 230px;
+		margin: 10px 20px 10px 0;
+		border: 1px solid #ccc;
+		background-color: #fff;
+		position: relative;
+
+		p {
+			margin: 0;
+			padding: 10px;
+		}
+
+		.extension-card-header {
+			position: relative;
+		}
+
+		h3 {
+			.borderbox();
+			height: 110px;
+			margin: 0;
+			padding: 20px 10px 0 120px;
+			border-bottom: 1px solid #ccc;
+			background: #fff no-repeat left bottom;
+			background-size: contain;
+			position: relative;
+
+			span.extension-title {
+				background-color: #000;
+				color: #fff;
+				.opacity(0.8);
+				padding: 5px 10px;
+				display: block;
+				.border_radius(5px);
+				position: absolute;
+				max-width: 65%;
+				left: 10px;
+				bottom: 10px;
+				font-size: 16px;
+			}
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		button.installed {
+			border-color: #00a000;
+			background-color: #00a000;
+			cursor: default;
+		}
+
+		.free-extension {
+			background: none repeat scroll 0 0 #d54e21;
+			color: #fff;
+			.border_radius(50px);
+			display: inline-block;
+			font-size: 14px;
+			font-weight: bold;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+
+	.no-extension {
+		font-style: italic;
+		color: #0074a2;
+		font-size: 20px;
+		margin-top: 10px;
+	}
+}
