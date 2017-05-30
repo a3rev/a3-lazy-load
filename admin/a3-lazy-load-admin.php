@@ -1,5 +1,5 @@
 <?php
-update_option('a3rev_lazy_load_plugin', 'a3_lazy_load');
+update_option('a3rev_lazy_load_plugin', 'a3_lazy_load' );
 
 function a3_lazy_load_activated(){
 	update_option('a3_lazy_load_version', '1.8.0');
@@ -25,7 +25,7 @@ function a3_lazy_load_init() {
 		exit;
 	}
 
-	load_plugin_textdomain( 'a3_lazy_load', false, A3_LAZY_LOAD_FOLDER.'/languages' );
+	a3_lazy_load_plugin_textdomain();
 
 	a3_lazy_load_upgrade_plugin();
 }

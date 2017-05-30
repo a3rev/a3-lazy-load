@@ -75,7 +75,7 @@ class A3_Lazy_Load_Global_Settings_Tab extends A3_Lazy_Load_Admin_UI
 
 		$tab_data = array(
 			'name'				=> 'global-settings',
-			'label'				=> __( 'Global Settings', 'a3_lazy_load' ),
+			'label'				=> __( 'Global Settings', 'a3-lazy-load' ),
 			'callback_function'	=> 'a3_lazy_load_global_settings_tab_manager',
 		);
 

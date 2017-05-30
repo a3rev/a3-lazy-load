@@ -20,7 +20,7 @@ class A3_Lazy_Load_Addons_Page
 	public function admin_menu() {
 		$parent_page = 'a3-lazy-load';
 	    if ( current_user_can( 'manage_options' ) )
-	    	add_submenu_page( $parent_page, __( 'a3 Lazy Load Add-ons/Extensions', 'a3_lazy_load' ), '<span style="color:#2ea2cc">' . __( 'Add-ons', 'a3_lazy_load' ) .'</span>', 'manage_options', 'a3-lazy-load-addons', array( $this, 'output' ) );
+	    	add_submenu_page( $parent_page, __( 'a3 Lazy Load Add-ons/Extensions', 'a3-lazy-load' ), '<span style="color:#2ea2cc">' . __( 'Add-ons', 'a3-lazy-load' ) .'</span>', 'manage_options', 'a3-lazy-load-addons', array( $this, 'output' ) );
 	}
 
 	public function load_addons_page_scripts() {
@@ -35,7 +35,7 @@ class A3_Lazy_Load_Addons_Page
 	?>
 <div class="wrap a3-lazyload-addons-container">
 
-	<h2 id="a3-lazyload-addons-title"><?php echo __( 'a3 Lazy Load Add-ons/Extensions', 'a3_lazy_load' ); ?></h2>
+	<h2 id="a3-lazyload-addons-title"><?php echo __( 'a3 Lazy Load Add-ons/Extensions', 'a3-lazy-load' ); ?></h2>
 
 	<?php
 		/**
@@ -43,7 +43,7 @@ class A3_Lazy_Load_Addons_Page
 		 *
 		 * $addons_tabs = array(
 		 * 	'extensions' => array(
-		 *		'name'				=> __( 'Add-ons', 'a3_lazy_load' ),
+		 *		'name'				=> __( 'Add-ons', 'a3-lazy-load' ),
 		 * 		'view'				=> 'extensions',
 		 * 		'callback_action'	=> 'a3_lazyload_extensions_wrap',
 		 * 	)
@@ -55,7 +55,7 @@ class A3_Lazy_Load_Addons_Page
 	<?php if ( is_array( $addons_tabs ) && count( $addons_tabs ) > 0 ) : ?>
 
 	<h2 class="a3-lazyload-addons-nav-tab-wrapper nav-tab-wrapper" id="a3-lazyload-addons-tabs">
-		<a class="nav-tab" id="extensions-tab" href="admin.php?page=a3-lazy-load-addons"><?php echo __( 'Add-ons', 'a3_lazy_load' ); ?></a>
+		<a class="nav-tab" id="extensions-tab" href="admin.php?page=a3-lazy-load-addons"><?php echo __( 'Add-ons', 'a3-lazy-load' ); ?></a>
 		<?php foreach ( $addons_tabs as $key => $tab ) : ?>
 
 		<a class="nav-tab" id="<?php echo esc_attr( $key ); ?>-tab" href="admin.php?page=a3-lazy-load-addons&view=<?php echo $tab['view']; ?>"><?php echo $tab['name']; ?></a>
@@ -129,12 +129,12 @@ class A3_Lazy_Load_Addons_Page
 		 *
 		 * $addon = array(
 		 *		'url'             => 'http://a3rev.com/shop/a3-lazyloads-extra/',
-		 * 		'title'           => __( 'Lazyload Extra', 'a3_lazy_load' ),
+		 * 		'title'           => __( 'Lazyload Extra', 'a3-lazy-load' ),
 		 * 		'header_bg'		  => '#9378d9',
 		 * 		'title_color'	  => '#fff',
 		 * 		'title_bg'		  => '#000',
 		 * 		'image'           => 'https://s3.amazonaws.com/a3_plugins/a3LazyLoadAddon/a3-Lazy-Load-Extra-Addon/plugin.png',
-		 * 		'desc'            => __( 'Support for lazy load video, audio, iframe.', 'a3_lazy_load' ),
+		 * 		'desc'            => __( 'Support for lazy load video, audio, iframe.', 'a3-lazy-load' ),
 		 * 		'php_class_check' => 'A3_Lazy_Load_Extra_Addon',
 		 * 		'folder_name'     => 'a3-lazyload-extra-addon',
 		 * 		'is_free'         => false
@@ -195,18 +195,18 @@ class A3_Lazy_Load_Addons_Page
 
 					<p>
 						<?php if ( $is_installed ) { ?>
-							<button class="button-primary installed"><?php echo __( 'Installed', 'a3_lazy_load' ); ?></button>
+							<button class="button-primary installed"><?php echo __( 'Installed', 'a3-lazy-load' ); ?></button>
 						<?php } elseif ( $had_plugin ) { ?>
-							<a href="<?php echo esc_url( wp_nonce_url( $activate_url, 'activate-plugin_' . $plugin_slug ) ); ?>" class="button-primary"><?php echo __( 'Activate', 'a3_lazy_load' ); ?></a>
+							<a href="<?php echo esc_url( wp_nonce_url( $activate_url, 'activate-plugin_' . $plugin_slug ) ); ?>" class="button-primary"><?php echo __( 'Activate', 'a3-lazy-load' ); ?></a>
 						<?php } else { ?>
 							<a target="_blank" href="<?php echo esc_url( $addon->url ); ?>" class="button-primary">
-								<?php echo __( 'Get this extension', 'a3_lazy_load' ); ?>
+								<?php echo __( 'Get this extension', 'a3-lazy-load' ); ?>
 							</a>
 						<?php } ?>
 					</p>
 
 					<?php if ( $addon->is_free ) { ?>
-					<span class="free-extension"><?php echo __( 'Free', 'a3_lazy_load' ); ?></span>
+					<span class="free-extension"><?php echo __( 'Free', 'a3-lazy-load' ); ?></span>
 					<?php } ?>
 				</div>
 
@@ -214,7 +214,7 @@ class A3_Lazy_Load_Addons_Page
 
 		<?php else : ?>
 
-			<div class="no-extension"><?php echo __( 'Comming Soon', 'a3_lazy_load' ); ?></div>
+			<div class="no-extension"><?php echo __( 'Comming Soon', 'a3-lazy-load' ); ?></div>
 
 		<?php endif; ?>
 

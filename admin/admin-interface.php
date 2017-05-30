@@ -183,7 +183,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 					$version_message = $this->get_version_message();
 					$has_new_version = 1;
 					if ( '' == trim( $version_message ) ) {
-						$version_message = __( 'Great! You have the latest version installed.', 'a3_lazy_load' );
+						$version_message = __( 'Great! You have the latest version installed.', 'a3-lazy-load' );
 						$has_new_version = 0;
 					} else {
 						delete_option('a3_lazy_load_clean_on_deletion');
@@ -222,16 +222,12 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/* admin_css_load */
 	/*-----------------------------------------------------------------------------------*/
 
-	public function admin_css_load () {
-		global $wp_version;
-		
+	public function admin_css_load () {		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		
 		wp_enqueue_style( 'a3rev-admin-ui-style', $this->admin_plugin_url() . '/assets/css/admin-ui-style' . $suffix . '.css' );
 		
-		if ( version_compare( $wp_version, '3.8', '>=' ) ) {
-			wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style' . $suffix . '.css' );
-		}
+		wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style' . $suffix . '.css' );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( 'a3rev-chosen-new-style', $this->admin_plugin_url() . '/assets/js/chosen/chosen' . $suffix . '.css' );
 		wp_enqueue_style( 'a3rev-tiptip-style', $this->admin_plugin_url() . '/assets/js/tipTip/tipTip.css' );
@@ -248,7 +244,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/* get_success_message */
 	/*-----------------------------------------------------------------------------------*/
 	public function get_success_message( $message = '' ) {
-		if ( trim( $message ) == '' ) $message = __( 'Settings successfully saved.' , 'a3_lazy_load' ); 
+		if ( trim( $message ) == '' ) $message = __( 'Settings successfully saved.' , 'a3-lazy-load' ); 
 		return '<div class="updated" id=""><p>' . $message . '</p></div>';
 	}
 	
@@ -256,7 +252,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/* get_error_message */
 	/*-----------------------------------------------------------------------------------*/
 	public function get_error_message( $message = '' ) {
-		if ( trim( $message ) == '' ) $message = __( 'Error: Settings can not save.' , 'a3_lazy_load' ); 
+		if ( trim( $message ) == '' ) $message = __( 'Error: Settings can not save.' , 'a3-lazy-load' ); 
 		return '<div class="error" id=""><p>' . $message . '</p></div>';
 	}
 	
@@ -264,7 +260,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/* get_reset_message */
 	/*-----------------------------------------------------------------------------------*/
 	public function get_reset_message( $message = '' ) {
-		if ( trim( $message ) == '' ) $message = __( 'Settings successfully reseted.' , 'a3_lazy_load' ); 
+		if ( trim( $message ) == '' ) $message = __( 'Settings successfully reseted.' , 'a3-lazy-load' ); 
 		return '<div class="updated" id=""><p>' . $message . '</p></div>';
 	}
 	
@@ -285,12 +281,12 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function get_font_weights() {
 		$font_weights = array (
-			'300'				=> __( 'Thin', 'a3_lazy_load' ),
-			'300 italic'		=> __( 'Thin/Italic', 'a3_lazy_load' ),
-			'normal'			=> __( 'Normal', 'a3_lazy_load' ),
-			'italic'			=> __( 'Italic', 'a3_lazy_load' ),
-			'bold'				=> __( 'Bold', 'a3_lazy_load' ),
-			'bold italic'		=> __( 'Bold/Italic', 'a3_lazy_load' ),
+			'300'				=> __( 'Thin', 'a3-lazy-load' ),
+			'300 italic'		=> __( 'Thin/Italic', 'a3-lazy-load' ),
+			'normal'			=> __( 'Normal', 'a3-lazy-load' ),
+			'italic'			=> __( 'Italic', 'a3-lazy-load' ),
+			'bold'				=> __( 'Bold', 'a3-lazy-load' ),
+			'bold italic'		=> __( 'Bold/Italic', 'a3-lazy-load' ),
 		);
 		return apply_filters( $this->plugin_name . '_font_weights', $font_weights );
 	}
@@ -300,14 +296,14 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function get_border_styles() {
 		$border_styles = array (
-			'solid'				=> __( 'Solid', 'a3_lazy_load' ),
-			'double'			=> __( 'Double', 'a3_lazy_load' ),
-			'dashed'			=> __( 'Dashed', 'a3_lazy_load' ),
-			'dotted'			=> __( 'Dotted', 'a3_lazy_load' ),
-			'groove'			=> __( 'Groove', 'a3_lazy_load' ),
-			'ridge'				=> __( 'Ridge', 'a3_lazy_load' ),
-			'inset'				=> __( 'Inset', 'a3_lazy_load' ),
-			'outset'			=> __( 'Outset', 'a3_lazy_load' ),
+			'solid'				=> __( 'Solid', 'a3-lazy-load' ),
+			'double'			=> __( 'Double', 'a3-lazy-load' ),
+			'dashed'			=> __( 'Dashed', 'a3-lazy-load' ),
+			'dotted'			=> __( 'Dotted', 'a3-lazy-load' ),
+			'groove'			=> __( 'Groove', 'a3-lazy-load' ),
+			'ridge'				=> __( 'Ridge', 'a3-lazy-load' ),
+			'inset'				=> __( 'Inset', 'a3-lazy-load' ),
+			'outset'			=> __( 'Outset', 'a3-lazy-load' ),
 		);
 		return apply_filters( $this->plugin_name . '_border_styles', $border_styles );
 	}
@@ -1740,13 +1736,13 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 
 					$google_api_key        = $this->settings_get_option( $this->google_api_key_option );
 					$google_api_key_enable = $this->settings_get_option( $this->google_api_key_option . '_enable', 0 );
-					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3_lazy_load' );
-					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3_lazy_load' );
+					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3-lazy-load' );
+					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
                         	<?php echo $tip; ?>
-							<label for="<?php echo $this->google_api_key_option; ?>"><?php echo __( 'Google Fonts API', 'a3_lazy_load' ); ?></label>
+							<label for="<?php echo $this->google_api_key_option; ?>"><?php echo __( 'Google Fonts API', 'a3-lazy-load' ); ?></label>
 						</th>
 						<td class="forminp forminp-onoff_checkbox forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -1758,11 +1754,11 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 type="checkbox"
 								value="1"
 								<?php checked( $google_api_key_enable, 1 ); ?>
-								/> <span class="description" style="margin-left:5px;"><?php echo __( 'ON to connect to Google Fonts API and have auto font updates direct from Google.', 'a3_lazy_load' ); ?></span>
+								/> <span class="description" style="margin-left:5px;"><?php echo __( 'ON to connect to Google Fonts API and have auto font updates direct from Google.', 'a3-lazy-load' ); ?></span>
 
 							<div>&nbsp;</div>
 							<div class="a3rev-ui-google-api-key-container" style="<?php if( 1 != $google_api_key_enable ) { echo 'display: none;'; } ?>">
-								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key", 'a3_lazy_load' ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
+								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key", 'a3-lazy-load' ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
 								<div class="a3rev-ui-google-api-key-inside 
 									<?php
 									if ( $a3_lazy_load_fonts_face->is_valid_google_api_key() ) {
@@ -1779,11 +1775,11 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 										style="<?php echo esc_attr( $value['css'] ); ?>"
 										value="<?php echo esc_attr( $google_api_key ); ?>"
 										class="a3rev-ui-text a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
-		                                placeholder="<?php echo __( 'Google Fonts API Key', 'a3_lazy_load' ); ?>"
+		                                placeholder="<?php echo __( 'Google Fonts API Key', 'a3-lazy-load' ); ?>"
 										<?php echo implode( ' ', $custom_attributes ); ?>
 										/>
-									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3_lazy_load' ); ?></p>
-									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.', 'a3_lazy_load' ); ?></p>
+									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3-lazy-load' ); ?></p>
+									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.', 'a3-lazy-load' ); ?></p>
 								</div>
 							</div>
 						</td>
@@ -1802,7 +1798,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
                         	<?php echo $tip; ?>
-							<label><?php echo __( 'Check New Version', 'a3_lazy_load' ); ?></label>
+							<label><?php echo __( 'Check New Version', 'a3-lazy-load' ); ?></label>
 						</th>
 						<td class="forminp forminp-manual_check_version">
 							<?php echo $description; ?>
@@ -1813,7 +1809,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 id="<?php echo $this->plugin_name . '-check-version'; ?>"
 								class="button button-primary a3rev-ui-manual_check_version"
                                 type="button"
-								value="<?php echo __( 'Check Now', 'a3_lazy_load' ); ?>"
+								value="<?php echo __( 'Check Now', 'a3-lazy-load' ); ?>"
 								/> <span class="a3rev-ui-version-checking"> </span>
 								<p class="a3rev-ui-check-version-message <?php echo $new_version_class; ?>"><?php echo $version_message; ?></p>
 
@@ -1984,13 +1980,13 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 				case 'onoff_toggle_box' :
 
 					$option_value = $this->settings_get_option( $this->toggle_box_open_option, 0 );
-					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3_lazy_load' );
-					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3_lazy_load' );
+					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3-lazy-load' );
+					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
                         	<?php echo $tip; ?>
-							<label for="<?php echo $this->toggle_box_open_option; ?>"><?php echo __( 'Open Box Display', 'a3_lazy_load' ); ?></label>
+							<label for="<?php echo $this->toggle_box_open_option; ?>"><?php echo __( 'Open Box Display', 'a3-lazy-load' ); ?></label>
 						</th>
 						<td class="forminp forminp-onoff_checkbox forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -2003,7 +1999,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								value="1"
 								<?php checked( $option_value, 1 ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <span class="description" style="margin-left:5px;"><?php echo __( 'ON and each admin panel setting box OPEN | CLOSED position are saved each time changes are SAVED.', 'a3_lazy_load' ); ?></span>
+								/> <span class="description" style="margin-left:5px;"><?php echo __( 'ON and each admin panel setting box OPEN | CLOSED position are saved each time changes are SAVED.', 'a3-lazy-load' ); ?></span>
                         </td>
 					</tr><?php
 				break;
@@ -2084,8 +2080,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 									name="<?php echo $name_attribute; ?>[enable]"
 									id="<?php echo $id_attribute; ?>"
 									class="a3rev-ui-bg_color-enable a3rev-ui-onoff_checkbox <?php echo esc_attr( $value['class'] ); ?>"
-									checked_label="<?php _e( 'ON', 'a3_lazy_load' ); ?>"
-									unchecked_label="<?php _e( 'OFF', 'a3_lazy_load' ); ?>"
+									checked_label="<?php _e( 'ON', 'a3-lazy-load' ); ?>"
+									unchecked_label="<?php _e( 'OFF', 'a3-lazy-load' ); ?>"
 									type="checkbox"
 									value="1"
 									<?php checked( 1, $enable ); ?>
@@ -2253,8 +2249,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								<?php
 								if ( is_array( $value['onoff_options'] ) && count( $value['onoff_options'] ) > 0 ) {
 									foreach ( $value['onoff_options'] as $i_option ) {
-										if ( ! isset( $i_option['checked_label'] ) ) $i_option['checked_label'] = __( 'ON', 'a3_lazy_load' );
-										if ( ! isset( $i_option['unchecked_label'] ) ) $i_option['unchecked_label'] = __( 'OFF', 'a3_lazy_load' );
+										if ( ! isset( $i_option['checked_label'] ) ) $i_option['checked_label'] = __( 'ON', 'a3-lazy-load' );
+										if ( ! isset( $i_option['unchecked_label'] ) ) $i_option['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
 										if ( ! isset( $i_option['val'] ) ) $i_option['val'] = 1;
 										if ( ! isset( $i_option['text'] ) ) $i_option['text'] = '';
 										?>
@@ -2343,8 +2339,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 				case 'onoff_checkbox' :
 				
 					if ( ! isset( $value['checked_value'] ) ) $value['checked_value'] = 1;
-					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3_lazy_load' );
-					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3_lazy_load' );
+					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3-lazy-load' );
+					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
 		
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
@@ -2372,8 +2368,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 				case 'switcher_checkbox' :
 				
 					if ( ! isset( $value['checked_value'] ) ) $value['checked_value'] = 1;
-					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3_lazy_load' );
-					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3_lazy_load' );
+					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3-lazy-load' );
+					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
 		
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
@@ -2408,11 +2404,11 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 	
-							<label><?php _e( 'Width', 'a3_lazy_load' ); ?> <input name="<?php echo $name_attribute; ?>[width]" id="<?php echo $id_attribute; ?>-width" type="text" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-width" value="<?php echo $width; ?>" /></label>
+							<label><?php _e( 'Width', 'a3-lazy-load' ); ?> <input name="<?php echo $name_attribute; ?>[width]" id="<?php echo $id_attribute; ?>-width" type="text" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-width" value="<?php echo $width; ?>" /></label>
 	
-							<label><?php _e( 'Height', 'a3_lazy_load' ); ?> <input name="<?php echo $name_attribute; ?>[height]" id="<?php echo $id_attribute; ?>-height" type="text" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-height" value="<?php echo $height; ?>" /></label>
+							<label><?php _e( 'Height', 'a3-lazy-load' ); ?> <input name="<?php echo $name_attribute; ?>[height]" id="<?php echo $id_attribute; ?>-height" type="text" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-height" value="<?php echo $height; ?>" /></label>
 	
-							<label><?php _e( 'Hard Crop', 'a3_lazy_load' ); ?> <input name="<?php echo $name_attribute; ?>[crop]" id="<?php echo $id_attribute; ?>-crop" type="checkbox" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-crop" <?php echo $crop; ?> /></label>
+							<label><?php _e( 'Hard Crop', 'a3-lazy-load' ); ?> <input name="<?php echo $name_attribute; ?>[crop]" id="<?php echo $id_attribute; ?>-crop" type="checkbox" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-crop" <?php echo $crop; ?> /></label>
 	
 							</td>
 					</tr><?php
@@ -2505,7 +2501,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 id="<?php echo $id_attribute; ?>-face"
 								class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-face chzn-select <?php if ( is_rtl() ) { echo 'chzn-rtl'; } ?>"
 								>
-								<optgroup label="<?php _e( '-- Default Fonts --', 'a3_lazy_load' ); ?>">
+								<optgroup label="<?php _e( '-- Default Fonts --', 'a3-lazy-load' ); ?>">
                                 <?php
 									foreach ( $a3_lazy_load_fonts_face->get_default_fonts() as $val => $text ) {
 										?>
@@ -2516,7 +2512,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 									}
 								?>
                                 </optgroup>
-                                <optgroup label="<?php _e( '-- Google Fonts --', 'a3_lazy_load' ); ?>">
+                                <optgroup label="<?php _e( '-- Google Fonts --', 'a3-lazy-load' ); ?>">
                                 <?php
 									foreach ( $a3_lazy_load_fonts_face->get_google_fonts() as $font ) {
 										?>
@@ -2557,7 +2553,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								/> 
                                 
                            <!-- Preview Button -->
-                           <div class="a3rev-ui-typography-preview"><a href="#" class="a3rev-ui-typography-preview-button button submit-button" title="<?php _e( 'Preview your customized typography settings', 'a3_lazy_load'); ?>"><span>&nbsp;</span></a></div>
+                           <div class="a3rev-ui-typography-preview"><a href="#" class="a3rev-ui-typography-preview-button button submit-button" title="<?php _e( 'Preview your customized typography settings', 'a3-lazy-load' ); ?>"><span>&nbsp;</span></a></div>
                            
                            </div>
                            
@@ -2666,8 +2662,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								/>
                            
                            <!-- Preview Button -->
-                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border settings', 'a3_lazy_load' ); ?>"><span>&nbsp;</span></a></div>
-                           <span class="description" style="margin-left:5px;"><?php echo __( '0px = No Border', 'a3_lazy_load' ); ?></span>
+                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border settings', 'a3-lazy-load' ); ?>"><span>&nbsp;</span></a></div>
+                           <span class="description" style="margin-left:5px;"><?php echo __( '0px = No Border', 'a3-lazy-load' ); ?></span>
                            <div style="clear:both; margin-bottom:10px"></div>
                            
                            <!-- Border Corner : Rounded or Square -->
@@ -2675,8 +2671,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                     name="<?php echo $name_attribute; ?>[corner]"
                                     id="<?php echo $id_attribute; ?>"
                                     class="a3rev-ui-border-corner a3rev-ui-onoff_checkbox <?php echo esc_attr( $value['class'] ); ?>"
-                                    checked_label="<?php _e( 'Rounded', 'a3_lazy_load' ); ?>"
-                                    unchecked_label="<?php _e( 'Square', 'a3_lazy_load' ); ?>"
+                                    checked_label="<?php _e( 'Rounded', 'a3-lazy-load' ); ?>"
+                                    unchecked_label="<?php _e( 'Square', 'a3-lazy-load' ); ?>"
                                     type="checkbox"
                                     value="rounded"
                                     <?php checked( 'rounded', $corner ); ?>
@@ -2686,7 +2682,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 							<!-- Border Rounded Value -->
 								<div class="a3rev-ui-border-corner-value-container">
                                 	<div class="a3rev-ui-border_corner-top_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'a3_lazy_load' ); ?></span>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'a3-lazy-load' ); ?></span>
                                         <div class="a3rev-ui-slide-container">
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2706,7 +2702,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-top_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'a3_lazy_load' ); ?></span> 
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'a3-lazy-load' ); ?></span> 
                                         <div class="a3rev-ui-slide-container">
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2726,7 +2722,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-bottom_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'a3_lazy_load' ); ?></span> 
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'a3-lazy-load' ); ?></span> 
                                         <div class="a3rev-ui-slide-container">
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2746,7 +2742,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-bottom_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'a3_lazy_load' ); ?></span>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'a3-lazy-load' ); ?></span>
                                         <div class="a3rev-ui-slide-container"> 
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2833,8 +2829,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								/>
                            
                            <!-- Preview Button -->
-                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border styles settings', 'a3_lazy_load' ); ?>"><span>&nbsp;</span></a></div>
-                           <span class="description" style="margin-left:5px;"><?php echo __( '0px = No Border', 'a3_lazy_load' ); ?></span>
+                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border styles settings', 'a3-lazy-load' ); ?>"><span>&nbsp;</span></a></div>
+                           <span class="description" style="margin-left:5px;"><?php echo __( '0px = No Border', 'a3-lazy-load' ); ?></span>
                            </div>
                            
 						</td>
@@ -2891,8 +2887,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                     name="<?php echo $name_attribute; ?>[corner]"
                                     id="<?php echo $id_attribute; ?>"
                                     class="a3rev-ui-border-corner a3rev-ui-onoff_checkbox <?php echo esc_attr( $value['class'] ); ?>"
-                                    checked_label="<?php _e( 'Rounded', 'a3_lazy_load' ); ?>"
-                                    unchecked_label="<?php _e( 'Square', 'a3_lazy_load' ); ?>"
+                                    checked_label="<?php _e( 'Rounded', 'a3-lazy-load' ); ?>"
+                                    unchecked_label="<?php _e( 'Square', 'a3-lazy-load' ); ?>"
                                     type="checkbox"
                                     value="rounded"
                                     <?php checked( 'rounded', $corner ); ?>
@@ -2900,12 +2896,12 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								/> 
                                 
                                 <!-- Preview Button -->
-                               	<div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border settings', 'a3_lazy_load' ); ?>"><span>&nbsp;</span></a></div>
+                               	<div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-border-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized border settings', 'a3-lazy-load' ); ?>"><span>&nbsp;</span></a></div>
                                 <?php echo $description; ?>
                                	<!-- Border Rounded Value -->
 								<div class="a3rev-ui-border-corner-value-container">
                                 	<div class="a3rev-ui-border_corner-top_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'a3_lazy_load' ); ?></span>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'a3-lazy-load' ); ?></span>
                                         <div class="a3rev-ui-slide-container">
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2925,7 +2921,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-top_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'a3_lazy_load' ); ?></span>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'a3-lazy-load' ); ?></span>
                                         <div class="a3rev-ui-slide-container"> 
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2945,7 +2941,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-bottom_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'a3_lazy_load' ); ?></span>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'a3-lazy-load' ); ?></span>
                                         <div class="a3rev-ui-slide-container"> 
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -2965,7 +2961,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                 		</div>
                                     </div>
                                     <div class="a3rev-ui-border_corner-bottom_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'a3_lazy_load' ); ?></span> 
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'a3-lazy-load' ); ?></span> 
                                         <div class="a3rev-ui-slide-container">
                                             <div class="a3rev-ui-slide-container-start">
                                                 <div class="a3rev-ui-slide-container-end">
@@ -3015,8 +3011,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                     name="<?php echo $name_attribute; ?>[enable]"
                                     id="<?php echo $id_attribute; ?>"
                                     class="a3rev-ui-box_shadow-enable a3rev-ui-onoff_checkbox <?php echo esc_attr( $value['class'] ); ?>"
-                                    checked_label="<?php _e( 'ON', 'a3_lazy_load' ); ?>"
-                                    unchecked_label="<?php _e( 'OFF', 'a3_lazy_load' ); ?>"
+                                    checked_label="<?php _e( 'ON', 'a3-lazy-load' ); ?>"
+                                    unchecked_label="<?php _e( 'OFF', 'a3-lazy-load' ); ?>"
                                     type="checkbox"
                                     value="1"
                                     <?php checked( 1, $enable ); ?>
@@ -3031,7 +3027,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								name="<?php echo $name_attribute; ?>[h_shadow]"
                                 id="<?php echo $id_attribute; ?>-h_shadow"
 								class="a3rev-ui-box_shadow-h_shadow chzn-select <?php if ( is_rtl() ) { echo 'chzn-rtl'; } ?>"
-                                data-placeholder="<?php _e( 'Horizontal Shadow', 'a3_lazy_load' ); ?>"
+                                data-placeholder="<?php _e( 'Horizontal Shadow', 'a3-lazy-load' ); ?>"
 								>
 								<?php
 									for ( $i = -20; $i <= 20; $i++ ) {
@@ -3049,7 +3045,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								name="<?php echo $name_attribute; ?>[v_shadow]"
                                 id="<?php echo $id_attribute; ?>-v_shadow"
 								class="a3rev-ui-box_shadow-v_shadow chzn-select <?php if ( is_rtl() ) { echo 'chzn-rtl'; } ?>"
-                                data-placeholder="<?php _e( 'Vertical Shadow', 'a3_lazy_load' ); ?>"
+                                data-placeholder="<?php _e( 'Vertical Shadow', 'a3-lazy-load' ); ?>"
 								>
 								<?php
 									for ( $i = -20; $i <= 20; $i++ ) {
@@ -3067,7 +3063,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								name="<?php echo $name_attribute; ?>[blur]"
                                 id="<?php echo $id_attribute; ?>-blur"
 								class="a3rev-ui-box_shadow-blur chzn-select <?php if ( is_rtl() ) { echo 'chzn-rtl'; } ?>"
-                                data-placeholder="<?php _e( 'Blur Distance', 'a3_lazy_load' ); ?>"
+                                data-placeholder="<?php _e( 'Blur Distance', 'a3-lazy-load' ); ?>"
 								>
 								<?php
 									for ( $i = 0; $i <= 20; $i++ ) {
@@ -3085,7 +3081,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								name="<?php echo $name_attribute; ?>[spread]"
                                 id="<?php echo $id_attribute; ?>-spread"
 								class="a3rev-ui-box_shadow-spread chzn-select <?php if ( is_rtl() ) { echo 'chzn-rtl'; } ?>"
-                                data-placeholder="<?php _e( 'Spread Size', 'a3_lazy_load' ); ?>"
+                                data-placeholder="<?php _e( 'Spread Size', 'a3-lazy-load' ); ?>"
 								>
 								<?php
 									for ( $i = 0; $i <= 20; $i++ ) {
@@ -3103,8 +3099,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
                                     name="<?php echo $name_attribute; ?>[inset]"
                                     id="<?php echo $id_attribute; ?>"
                                     class="a3rev-ui-box_shadow-inset a3rev-ui-onoff_checkbox"
-                                    checked_label="<?php _e( 'INNER', 'a3_lazy_load' ); ?>"
-                                    unchecked_label="<?php _e( 'OUTER', 'a3_lazy_load' ); ?>"
+                                    checked_label="<?php _e( 'INNER', 'a3-lazy-load' ); ?>"
+                                    unchecked_label="<?php _e( 'OUTER', 'a3-lazy-load' ); ?>"
                                     type="checkbox"
                                     value="inset"
                                     <?php checked( 'inset', $inset ); ?>
@@ -3122,7 +3118,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								/>
                         	
                             <!-- Preview Button -->
-                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-box_shadow-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized box shadow settings', 'a3_lazy_load'); ?>"><span>&nbsp;</span></a></div>   
+                           <div class="a3rev-ui-settings-preview"><a href="#" class="a3rev-ui-box_shadow-preview-button a3rev-ui-settings-preview-button button submit-button" title="<?php _e( 'Preview your customized box shadow settings', 'a3-lazy-load' ); ?>"><span>&nbsp;</span></a></div>   
                            </div>
                            <div style="clear:both;"></div>
                            </div>
@@ -3396,8 +3392,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 			</div> <!-- Close Panel Row -->
 		<?php do_action( $this->plugin_name . '-' . trim( $form_key ) . '_settings_end' ); ?>
             <p class="submit">
-                    <input type="submit" value="<?php _e('Save changes', 'a3_lazy_load'); ?>" class="button button-primary" name="bt_save_settings" />
-                    <input type="submit" name="bt_reset_settings" class="button" value="<?php _e('Reset Settings', 'a3_lazy_load'); ?>"  />
+                    <input type="submit" value="<?php _e('Save changes', 'a3-lazy-load' ); ?>" class="button button-primary" name="bt_save_settings" />
+                    <input type="submit" name="bt_reset_settings" class="button" value="<?php _e('Reset Settings', 'a3-lazy-load' ); ?>"  />
                     <input type="hidden" name="form_name_action" value="<?php echo $form_key; ?>"  />
                     <input type="hidden" class="last_tab" name="subtab" value="#<?php echo $current_subtab; ?>" />
             </p>

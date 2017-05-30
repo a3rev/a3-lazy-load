@@ -59,8 +59,8 @@ class A3_Lazy_Load_Settings_Page extends A3_Lazy_Load_Admin_UI
 		$page_data = array( 
 			'type'				=> 'submenu',
 			'parent_slug'		=> 'options-general.php',
-			'page_title'		=> __('a3 Lazy Load','a3_lazy_load'),
-			'menu_title'		=> __('a3 Lazy Load','a3_lazy_load'),
+			'page_title'		=> __('a3 Lazy Load','a3-lazy-load' ),
+			'menu_title'		=> __('a3 Lazy Load','a3-lazy-load' ),
 			'capability'		=> 'manage_options',
 			'menu_slug'			=> $this->menu_slug,
 			'function'			=> 'a3_lazy_load_settings_page_show',
