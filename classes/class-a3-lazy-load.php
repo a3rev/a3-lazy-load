@@ -276,12 +276,12 @@ class A3_Lazy_Load
 	static function get_attachment_image_attributes( $attr ) {
 		$A3_Lazy_Load = A3_Lazy_Load::_instance();
 
-		if ( is_array( $this->_skip_images_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_images_classes );
+		if ( is_array( $A3_Lazy_Load->_skip_images_classes ) ) {
+			$skip_images_preg_quoted = array_map( 'preg_quote', $A3_Lazy_Load->_skip_images_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
-		if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, 'class="'.$attr['class'].'"' ) ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", 'src="'.$attr['src'].'"' ) ) {
+		if ( ! ( is_array( $A3_Lazy_Load->_skip_images_classes ) && preg_match( $skip_images_regex, 'class="'.$attr['class'].'"' ) ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", 'src="'.$attr['src'].'"' ) ) {
 
 			$attr['data-src'] = $attr['src'];
 			$attr['src'] = $A3_Lazy_Load->_placeholder_url;
