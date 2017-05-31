@@ -2,7 +2,7 @@
 update_option('a3rev_lazy_load_plugin', 'a3_lazy_load' );
 
 function a3_lazy_load_activated(){
-	update_option('a3_lazy_load_version', '1.8.0');
+	update_option('a3_lazy_load_version', '1.8.1');
 
 	// Set Settings Default from Admin Init
 	global $a3_lazy_load_admin_init;
@@ -65,6 +65,6 @@ function a3_lazy_load_upgrade_plugin() {
 		update_option('a3_lazy_load_style_version', time() );
 	}
 
-    update_option('a3_lazy_load_version', '1.8.0');
+    update_option('a3_lazy_load_version', '1.8.1');
 }
 ?>

@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
 Tested up to: 4.7.5
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Changelog ==
+
+= 1.8.1 - 2017/05/31 =
+* Fix - Use correct object A3_Lazy_Load instead of this as it was causing a fatal error
 
 = 1.8.0 - 2017/05/30 =
 * Feature  Updated for compatibility with Better AMP plugin
@@ -272,6 +275,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Upgrade Notice ==
+
+= 1.8.1 =
+Maintenance Update. 1 bug fix causing afatal error from version 1.8.0 release yesterday
 
 = 1.8.0 =
 Feature Upgrade. 1 bug fix, 3 new features, 2 code updates for compatibility with WordPress v 4.7.5, PHP 7.0, Better AMP plugin and launch public Github Repo 
