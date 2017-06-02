@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 4.7.5
-Stable tag: 1.8.1
+Tested up to: 4.8.0
+Stable tag: 1.8.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,12 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Changelog ==
+
+= 1.8.2 - 2017/06/02 =
+* Tweak - Tested for compatibility with WordPress major version 4.8.0
+* Tweak - Add Lazy Load support for new WordPress 4.8.0 Image, Video and Media widgets
+* Tweak - Updated Skip Image Classes and Skip Video Classes help text for better clarity 
+* Fix - WordPress Admin Tool Bar User Avatar conflict Issue #2
 
 = 1.8.1 - 2017/05/31 =
 * Fix - Use correct object A3_Lazy_Load instead of this as it was causing a fatal error
@@ -275,6 +281,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Upgrade Notice ==
+
+= 1.8.2 =
+Maintenance Update. 1 bug fix and 1 code tweak for compatibility with upcoming Major WordPress version 4.8.0
 
 = 1.8.1 =
 Maintenance Update. 1 bug fix causing afatal error from version 1.8.0 release yesterday
