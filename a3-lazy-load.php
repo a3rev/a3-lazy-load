@@ -7,6 +7,8 @@ Author: a3rev Software
 Author URI: https://a3rev.com/
 Requires at least: 4.0
 Tested up to: 4.7.5
+Text Domain: a3-lazy-load
+Domain Path: /languages
 License: GPLv2 or later
 	Copyright © 2011 a3 Revolution Software Development team
 	a3 Revolution Software Development team
