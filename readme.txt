@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 4.9.0
-Stable tag: 1.8.2
+Tested up to: 4.9.2
+Stable tag: 1.8.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,10 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Changelog ==
+
+= 1.8.3 - 2018/01/19 =
+* Tweak - Tested for compatibility with WordPress 4.9.2
+* Fix - Remove redirect to plugins admin panel when activate the plugin for the first time with WordPress 4.9.2
 
 = 1.8.2 - 2017/06/02 =
 * Tweak - Tested for compatibility with WordPress major version 4.8.0
@@ -281,6 +285,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Upgrade Notice ==
+
+= 1.8.3 =
+Maintenance Update. 1 redirect Bug fix on first activate on site with WordPress v4.9.2
 
 = 1.8.2 =
 Maintenance Update. 1 bug fix and 1 code tweak for compatibility with upcoming Major WordPress version 4.8.0
