@@ -195,6 +195,39 @@
 			"fadeOut" : 50
 		});
 
+		/* Apply Time Picker */
+		$('.a3rev_panel_container input.a3rev-ui-time_picker').each(function(i){
+			current_value = $(this).val();
+			step = 60;
+			time_min = false;
+			time_max = false;
+			time_allow = [];
+
+			if( typeof $(this).data('time_step') != undefined ) {
+				step = $(this).data('time_step');
+			}
+			if( typeof $(this).data('time_min') != undefined ) {
+				time_min = $(this).data('time_min');
+			}
+			if( typeof $(this).data('time_max') != undefined ) {
+				time_max = $(this).data('time_max');
+			}
+			if( typeof $(this).data('time_allow') != undefined ) {
+				time_allow = $(this).data('time_allow');
+			}
+
+			$(this).datetimepicker({
+				datepicker: false,
+				format: 'H:i',
+				value: current_value,
+				step: step,
+				minTime: time_min,
+				maxTime: time_max,
+				allowTimes: time_allow
+			});
+
+		});
+
 		/* Apply Sub tab selected script */
 		$('div.a3_subsubsub_section ul.subsubsub li a:eq(0)').addClass('current');
 		$('div.a3_subsubsub_section .section:gt(0)').hide();

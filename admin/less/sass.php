@@ -5,11 +5,11 @@ if (!defined('ABSPATH'))
 
 class A3_Lazy_Load_Less
 {
-	public $plugin_name = 'a3_lazy_load';
-	public $css_file_name = 'a3_lazy_load';
-	public $plugin_folder = A3_LAZY_LOAD_FOLDER;
-	public $plugin_dir = A3_LAZY_LOAD_DIR;
-
+    public $plugin_name   = A3_LAZY_LOAD_KEY;
+    public $css_file_name = 'a3_lazy_load';
+    public $plugin_folder = A3_LAZY_LOAD_FOLDER;
+    public $plugin_dir    = A3_LAZY_LOAD_DIR;
+    
     /*-----------------------------------------------------------------------------------*/
     /* Constructor */
     /*-----------------------------------------------------------------------------------*/

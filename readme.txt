@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 4.9.2
-Stable tag: 1.8.3
+Tested up to: 4.9.4
+Stable tag: 1.8.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -135,6 +135,13 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Changelog ==
+
+= 1.8.4 - 2018/02/13 =
+* Maintenance Update. Under the bonnet tweaks to keep your plugin running smoothly and is the foundation for new features to be developed this year 
+* Framework - Update a3rev Plugin Framework to version 2.0.2
+* Framework - Add Framework version for all style and script files
+* Tweak - Update for full compatibility with a3rev Dashboard plugin
+* Tweak - Test for compatibility with WordPress 4.9.4
 
 = 1.8.3 - 2018/01/19 =
 * Tweak - Tested for compatibility with WordPress 4.9.2
@@ -285,6 +292,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Upgrade Notice ==
+
+= 1.8.4 =
+Maintenance Update. This version updates the Plugin Framework to v 2.0.2, adds full compatibility with a3rev dashboard and WordPress v 4.9.4
 
 = 1.8.3 =
 Maintenance Update. 1 redirect Bug fix on first activate on site with WordPress v4.9.2

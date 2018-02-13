@@ -1,5 +1,4 @@
 <?php
-update_option('a3rev_lazy_load_plugin', 'a3_lazy_load' );
 
 function a3_lazy_load_activated(){
 	update_option('a3_lazy_load_version', A3_LAZY_VERSION );

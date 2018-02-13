@@ -57,7 +57,7 @@ class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
 	/* Include Uploader Script */
 	/*-----------------------------------------------------------------------------------*/
 	public function uploader_js () {
-		wp_enqueue_script( 'a3-uploader-script', $this->admin_uploader_url() . '/uploader-script.js', array( 'jquery', 'thickbox' ) );
+		wp_enqueue_script( 'a3-uploader-script', $this->admin_uploader_url() . '/uploader-script.js', array( 'jquery', 'thickbox' ), $this->framework_version );
 		if ( function_exists( 'wp_enqueue_media' ) ) {
 		    wp_enqueue_media();
 		} else {
@@ -70,9 +70,9 @@ class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function uploader_style () {
 		wp_enqueue_style( 'thickbox' );
-		wp_enqueue_style( 'a3-uploader-style', $this->admin_uploader_url() . '/uploader.css' );
+		wp_enqueue_style( 'a3-uploader-style', $this->admin_uploader_url() . '/uploader.css', array(), $this->framework_version );
 		if ( is_rtl() ) {
-			wp_enqueue_style( 'a3-uploader-style-rtl', $this->admin_uploader_url() . '/uploader.rtl.css' );
+			wp_enqueue_style( 'a3-uploader-style-rtl', $this->admin_uploader_url() . '/uploader.rtl.css', array(), $this->framework_version );
 		}
 	}
 
