@@ -70,6 +70,10 @@ class A3_Lazy_Load
 
 			if ( $a3_lazy_load_global_settings['a3l_apply_image_to_content'] == true ) {
 				add_filter( 'the_content', array( $this, 'filter_content_images' ), 10 );
+				// We are asuming the user doesn't care about the difference between a regular WP content
+				// and the ACF text and Wysiwyg areas
+				add_filter( 'acf_the_content', array( $this, 'filter_content_images' ), 10 );
+
 			}
 			if ( $a3_lazy_load_global_settings['a3l_apply_image_to_textwidget'] == true ) {
 				add_filter( 'widget_text', array( $this, 'filter_images' ), 200 );
@@ -98,6 +102,9 @@ class A3_Lazy_Load
 
 			if ( $a3_lazy_load_global_settings['a3l_apply_video_to_content'] == true ) {
 				add_filter( 'the_content', array( $this, 'filter_videos' ), 10 );
+				// We are asuming the user doesn't care about the difference between a regular WP content
+				// and the ACF text and Wysiwyg areas
+				add_filter( 'acf_the_content', array( $this, 'filter_videos' ), 10 );
 			}
 			if ( $a3_lazy_load_global_settings['a3l_apply_video_to_textwidget'] == true ) {
 				add_filter( 'widget_text', array( $this, 'filter_videos' ), 200 );
