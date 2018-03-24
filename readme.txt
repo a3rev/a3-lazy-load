@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
 Tested up to: 4.9.4
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,9 +115,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
  
 = Minimum Requirements =
 
-* WordPress 4.5
-* PHP version 5.5.0 or greater
-* MySQL version 5.5.0 or greater
+* WordPress 4.6 or greater
+* PHP version 5.6.0 or greater
+* MySQL version 5.6 or greater OR MariaDB version 10.0 or greater
 
 == SCREENSHOTS ==
 
@@ -135,6 +135,22 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Changelog ==
+
+= 1.8.5 - 2018/03/23 =
+* Maintenance Update. Refactor of Lazy Load on Widgets, Full Compatibility with the Advanced Custom Fields plugin, optimization tweaks and 3 bug fixes.
+* Refactor - Apply lazy load to all widgets instead of Text Widget and HTML widget from WordPress
+* Refactor - Remove the code that hook to tag wp_get_attachment_image_attributes which was required to add support for lazy load for [gallery] shortcode. Redundant after WP version 4.6.0 and now removed.
+* Tweak - Add filter to acf_the_content tag for apply lazy load on the Content from ACF plugin. Kudos to @ondoheer for creating full compatibility with ACF Free and Premium version. 
+* Tweak - Disable load new google fonts via API. Google fonts not used and saves 4 calls to database on each page load. Thanks to Robert Harm for reporting the issue
+* Tweak - Optimized loading gif compression for even faster load. Thanks @jasom for the suggestion
+* Tweak - Remove duplicate parameters from plugin scripts. Thanks to @galbaras for reporting the issue
+* Tweak - Add new FAQs tab to plugins page with Add Lazy Load Tags to custom Function description and exclude Lazy Load Class name for easy reference.
+* Tweak - Update plugins description
+* Framework - Define filter tag for enable OR disable load new google fonts via API
+* Framework - Update plugin framework to new version 2.0.3
+* Fix - Turn Image in Widget OFF option which had stopped working. Thanks to @japenz and @dimitar-koev for reporting and confirming the bug
+* Fix - If videos embed have preload=none do not call video load from a3 Lazy Load. Thanks to Celso Azevedo @celsoazevedo for an excellent bug report which enabled us to replicate the issue.
+* Fix - Remove src with placeholder image url for iframe
 
 = 1.8.4 - 2018/02/13 =
 * Maintenance Update. Under the bonnet tweaks to keep your plugin running smoothly and is the foundation for new features to be developed this year 
@@ -292,6 +308,9 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 
 == Upgrade Notice ==
+
+= 1.8.5 =
+Maintenance Update. Refactor of Lazy Load on Widgets, Full Compatibility with the Advanced Custom Fields plugin, optimization tweaks and 3 bug fixes.
 
 = 1.8.4 =
 Maintenance Update. This version updates the Plugin Framework to v 2.0.2, adds full compatibility with a3rev dashboard and WordPress v 4.9.4

@@ -389,9 +389,12 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 			}
 		}
 
-		$this->is_valid_google_api_key();
-
-		$google_fonts = get_option( $this->plugin_name . '_google_font_list', array() );
+		if ( apply_filters( $this->plugin_name . '_new_google_fonts_enable', true ) ) {
+			$this->is_valid_google_api_key();
+			$google_fonts = get_option( $this->plugin_name . '_google_font_list', array() );
+		} else {
+			$google_fonts = array();
+		}
 
 		if ( ! is_array( $google_fonts ) || count( $google_fonts ) < 1 ) {
 			$google_fonts = apply_filters( $this->plugin_name . '_google_fonts', $this->google_fonts );

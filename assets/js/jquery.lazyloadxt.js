@@ -331,7 +331,9 @@
                 $child.attr('src', isFuncSrcAttr ? srcAttr($child) : $child.attr(srcAttr));
             });
         // reload video
-        this.load();
+        if ( typeof $(this).attr('preload') !== 'undefined' && 'none' != $(this).attr('preload') ) {
+            this.load();
+        }
         $(this).removeClass('lazy-hidden');
     });
 

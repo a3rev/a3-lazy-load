@@ -2,7 +2,7 @@
 /*
 Plugin Name: a3 Lazy Load
 Description: Speed up your site and enhance frontend user's visual experience in PC's, Tablets and mobile with a3 Lazy Load.
-Version: 1.8.4
+Version: 1.8.5
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Requires at least: 4.0
@@ -30,7 +30,7 @@ define('A3_LAZY_LOAD_CSS_URL', A3_LAZY_LOAD_URL . '/assets/css');
 define('A3_LAZY_LOAD_IMAGES_URL', A3_LAZY_LOAD_URL . '/assets/images');
 
 define( 'A3_LAZY_LOAD_KEY', 'a3_lazy_load' );
-define( 'A3_LAZY_VERSION', '1.8.4' );
+define( 'A3_LAZY_VERSION', '1.8.5' );
 
 /**
  * Load Localisation files.
@@ -48,6 +48,9 @@ function a3_lazy_load_plugin_textdomain() {
 	load_textdomain( 'a3-lazy-load', WP_LANG_DIR . '/a3-lazy-load/a3-lazy-load-' . $locale . '.mo' );
 	load_plugin_textdomain( 'a3-lazy-load', false, A3_LAZY_LOAD_FOLDER.'/languages' );
 }
+
+// Disable for load new google font faces
+add_filter( A3_LAZY_LOAD_KEY . '_new_google_fonts_enable', '__return_false' );
 
 include( 'admin/admin-ui.php' );
 include( 'admin/admin-interface.php' );
