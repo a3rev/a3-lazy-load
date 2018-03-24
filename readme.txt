@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
 Tested up to: 4.9.4
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,7 +88,7 @@ a3 Lazy Load gives you the option to load its script from your sites HEAD or fro
 
 = EXCLUDE IMAGES & VIDEO =
 
-a3 Lazy Load allows you to easily exclude any image or video by class name from having the Lazy Load effect applied. [See FAQ's](https://wordpress.org/plugins/a3-lazy-load/#faqs) 
+a3 Lazy Load allows you to easily exclude any image or video by class name from having the Lazy Load effect applied. [See FAQ's](https://wordpress.org/plugins/a3-lazy-load/#faq-header) 
 
 = JAVASCIPT DISABLED FALLBACK =
 
@@ -98,7 +98,7 @@ a3 Lazy Load has built in Noscript fallback if user has JavaScript turned off in
 
 a3 Lazy Load works with any WordPress theme that follows the WordPress Theme Codex. However, many Theme & Plugin developers will use a custom written function to add objects, example the theme has a home page with layout created by a custom function they have written. a3 Lazy Load cannot know what these functions are and so cannot apply to the objects loaded by that custom function.
 
-If your images or objects not being Lazy Loaded in a certain section of your site, but are Lazy Loaded everywhere else you will know this is the cause. Please if this happens raise a support ticket with the developer, explaining that they just need to add a simple tag to their custom functions so that a3 Lazy Load apply to their custom function and be fully compatible. [Here is a list](https://wordpress.org/plugins/a3-lazy-load/#faqs) of a3 lazy Load filter tags to include in your ticket to make it easy for the developer.
+If your images or objects not being Lazy Loaded in a certain section of your site, but are Lazy Loaded everywhere else you will know this is the cause. Please if this happens raise a support ticket with the developer, explaining that they just need to add a simple tag to their custom functions so that a3 Lazy Load apply to their custom function and be fully compatible. [Here is a list](https://wordpress.org/plugins/a3-lazy-load/#faq-header) of a3 lazy Load filter tags to include in your ticket to make it easy for the developer.
 
 Don't forget when a developer does add full compatibility with a3 Lazy Load please let us know via a support ticket on this forum and we will add them to the list below.
 
@@ -127,21 +127,23 @@ These are just some of the more popular plugins that are either tested 100% comp
 When you download a3 lazy Load, you join our community. Regardless of if you are a WordPress newbie or experienced developer if you are interested in contributing to a3 Lazy Load development head over to the [a3 Lazy Load GitHub Repository](https://github.com/a3rev/a3-lazy-load) to find out how you can contribute.
 Want to add a new language to a3 Lazy Load? Great! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/a3-lazy-load)
 
-== FAQs ==
 
-= Question =
-How do I exclude individual objects from Lazy Load?
+== Installation ==
+ 
+= Minimum Requirements =
 
-= Answer =
+* WordPress 4.6 or greater
+* PHP version 5.6.0 or greater
+* MySQL version 5.6 or greater OR MariaDB version 10.0 or greater
 
-= Filter Tag to exclude from lazy load =
-Use this class name to use to exclude lazy load on individual images, videos and iframes. 
+== Frequently Asked Questions ==
+
+= How do I exclude individual objects from Lazy Load? =
+
+Use this built in class name to exclude lazy load on individual images, videos and iframes.
 <code>a3-notlazy</code>
 
-= Question =
-Why are some images, videos, objects not Lazy Loaded?
-
-= Answer =
+= Why are some images, videos, objects not Lazy Loaded? =
 
 a3 Lazy Load can only be applied to objects that are added using core WordPress functions. If your theme or a plugin developer adds objects such as images or videos via a custom written function, a3 lazy Load cannot know what that custom function is and hence cannot Lazy Load the object.
 
@@ -155,15 +157,18 @@ Below is a list of available a3 Lazy Load filters to use and pass onto the devel
 
 Apply lazy load for images in content.
 <code>a3_lazy_load_images</code> 
-Example: <code>apply_filters( 'a3_lazy_load_images', $your_content, null );</code>
+Example:
+<code>apply_filters( 'a3_lazy_load_images', $your_content, null );</code>
 
 Apply lazy load for videos and iframe from content.
 <code>a3_lazy_load_videos</code> 
-Example <code>apply_filters( 'a3_lazy_load_videos', $your_content, null );</code>
+Example:
+<code>apply_filters( 'a3_lazy_load_videos', $your_content, null );</code>
 
 Apply lazy load for all images, videos and iframe from content
 <code>a3_lazy_load_html</code>
-Example: apply_filters( 'a3_lazy_load_html', $your_content, null );
+Example:
+<code>apply_filters( 'a3_lazy_load_html', $your_content, null );</code>
 
 = Filter Tags to Exclude by Theme Class name =
 
@@ -171,14 +176,6 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 <code>a3_lazy_load_skip_images_classes</code>
 <code>a3_lazy_load_skip_videos_classes</code>
 
-
-== Installation ==
- 
-= Minimum Requirements =
-
-* WordPress 4.6 or greater
-* PHP version 5.6.0 or greater
-* MySQL version 5.6 or greater OR MariaDB version 10.0 or greater
 
 == SCREENSHOTS ==
 
@@ -196,6 +193,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 1.8.6 - 2018/03/24 =
+* Maintenance Update. 1 bug fix from this morning 1.8.5 major maintenance release. A small piece of new code in v 1.8.5 was written on PHP v7 and is not compatible with PHP version 5.6 If you are running v PHP 5.6 please run this update to fix it
+* Fix - PHP Fatal Error Call instance a3_lazy_load instead of us $this is not an object caused by incompatibility with PHP version 5.6
 
 = 1.8.5 - 2018/03/23 =
 * Maintenance Update. Refactor of Lazy Load on Widgets, Full Compatibility with the Advanced Custom Fields plugin, optimization tweaks and 3 bug fixes.
@@ -369,6 +370,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 1.8.6 =
+Maintenance Update. 1 bug fix from this morning 1.8.5 major maintenance release. A small piece of new code in v 1.8.5 was written on PHP v7 and is not compatible with PHP version 5.6 If you are running v PHP 5.6 please run this update to fix it
 
 = 1.8.5 =
 Maintenance Update. Refactor of Lazy Load on Widgets, Full Compatibility with the Advanced Custom Fields plugin, optimization tweaks and 3 bug fixes.

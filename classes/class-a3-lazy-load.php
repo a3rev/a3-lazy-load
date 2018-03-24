@@ -158,7 +158,9 @@ class A3_Lazy_Load
 
 		wp_enqueue_script( 'jquery-lazyloadxt-extend' );
 
-		$this->localize_printed_scripts();
+		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+
+		$A3_Lazy_Load->localize_printed_scripts();
 
 		do_action('after_a3_lazy_load_xt_script');
 	}
