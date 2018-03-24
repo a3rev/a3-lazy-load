@@ -155,15 +155,15 @@ Below is a list of available a3 Lazy Load filters to use and pass onto the devel
 
 Apply lazy load for images in content.
 <code>a3_lazy_load_images</code> 
-Example: <code>apply_filters( a3_lazy_load_images, $your_content, null );</code>
+Example: <code>apply_filters( 'a3_lazy_load_images', $your_content, null );</code>
 
 Apply lazy load for videos and iframe from content.
 <code>a3_lazy_load_videos</code> 
-Example <code>apply_filters( a3_lazy_load_videos, $your_content, null );</code>
+Example <code>apply_filters( 'a3_lazy_load_videos', $your_content, null );</code>
 
 Apply lazy load for all images, videos and iframe from content
 <code>a3_lazy_load_html</code>
-Example: apply_filters( a3_lazy_load_html, $your_content, null );
+Example: apply_filters( 'a3_lazy_load_html', $your_content, null );
 
 = Filter Tags to Exclude by Theme Class name =
 
@@ -200,7 +200,7 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 = 1.8.5 - 2018/03/23 =
 * Maintenance Update. Refactor of Lazy Load on Widgets, Full Compatibility with the Advanced Custom Fields plugin, optimization tweaks and 3 bug fixes.
 * Refactor - Apply lazy load to all widgets instead of Text Widget and HTML widget from WordPress
-* Refactor - Remove the code that hook to tag wp_get_attachment_image_attributes which was required to add support for lazy load for [gallery] shortcode. Redundant after WP version 4.6.0 and now removed.
+* Refactor - Remove the code that hook to tag 'wp_get_attachment_image_attributes' which was required to add support for lazy load for [gallery] shortcode. Redundant after WP version 4.6.0 and now removed.
 * Tweak - Add filter to acf_the_content tag for apply lazy load on the Content from ACF plugin. Kudos to @ondoheer for creating full compatibility with ACF Free and Premium version. 
 * Tweak - Disable load new google fonts via API. Google fonts not used and saves 4 calls to database on each page load. Thanks to Robert Harm for reporting the issue
 * Tweak - Optimized loading gif compression for even faster load. Thanks @jasom for the suggestion
@@ -231,18 +231,18 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 * Fix - WordPress Admin Tool Bar User Avatar conflict Issue #2
 
 = 1.8.1 - 2017/05/31 =
-* Fix - Use correct object A3_Lazy_Load instead of this as it was causing a fatal error
+* Fix - Use correct object A3_Lazy_Load instead of 'this' as it was causing a fatal error
 
 = 1.8.0 - 2017/05/30 =
-* Feature  Updated for compatibility with Better AMP plugin
-* Feature  Launched a3Lazy Load Github public Repository
-* Feature  WordPress Translation activation. Add text domain declaration in file header.
+* Feature - Updated for compatibility with Better AMP plugin
+* Feature - Launched a3Lazy Load Github public Repository
+* Feature - WordPress Translation activation. Add text domain declaration in file header.
 * Tweak - Change global $$variable to global ${$variable} for compatibility with PHP 7.0
 * Tweak - Update a3 Revolution to a3rev Software on plugins description
 * Tweak - Update plugin framework to latest version
 * Tweak - Tested for full compatibility with WordPress version 4.7.5
 * Tweak - Tested for full compatibility with PHP 7.0
-* Fix  Exclude images by class
+* Fix - Exclude images by class
 
 = 1.7.1 =
 * Tweak - Register fontawesome in plugin framework with style name is 'font-awesome-styles'
