@@ -7,7 +7,7 @@ Stable tag: 1.8.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Use a3 Lazy Load for images, videos, iframes. Instantly improve your sites load time and dramatically improve site users experience.
+Use a3 Lazy Load for images, videos, iframes. Instantly improve your sites load time and dramatically improve site users experience.
 
 == DESCRIPTION ==
 
@@ -21,7 +21,7 @@ a3 Lazy Load is the most fully featured, incredibly easy to set up lazy load plu
 
 Images are the number one element that slows page load and increases bandwidth use. From the a3 Lazy Load admin panel turn load images by a3 Lazy Load ON | OFF. For more flexibility when ON you can choose to ON | OFF lazy load for images in
 
-* Post and Pages (All Content areas)
+* Post, Pages and Custom Post Types (All Content areas)
 * Widgets (Sidebar, header and footer)
 * Apply to post thumbnails
 * Apply to gravatars
@@ -30,19 +30,21 @@ Images are the number one element that slows page load and increases bandwidth u
 
 = VIDEO LAZY LOAD =
 
-a3 Lazy Load supports all WordPress video Embeds including Youtube, Vimeo and HTML5 video - for a full list see the [WordPress Codex Embeds](http://codex.wordpress.org/Embeds) list. The WordPress embed method of copying and pasting the video url into posts and pages content area is fully supported. Note - embed video by WordPress shortcode is not supported.
+a3 Lazy Load supports all WordPress video Embeds including Youtube, Vimeo and HTML5 video - for a full list see the [WordPress Codex Embeds](http://codex.wordpress.org/Embeds) list. The WordPress embed method of copying and pasting the video url into posts and pages content area is fully supported. 
+
+<strong>Note</strong> - Works with Videos added by Text and HTML Widgets but not the new WordPress Video widget. That widget does not pull iframe at first load, it use JavaScript to replace html to iframe and hence a3 lazy Load can't see it to apply.  
 
 From the a3 lazy Load admin panel turn Video Support ON | OFF. When ON you can choose to ON | OFF lazy load for videos in
 
-* Post and Pages (All Content areas)
-* Widgets (Sidebar, header and footer)
+* Video embeded by URL in Post and Pages (All Content areas)
+* Video in Widget types, Text Widget and HTML Wigets.
 * Youtube [see demo](http://ressio.github.io/lazy-load-xt/demo/youtube-iframe.htm)
 * Video [see demo](http://ressio.github.io/lazy-load-xt/demo/video-html5.htm)
 * Fully Compatible with the popular [Youtube Embed Plugin](https://wordpress.org/plugins/youtube-embed/)
 
 = iFRAME LAZY LOAD =
 
-a3 Lazy Load has built in support for content that is added by iframe from any source in content and widgets  examples
+a3 Lazy Load has built in support for content that is added by iframe from any source in content and widgets. Examples
 
 * WordPress embedded media
 * Facebook Like boxes with profiles, Like buttons, Recommend
@@ -59,7 +61,11 @@ a3 Lazy Load has built in support for content that is added by iframe from any s
 * Built in auto support for WordPress AMP plugin
 * Built in support for Better AMP plugin
 * There are no setting options for exclude /amp - Lazy Load is just never applied to the /amp endpoint
-* When the url is loaded in browser without /amp Lazy Load is applied  
+* When the url is loaded in browser without /amp Lazy Load is applied 
+
+= ADVANCED CUSTOM FIELDS =
+
+Fully compatible with the very popular Advanced Custom Fields plugin, Free and Premium versions. 
 
 = LAZY LOAD EFFECTS =
 
@@ -82,22 +88,32 @@ a3 Lazy Load gives you the option to load its script from your sites HEAD or fro
 
 = EXCLUDE IMAGES & VIDEO =
 
-a3 Lazy Load allows you to easily exclude any images and video by class name from having the Lazy Load effect applied.
+a3 Lazy Load allows you to easily exclude any image or video by class name from having the Lazy Load effect applied. [See FAQ's](https://wordpress.org/plugins/a3-lazy-load/#faqs) 
 
 = JAVASCIPT DISABLED FALLBACK =
 
 a3 Lazy Load has built in Noscript fallback if user has JavaScript turned off in their browser. Developers who use underscore.js in their applications can use the Noscript parameter to exclude their plugins content from Lazy Load.
 
-= PLUGIN COMPATIBILITY =
+= THEME & PLUGIN COMPATIBILITY =
 
-* Work with any WordPress theme that follows the WordPress Theme Codex
-* Fully compatible with WPTouch plugin - Set to not apply on Mobiles if WPTouch is installed
-* Fully compatible with MobilePress plugin - Set to not apply on Mobiles if MobilePress is installed
-* Will not conflict with any plugin that has lazy load built in
-* Plugin Developers a3 lazy load filter allows them to let lazy load apply to their plugin
-* Tested 100% compatible with WP Super Cache and W3 Total Cache plugins
-* Tested 100% compatible with Amazon Cloudfront
-* Fully compatible with CDN architecture.
+a3 Lazy Load works with any WordPress theme that follows the WordPress Theme Codex. However, many Theme & Plugin developers will use a custom written function to add objects, example the theme has a home page with layout created by a custom function they have written. a3 Lazy Load cannot know what these functions are and so cannot apply to the objects loaded by that custom function.
+
+If your images or objects not being Lazy Loaded in a certain section of your site, but are Lazy Loaded everywhere else you will know this is the cause. Please if this happens raise a support ticket with the developer, explaining that they just need to add a simple tag to their custom functions so that a3 Lazy Load apply to their custom function and be fully compatible. [Here is a list](https://wordpress.org/plugins/a3-lazy-load/#faqs) of a3 lazy Load filter tags to include in your ticket to make it easy for the developer.
+
+Don't forget when a developer does add full compatibility with a3 Lazy Load please let us know via a support ticket on this forum and we will add them to the list below.
+
+These are just some of the more popular plugins that are either tested 100% compatible with a3 Lazy Load or tags has been added for 100% compatibility.   
+
+* Plugin - Advanced Custom Fields
+* Plugin - WooCommerce
+* Plugin - WP Offload
+* Plugin - WP Super Cache and W3 Total Cache plugins
+* Plugin - Youtube Embed
+* Plugin - WordPress AMP
+* Plugin - WPTouch. Note - Set to not apply on Mobiles if WPTouch is installed
+* Plugin - MobilePress - Set to not apply on Mobiles if MobilePress is installed
+* Plugins - Will not conflict with any plugin that has lazy load built in
+* CDN's - Cloudfront, Cloudflare and all other known CDN architecture.
 
 = MORE FEATURES =
 
@@ -108,8 +124,53 @@ a3 Lazy Load has built in Noscript fallback if user has JavaScript turned off in
 
 = JOIN THE a3 LAZY LOAD COMMUNITY =
 
-When you download a3 lazy Load, you join our community. Regardless of if you are a WordPress newbie or experienced developer if youre interested in contributing to a3 Lazy Load development head over to the [a3 Lazy Load GitHub Repository](https://github.com/a3rev/a3-lazy-load) to find out how you can contribute.
+When you download a3 lazy Load, you join our community. Regardless of if you are a WordPress newbie or experienced developer if you are interested in contributing to a3 Lazy Load development head over to the [a3 Lazy Load GitHub Repository](https://github.com/a3rev/a3-lazy-load) to find out how you can contribute.
 Want to add a new language to a3 Lazy Load? Great! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/a3-lazy-load)
+
+== FAQs ==
+
+= Question =
+How do I exclude individual objects from Lazy Load?
+
+= Answer =
+
+= Filter Tag to exclude from lazy load =
+Use this class name to use to exclude lazy load on individual images, videos and iframes. 
+<code>a3-notlazy</code>
+
+= Question =
+Why are some images, videos, objects not Lazy Loaded?
+
+= Answer =
+
+a3 Lazy Load can only be applied to objects that are added using core WordPress functions. If your theme or a plugin developer adds objects such as images or videos via a custom written function, a3 lazy Load cannot know what that custom function is and hence cannot Lazy Load the object.
+
+So if you see object not being lazy loaded please check first if those objects are loaded by the theme or a plugin. If they are, you can be confident that they are loaded by a custom function. 
+
+If this is the case, please help yourself and other a3 lazy Load users by raising a support ticket with the developer and ask them to add an a3 Lazy Load filter tag to their function to allow a3 Lazy Load to find it and apply to the object. 
+
+Below is a list of available a3 Lazy Load filters to use and pass onto the developer.
+
+= Filter tags to apply lazy load =
+
+Apply lazy load for images in content.
+<code>a3_lazy_load_images</code> 
+Example: <code>apply_filters( a3_lazy_load_images, $your_content, null );</code>
+
+Apply lazy load for videos and iframe from content.
+<code>a3_lazy_load_videos</code> 
+Example <code>apply_filters( a3_lazy_load_videos, $your_content, null );</code>
+
+Apply lazy load for all images, videos and iframe from content
+<code>a3_lazy_load_html</code>
+Example: apply_filters( a3_lazy_load_html, $your_content, null );
+
+= Filter Tags to Exclude by Theme Class name =
+
+Filter tags to add to class name of theme to exclude lazy load on images or videos.
+<code>a3_lazy_load_skip_images_classes</code>
+<code>a3_lazy_load_skip_videos_classes</code>
+
 
 == Installation ==
  
