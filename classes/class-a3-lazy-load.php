@@ -67,10 +67,10 @@ class A3_Lazy_Load
 			//add_filter( 'wp_get_attachment_image_attributes', array( $this, 'get_attachment_image_attributes' ), 200 );
 
 			if ( $a3_lazy_load_global_settings['a3l_apply_image_to_content'] == true ) {
-				add_filter( 'the_content', array( $this, 'filter_content_images' ), 10 );
+				add_filter( 'the_content', array( $this, 'filter_content_images' ), 100 );
 
 				// Compatibility with ACF plugin - Thank you ondoheer https://github.com/ondoheer
-				add_filter( 'acf_the_content', array( $this, 'filter_content_images' ), 10 );
+				add_filter( 'acf_the_content', array( $this, 'filter_content_images' ), 100 );
 
 			}
 			if ( $a3_lazy_load_global_settings['a3l_apply_image_to_textwidget'] == true ) {
@@ -100,10 +100,10 @@ class A3_Lazy_Load
 			add_filter( 'a3_lazy_load_videos', array( $this, 'filter_videos' ), 10, 2 );
 
 			if ( $a3_lazy_load_global_settings['a3l_apply_video_to_content'] == true ) {
-				add_filter( 'the_content', array( $this, 'filter_videos' ), 10 );
+				add_filter( 'the_content', array( $this, 'filter_videos' ), 100 );
 
 				// Compatibility with ACF plugin - Thank you ondoheer https://github.com/ondoheer
-				add_filter( 'acf_the_content', array( $this, 'filter_videos' ), 10 );
+				add_filter( 'acf_the_content', array( $this, 'filter_videos' ), 100 );
 			}
 			if ( $a3_lazy_load_global_settings['a3l_apply_video_to_textwidget'] == true ) {
 				add_action( 'dynamic_sidebar_before', array( $this, 'sidebar_before_filter_videos' ), 0 );

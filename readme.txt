@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
 Tested up to: 4.9.4
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -194,6 +194,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 == Changelog ==
 
+= 1.8.7 - 2018/03/24 =
+* Maintenance Update. 2 code tweaks to enhance the lazy loading of images, video and iframe added by third party shortcodes in the content
+* Tweak - Increase lazy load filter priority value so that lazy load is applied to images loaded by the shortcode function do_shortcode 
+* Tweak - Increase lazy load filter priority value so that lazy load is applied to video and iframe loaded by the shortcode function do_shortcode
+
 = 1.8.6 - 2018/03/24 =
 * Maintenance Update. 1 bug fix from this morning 1.8.5 major maintenance release. A small piece of new code in v 1.8.5 was written on PHP v7 and is not compatible with PHP version 5.6 If you are running v PHP 5.6 please run this update to fix it
 * Fix - PHP Fatal Error Call instance a3_lazy_load instead of us $this is not an object caused by incompatibility with PHP version 5.6
@@ -370,6 +375,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 1.8.7 =
+Maintenance Update. 2 code tweaks to enhance the lazy loading of images, video and iframe added by third party shortcodes in the content
 
 = 1.8.6 =
 Maintenance Update. 1 bug fix from this morning 1.8.5 major maintenance release. A small piece of new code in v 1.8.5 was written on PHP v7 and is not compatible with PHP version 5.6 If you are running v PHP 5.6 please run this update to fix it
