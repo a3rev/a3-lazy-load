@@ -1846,6 +1846,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 					$progressing_text = $value['progressing_text'];
 					$completed_text   = $value['completed_text'];
 					$successed_text   = $value['successed_text'];
+					$errors_text      = $value['errors_text'];
 					$submit_data      = json_encode( $value['submit_data'] );
 
 					?><tr valign="top">
@@ -1864,7 +1865,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 									<?php echo implode( ' ', $custom_attributes ); ?>
 								><?php echo $button_name; ?></button>
 								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-successed"><?php echo $successed_text; ?></span>
-								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-errors"></span>
+								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-errors"><?php echo $errors_text; ?></span>
 
 								<!-- Progress Bar -->
 								<div class="a3rev-ui-progress-bar-wrap">
@@ -1887,6 +1888,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 					$progressing_text = $value['progressing_text'];
 					$completed_text   = $value['completed_text'];
 					$successed_text   = $value['successed_text'];
+					$errors_text      = $value['errors_text'];
 					$statistic_column = isset( $value['statistic_column'] ) ? $value['statistic_column'] : 1;
 
 					$multi_current_items = 0;
@@ -1931,7 +1933,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 									<?php echo implode( ' ', $custom_attributes ); ?>
 								><?php echo $button_name; ?></button>
 								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-successed"><?php echo $successed_text; ?></span>
-								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-errors"></span>
+								<span class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-errors"><?php echo $errors_text; ?></span>
 
 								<!-- Progress Bar -->
 								<div class="a3rev-ui-progress-bar-wrap">

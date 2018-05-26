@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 4.9.4
-Stable tag: 1.8.7
+Tested up to: 4.9.6
+Stable tag: 1.8.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -194,6 +194,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 == Changelog ==
 
+= 1.8.8 - 2018/05/26 =
+* This maintenance update is for compatibility with WordPress 4.9.6 and the new GDPR compliance requirements for users in the EU 
+* Tweak - Test for compatibility with WordPress 4.9.6
+* Tweak - Check for any issues with GDPR compliance. None Found
+
 = 1.8.7 - 2018/03/24 =
 * Maintenance Update. 2 code tweaks to enhance the lazy loading of images, video and iframe added by third party shortcodes in the content
 * Tweak - Increase lazy load filter priority value so that lazy load is applied to images loaded by the shortcode function do_shortcode 
@@ -375,6 +380,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 1.8.8 =
+Maintenance Update. Compatibility WordPress 4.9.6 and the new GDPR compliance requirements for users in the EU
 
 = 1.8.7 =
 Maintenance Update. 2 code tweaks to enhance the lazy loading of images, video and iframe added by third party shortcodes in the content
