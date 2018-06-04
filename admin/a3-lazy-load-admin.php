@@ -64,4 +64,5 @@ function a3_lazy_load_upgrade_plugin() {
 
     update_option('a3_lazy_load_version', A3_LAZY_VERSION );
 }
+
 ?>

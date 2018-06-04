@@ -110,6 +110,9 @@ class A3_Lazy_Load
 				add_action( 'dynamic_sidebar_after', array( $this, 'sidebar_after_filter_videos' ), 1000 );
 			}
 		}
+
+		// Add lazy attributes to all allowed post tags list
+		add_filter( 'wp_kses_allowed_html', array( $this, 'add_lazy_attributes' ), 10, 2 );
 	}
 
 	static function _instance() {
@@ -221,6 +224,38 @@ class A3_Lazy_Load
 		}
 
 		return false;
+	}
+
+	static function add_lazy_attributes( $allowedposttags, $context ) {
+
+		if ( 'post' === $context && ! empty( $allowedposttags ) ) {
+
+			$lazy_attributes = array(
+				'data-lazy-type' => true,
+				'data-src'       => true,
+				'data-srcset'    => true,
+				'data-poster'    => true,
+			);
+
+			foreach ( $allowedposttags as $tag => $attributes ) {
+				if ( true === $attributes ) {
+					$attributes = array();
+				}
+
+				if ( is_array( $attributes ) ) {
+					// Add lazy attributes to post tag
+					$allowedposttags[$tag] = array_merge( $attributes, $lazy_attributes );
+				}
+			}
+
+			// Add noscript tag to allowed post tags list
+			if ( ! isset( $allowedposttags['noscript'] ) ) {
+				$allowedposttags['noscript'] = array();
+			}
+
+		}
+
+		return $allowedposttags;
 	}
 
 	static function filter_html( $content, $include_noscript = null ) {
