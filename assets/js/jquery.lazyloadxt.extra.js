@@ -315,7 +315,7 @@
 (function ($) {
     var options = $.lazyLoadXT;
 
-    options.selector += ',video,iframe[data-src]';
+    options.selector += ',video,iframe[data-src],embed[data-src]';
     options.videoPoster = 'data-poster';
 
     $(document).on('lazyshow', 'video', function (e, $el) {
@@ -335,9 +335,14 @@
             });
 
         // reload video
-        if (changed) {
+        if (changed && typeof $(this).attr('preload') !== 'undefined' && 'none' != $(this).attr('preload') ) {
             this.load();
         }
+        $(this).removeClass('lazy-hidden');
+    });
+
+    $(document).on('lazyshow', 'embed', function (e, $el) {
+        $(this).removeClass('lazy-hidden');
     });
 
 })(window.jQuery || window.Zepto || window.$);

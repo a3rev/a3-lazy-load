@@ -155,7 +155,7 @@ class A3_Lazy_Load
 		do_action('before_a3_lazy_load_xt_script');
 
 		wp_deregister_script( 'jquery-lazyloadxt' );
-		wp_register_script( 'jquery-lazyloadxt', apply_filters( 'a3_lazy_load_main_script', A3_LAZY_LOAD_JS_URL.'/jquery.lazyloadxt'.$suffix.'.js' ), array( 'jquery' ), self::version, $in_footer );
+		wp_register_script( 'jquery-lazyloadxt', apply_filters( 'a3_lazy_load_main_script', A3_LAZY_LOAD_JS_URL.'/jquery.lazyloadxt.extra'.$suffix.'.js' ), array( 'jquery' ), self::version, $in_footer );
 		wp_register_script( 'jquery-lazyloadxt-srcset', apply_filters( 'a3_lazy_load_main_script', A3_LAZY_LOAD_JS_URL.'/jquery.lazyloadxt.srcset'.$suffix.'.js' ), array( 'jquery', 'jquery-lazyloadxt' ), self::version, $in_footer );
 		wp_register_script( 'jquery-lazyloadxt-extend', apply_filters( 'a3_lazy_load_extend_script', A3_LAZY_LOAD_JS_URL.'/jquery.lazyloadxt.extend.js' ), array( 'jquery', 'jquery-lazyloadxt', 'jquery-lazyloadxt-srcset' ), self::version, $in_footer );
 

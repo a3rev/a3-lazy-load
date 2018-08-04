@@ -108,6 +108,7 @@
         if (srcset) {
             if (!options.srcsetExtended && srcsetSupport) {
                 $el.attr('srcset', srcset);
+                $el.attr('data-srcset', '');
             } else {
                 $el.lazyLoadXT.srcAttr = parseSrcset;
             }
