@@ -226,6 +226,11 @@ class A3_Lazy_Load
 		return false;
 	}
 
+	static public function preg_quote_with_wildcards($what){
+		// Perform preg_quote, but still allow `.*` to be used in the class list as a wildcard.
+		return str_replace('\.\*','.*',preg_quote($what, '/'));
+	}
+
 	static function add_lazy_attributes( $allowedposttags, $context ) {
 
 		if ( 'post' === $context && ! empty( $allowedposttags ) ) {
@@ -337,7 +342,7 @@ class A3_Lazy_Load
 		$A3_Lazy_Load = A3_Lazy_Load::_instance();
 
 		if ( is_array( $A3_Lazy_Load->_skip_images_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $A3_Lazy_Load->_skip_images_classes );
+			$skip_images_preg_quoted = array_map( 'preg_quote_with_wildcards', $A3_Lazy_Load->_skip_images_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
@@ -372,16 +377,16 @@ class A3_Lazy_Load
 		$replace = array();
 
 		if ( is_array( $this->_skip_images_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_images_classes );
+			$skip_images_preg_quoted = array_map( 'preg_quote_with_wildcards', $this->_skip_images_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		$i = 0;
 		foreach ( $matches[0] as $imgHTML ) {
-
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
 			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) ) {
 				$i++;
+
 				// replace the src and add the data-src attribute
 				$replaceHTML = '';
 				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-src=', $imgHTML );
@@ -420,7 +425,7 @@ class A3_Lazy_Load
 
 		return $return;
 	}
- 
+
 	static function filter_videos( $content, $include_noscript = null ) {
 		if ( is_admin() ) {
 			return $content;
