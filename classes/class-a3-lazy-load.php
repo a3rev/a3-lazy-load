@@ -226,6 +226,11 @@ class A3_Lazy_Load
 		return false;
 	}
 
+	static public function preg_quote_with_wildcards( $what ){
+		// Perform preg_quote, but still allow `.*` to be used in the class list as a wildcard.
+		return str_replace( array( '\*', '\.' ), '', preg_quote( $what, '/' ) );
+	}
+
 	static function add_lazy_attributes( $allowedposttags, $context ) {
 
 		if ( 'post' === $context && ! empty( $allowedposttags ) ) {
@@ -337,7 +342,7 @@ class A3_Lazy_Load
 		$A3_Lazy_Load = A3_Lazy_Load::_instance();
 
 		if ( is_array( $A3_Lazy_Load->_skip_images_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $A3_Lazy_Load->_skip_images_classes );
+			$skip_images_preg_quoted = array_map( array( $A3_Lazy_Load, 'preg_quote_with_wildcards' ), $A3_Lazy_Load->_skip_images_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
@@ -372,7 +377,7 @@ class A3_Lazy_Load
 		$replace = array();
 
 		if ( is_array( $this->_skip_images_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_images_classes );
+			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_images_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
@@ -476,7 +481,7 @@ class A3_Lazy_Load
 		$replace = array();
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_videos_classes );
+			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
@@ -522,7 +527,7 @@ class A3_Lazy_Load
 		$replace = array();
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_videos_classes );
+			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
@@ -570,7 +575,7 @@ class A3_Lazy_Load
 		$replace = array();
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
-			$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_videos_classes );
+			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
 			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 

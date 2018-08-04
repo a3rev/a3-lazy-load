@@ -309,7 +309,7 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 			array(
 				'name' => __( 'Skip Images Classes', 'a3-lazy-load' ),
 				'id' 		=> 'a3l_skip_image_with_class',
-				'desc' 		=>  __('Find and enter image class name. If more than 1 then comma seperate.<br>Example: image-class1, image-class2', 'a3-lazy-load' ),
+				'desc' 		=>  __('Find and enter image class name. If more than 1 then comma seperate.<br>Example: image-class1, image-class2, image*, *thumbnail', 'a3-lazy-load' ),
 				'type' 		=> 'text',
 				'default'	=> ""
 			),
@@ -373,7 +373,7 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 			array(
 				'name' => __( 'Skip Videos Classes', 'a3-lazy-load' ),
 				'id' 		=> 'a3l_skip_video_with_class',
-				'desc' 		=>  __('Find and enter video class name. If more than 1 then comma seperate.<br>Example: video-class1, video-class2', 'a3-lazy-load' ),
+				'desc' 		=>  __('Find and enter video class name. If more than 1 then comma seperate.<br>Example: video-class1, video-class2, video*, *video', 'a3-lazy-load' ),
 				'type' 		=> 'text',
 				'default'	=> ""
 			),
