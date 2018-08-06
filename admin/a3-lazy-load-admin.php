@@ -3,10 +3,7 @@
 function a3_lazy_load_activated(){
 	update_option('a3_lazy_load_version', A3_LAZY_VERSION );
 
-	// Set Settings Default from Admin Init
 	global $a3_lazy_load_admin_init;
-	$a3_lazy_load_admin_init->set_default_settings();
-
 	delete_metadata( 'user', 0, $a3_lazy_load_admin_init->plugin_name . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
 	update_option('a3_lazy_load_just_installed', true);
@@ -16,10 +13,13 @@ function a3_lazy_load_activated(){
  * Load languages file
  */
 function a3_lazy_load_init() {
-	global $a3_lazy_load_global_settings;
 
 	if ( get_option( 'a3_lazy_load_just_installed' ) ) {
 		delete_option( 'a3_lazy_load_just_installed' );
+
+		// Set Settings Default from Admin Init
+		global $a3_lazy_load_admin_init;
+		$a3_lazy_load_admin_init->set_default_settings();
 	}
 
 	a3_lazy_load_plugin_textdomain();
@@ -34,7 +34,7 @@ $a3_lazy_load_admin_init->init();
 add_filter( $a3_lazy_load_admin_init->plugin_name . '_plugin_extension_boxes', array( 'A3_Lazy_Load_Hook_Filter', 'plugin_extension_box' ) );
 
 // Add language
-add_action('init', 'a3_lazy_load_init');
+add_action('init', 'a3_lazy_load_init', 105);
 
 // Add custom style to dashboard
 add_action( 'admin_enqueue_scripts', array( 'A3_Lazy_Load_Hook_Filter', 'a3_wp_admin' ) );

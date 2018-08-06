@@ -74,7 +74,9 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 	/* Settings Constructor */
 	/*-----------------------------------------------------------------------------------*/
 	public function __construct() {
-		$this->init_form_fields();
+
+		add_action( 'init', array( $this, 'init_form_fields' ), 100 );
+		//$this->init_form_fields();
 		$this->subtab_init();
 
 		$this->form_messages = array(
@@ -190,8 +192,10 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function init_form_fields() {
 
+		global $a3_lazy_load_excludes;
+
   		// Define settings
-     	$this->form_fields = apply_filters( $this->option_name . '_settings_fields', array(
+     	$this->form_fields = array(
      		array(
             	'name' 		=> __( 'Plugin Framework Global Settings', 'a3-lazy-load' ),
             	'id'		=> 'plugin_framework_global_box',
@@ -309,7 +313,7 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 			array(
 				'name' => __( 'Skip Images Classes', 'a3-lazy-load' ),
 				'id' 		=> 'a3l_skip_image_with_class',
-				'desc' 		=>  __('Find and enter image class name. If more than 1 then comma seperate.<br>Example: image-class1, image-class2, image*, *thumbnail', 'a3-lazy-load' ),
+				'desc' 		=>  __('Find and enter image class name. If more than 1 then comma seperate.<br>Example: image-class1, image-class2. Supports Wild Cards image*, .*thumbnail', 'a3-lazy-load' ),
 				'type' 		=> 'text',
 				'default'	=> ""
 			),
@@ -324,7 +328,6 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 				'checked_label'		=> __( 'ON', 'a3-lazy-load' ),
 				'unchecked_label' 	=> __( 'OFF', 'a3-lazy-load' ),
 			),
-
 
 			array(
 				'name'		=> __( 'Lazy Load Videos and iframes', 'a3-lazy-load' ),
@@ -373,7 +376,7 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 			array(
 				'name' => __( 'Skip Videos Classes', 'a3-lazy-load' ),
 				'id' 		=> 'a3l_skip_video_with_class',
-				'desc' 		=>  __('Find and enter video class name. If more than 1 then comma seperate.<br>Example: video-class1, video-class2, video*, *video', 'a3-lazy-load' ),
+				'desc' 		=>  __('Find and enter video class name. If more than 1 then comma seperate.<br>Example: video-class1, video-class2. Supports WildCards video*, .*video', 'a3-lazy-load' ),
 				'type' 		=> 'text',
 				'default'	=> ""
 			),
@@ -388,7 +391,62 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 				'checked_label'		=> __( 'ON', 'a3-lazy-load' ),
 				'unchecked_label' 	=> __( 'OFF', 'a3-lazy-load' ),
 			),
+     	);
 
+		$this->form_fields = array_merge( $this->form_fields, array(
+			array(
+				'name'		=> __( "Exclude by URI's and Page Types", 'a3-lazy-load' ),
+                'type' 		=> 'heading',
+                'class'		=> 'a3l_apply_to_load_container',
+                'id'		=> 'a3l_exclude_box',
+                'is_box'	=> true,
+           	),
+           	array(
+				'name'		=> __( 'Exclude by URIs', 'a3-lazy-load' ),
+                'type' 		=> 'heading',
+                'desc' 		=>  __("Add strings, 1 per line (not full filenames) that are to be excluded from Lazy Load. Example, if your URL looks like this /domain-name/2018/example-post/ and you just want to exclude that post enter /example-post/. If you want to exclude all posts in /2018/ just year enter /2018/ and Lazy Load won't be applied to /example-post/ and all other posts prefixed by /2018/ in the URL.", 'a3-lazy-load' ),
+           	),
+			array(
+				'name' => __( 'URIs', 'a3-lazy-load' ),
+				'id' 		=> 'a3l_uris_exclude',
+				'type' 		=> 'textarea',
+				'css'		=> 'width: 100%; max-width: 90%;',
+				'custom_attributes'	=> array(
+					'cols' => 50,
+					'rows' => 10,
+				),
+				'placeholder'	=> __('Enter each URI per row', 'a3-lazy-load' ),
+			),
+			array(
+				'name'		=> __( 'Page Type Exclusions', 'a3-lazy-load' ),
+                'type' 		=> 'heading',
+                'desc' 		=>  __("Do not apply lazy load for the following page types", 'a3-lazy-load' ),
+           	),
+		) );
+
+		$objects_exclude_options = array();
+		$objects_list            = $a3_lazy_load_excludes->get_hard_objects_list();
+		$post_types_list         = $a3_lazy_load_excludes->get_post_types_list();
+		$objects_list            = array_merge( $objects_list, $post_types_list );
+
+		if ( ! empty( $objects_list ) ) {
+			foreach ( $objects_list as $object_key => $object_name ) {
+				$objects_exclude_options[] = array(
+					'name' 		=> $object_name,
+	                'id' 		=> 'a3l_objects_exclude['.$object_key.']',
+					'type' 		=> 'onoff_checkbox',
+					'default'	=> 0,
+					'checked_value'		=> 1,
+					'unchecked_value'	=> 0,
+					'checked_label'		=> __( 'ON', 'a3-lazy-load' ),
+					'unchecked_label' 	=> __( 'OFF', 'a3-lazy-load' ),
+				);
+			}
+
+			$this->form_fields = array_merge( $this->form_fields, $objects_exclude_options );
+		}
+
+		$this->form_fields = array_merge( $this->form_fields, array(
 			array(
 				'name'		=> __( 'Script Load Optimization', 'a3-lazy-load' ),
                 'type' 		=> 'heading',
@@ -477,8 +535,9 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
 				'default'	=> 0,
 				'css'		=> 'width: 80px;'
 			),
+		) );
 
-     	));
+		$this->form_fields = apply_filters( $this->option_name . '_settings_fields', $this->form_fields );
 	}
 
 	public function include_script() {

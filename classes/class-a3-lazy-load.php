@@ -43,6 +43,13 @@ class A3_Lazy_Load
 			return;
 		}
 
+		// Check for current page is excluded
+		global $a3_lazy_load_excludes;
+		$is_excluded = $a3_lazy_load_excludes->check_excluded();
+		if ( $is_excluded ) {
+			return;
+		}
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 11 );
 
 		add_filter( 'a3_lazy_load_html', array( $this, 'filter_html' ), 10, 2 );
