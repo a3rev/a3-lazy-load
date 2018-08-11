@@ -4,3 +4,6 @@
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }
+figure.wp-block-image img.lazy-hidden {
+	min-width: 150px;
+}

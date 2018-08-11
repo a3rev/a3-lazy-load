@@ -2,11 +2,14 @@
     opacity: 0;
     background-color: #ffffff;
 }
+figure.wp-block-image img.lazy-hidden {
+	min-width: 150px;
+}
 .lazy-loaded {
     -webkit-transition: opacity 0.3s;
     -moz-transition: opacity 0.3s;
     -ms-transition: opacity 0.3s;
     -o-transition: opacity 0.3s;
     transition: opacity 0.3s;
-    opacity: 1;
+    opacity: 1 !important;
 }

@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
 Tested up to: 4.9.8
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,6 +193,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 1.9.1 - 2018/08/10 =
+* This maintenance update resolves 2 issues from the v 1.9.0 upgrade
+* Fix - Set min-width of placeholder to resolve any image tag that does not have width or height not showing the spinner effect. Example Gutenberg image block.
+* Fix - Update Lazy Load extra script to resolve duplicated call time for images, iframe, videos on viewport
 
 = 1.9.0 - 2018/08/06 =
 * This feature upgrade is focused on adding a number of new options for excluding Lazy Load from sections of a site. Compatibility with WordPress 4.9.8, Gutenberg 3.4.0 and WooCommerce 3.4.4
