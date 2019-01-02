@@ -29,7 +29,7 @@ class A3_Lazy_Load_Admin_UI
 	/**
 	 * @var string
 	 * You must change to correct plugin name that you are working
-	 */A3_LAZY_LOAD_KEY
+	 */
 
 	public $framework_version      = '2.1.0';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
