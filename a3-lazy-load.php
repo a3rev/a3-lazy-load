@@ -2,15 +2,15 @@
 /*
 Plugin Name: a3 Lazy Load
 Description: Speed up your site and enhance frontend user's visual experience in PC's, Tablets and mobile with a3 Lazy Load.
-Version: 1.9.1
+Version: 1.9.2
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Requires at least: 4.0
-Tested up to: 4.9.8
+Tested up to: 5.0.2
 Text Domain: a3-lazy-load
 Domain Path: /languages
 WC requires at least: 2.0.0
-WC tested up to: 3.4.4
+WC tested up to: 3.5.3
 License: GPLv2 or later
 	Copyright © 2011 a3 Revolution Software Development team
 	a3 Revolution Software Development team
@@ -32,7 +32,8 @@ define('A3_LAZY_LOAD_CSS_URL', A3_LAZY_LOAD_URL . '/assets/css');
 define('A3_LAZY_LOAD_IMAGES_URL', A3_LAZY_LOAD_URL . '/assets/images');
 
 define( 'A3_LAZY_LOAD_KEY', 'a3_lazy_load' );
-define( 'A3_LAZY_VERSION', '1.9.1' );
+define( 'A3_LAZY_VERSION', '1.9.2' );
+define( 'A3_LAZY_LOAD_G_FONTS', false );
 
 /**
  * Load Localisation files.

@@ -357,6 +357,11 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 	public function __construct() {
 		parent::__construct();
 
+		if ( ! $this->is_load_google_fonts ) {
+			$this->google_fonts = array();
+			return;
+		}
+
 		// Enable Google Font API Key
 		if ( isset( $_POST[ $this->google_api_key_option . '_enable' ] ) ) {
 			$old_google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
@@ -415,6 +420,10 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 	public function is_valid_google_api_key( $cache=true ) {
 		$is_valid = false;
 
+		if ( ! $this->is_load_google_fonts ) {
+			return false;
+		}
+
 		$this->google_api_key  = get_option( $this->google_api_key_option, '' );
 		$google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
 
@@ -456,7 +465,7 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 				// Get font list from default webfonts.json file of plugin
 				if ( 'invalid' == $google_api_key_status && file_exists( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' ) ) {
-					$webfonts  = wp_remote_fopen( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json' );
+					$webfonts  = file_get_contents( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' );
 					if ( false != $webfonts ) {
 						$json_string = get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
 						$response_fonts = json_decode( $json_string, true );
@@ -509,7 +518,7 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 				// Get font list from default webfonts.json file of plugin
 				if ( file_exists( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' ) ) {
-					$webfonts  = wp_remote_fopen( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json' );
+					$webfonts  = file_get_contents( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' );
 					if ( false != $webfonts ) {
 						$json_string = get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
 						$response_fonts = json_decode( $json_string, true );

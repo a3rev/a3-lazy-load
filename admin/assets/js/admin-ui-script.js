@@ -102,12 +102,18 @@
 
 											/* Apply for Google API Key */
 											elem.parents('.forminp-google_api_key').find('.a3rev-ui-google-api-key-container').slideDown();
+
+											/* Apply for Google Map API Key */
+											elem.parents('.forminp-google_map_api_key').find('.a3rev-ui-google-api-key-container').slideDown();
 										} else {
 											/* Apply for Border Corner */
 											elem.parents('.a3rev-ui-settings-control').find('.a3rev-ui-border-corner-value-container').slideUp();
 
 											/* Apply for Google API Key */
 											elem.parents('.forminp-google_api_key').find('.a3rev-ui-google-api-key-container').slideUp();
+
+											/* Apply for Google Map API Key */
+											elem.parents('.forminp-google_map_api_key').find('.a3rev-ui-google-api-key-container').slideUp();
 										}
 
 										$('input[name="' + input_name + '"]').trigger("a3rev-ui-onoff_checkbox-switch", [elem.val(), status]);

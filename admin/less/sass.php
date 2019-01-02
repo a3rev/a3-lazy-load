@@ -19,11 +19,22 @@ class A3_Lazy_Load_Less
 		add_action( 'wp_enqueue_scripts', array ($this, 'apply_style_css_fontend') , 12 );
     }
 
+    public function register_dynamic_style_file()
+    {
+        $_upload_dir = wp_upload_dir();
+        if ( file_exists( $_upload_dir['basedir'] . '/sass/' . $this->css_file_name . '.min.css' ) ) {
+            wp_register_style( 'a3' . $this->css_file_name, str_replace( array('http:','https:'), '', $_upload_dir['baseurl'] ) . '/sass/' . $this->css_file_name . '.min.css', array(), $this->get_css_file_version() );
+
+            return true;
+        }
+
+        return false;
+    }
+
 	public function apply_style_css_fontend()
 	{
-		$_upload_dir = wp_upload_dir();
-		if ( file_exists( $_upload_dir['basedir'] . '/sass/' . $this->css_file_name . '.min.css' ) ) {
-			wp_enqueue_style( 'a3' . $this->css_file_name, str_replace( array('http:','https:'), '', $_upload_dir['baseurl'] ) . '/sass/' . $this->css_file_name . '.min.css', array(), $this->get_css_file_version() );
+		if ( $this->register_dynamic_style_file() ) {
+            wp_enqueue_style( 'a3' . $this->css_file_name );
         }
 	}
 

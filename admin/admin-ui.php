@@ -29,15 +29,17 @@ class A3_Lazy_Load_Admin_UI
 	/**
 	 * @var string
 	 * You must change to correct plugin name that you are working
-	 */
+	 */A3_LAZY_LOAD_KEY
 
-	public $framework_version      = '2.0.7';
+	public $framework_version      = '2.1.0';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
 	public $plugin_path            = A3_LAZY_LOAD_NAME;
 	public $google_api_key_option  = '';
+	public $google_map_api_key_option = '';
 	public $toggle_box_open_option = '';
 	public $version_transient      = '';
 	public $is_free_plugin         = true;
+	public $is_load_google_fonts   = true;
 	
 	public $support_url            = '';
 
@@ -71,11 +73,18 @@ class A3_Lazy_Load_Admin_UI
 	public $admin_pages = array( 'a3-lazy-load', 'a3-lazy-load-add' );
 
 	public function __construct() {
-		$this->google_api_key_option  = A3_LAZY_LOAD_KEY . '_google_api_key';
-		$this->toggle_box_open_option = A3_LAZY_LOAD_KEY . '_toggle_box_open';
-		$this->version_transient      = A3_LAZY_LOAD_KEY . '_licinfo';
+		$this->google_api_key_option     = A3_LAZY_LOAD_KEY . '_google_api_key';
+		$this->google_map_api_key_option = A3_LAZY_LOAD_KEY . '_google_map_api_key';
+		$this->toggle_box_open_option    = A3_LAZY_LOAD_KEY . '_toggle_box_open';
+		$this->version_transient         = A3_LAZY_LOAD_KEY . '_licinfo';
+
+		if ( defined( 'A3_LAZY_LOAD_G_FONTS' ) ) {
+			$this->is_load_google_fonts = (boolean) A3_LAZY_LOAD_G_FONTS;
+		}
 
 		$this->support_url = 'https://wordpress.org/support/plugin/a3-lazy-load/';
+
+		$this->update_google_map_api_key();
 	}
 	
 	
@@ -103,6 +112,95 @@ class A3_Lazy_Load_Admin_UI
 
 		return (array)$admin_pages;
 	}
+
+	public function is_valid_google_map_api_key( $cache=true ) {
+		$is_valid = false;
+
+		$this->google_map_api_key  = get_option( $this->google_map_api_key_option, '' );
+		$google_map_api_key_enable = get_option( $this->google_map_api_key_option . '_enable', 0 );
+
+		if ( '' != trim( $this->google_map_api_key ) && 1 == $google_map_api_key_enable ) {
+
+			$google_map_api_key_status = get_transient( $this->google_map_api_key_option . '_status' );
+
+			if ( ! $cache ) {
+				$google_map_api_key_status = null;
+			}
+
+			if ( ! $google_map_api_key_status ) {
+				$respone_api = wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=Australia&key=" . trim( $this->google_map_api_key ),
+					array(
+						'sslverify' => false,
+						'timeout'   => 45
+					)
+				);
+
+				$response_map = array();
+
+				// Check it is a valid request
+				if ( ! is_wp_error( $respone_api ) ) {
+
+					$json_string = get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body'];
+					$response_map = json_decode( $json_string, true );
+
+					// Make sure that the valid response from google is not an error message
+					if ( ! isset( $response_map['error_message'] ) ) {
+						$google_map_api_key_status = 'valid';
+					} else {
+						$google_map_api_key_status = 'invalid';
+					}
+
+				} else {
+					$google_map_api_key_status = 'invalid';
+				}
+
+				//caching google map api status for 24 hours
+				set_transient( $this->google_map_api_key_option . '_status', $google_map_api_key_status, 86400 );
+			}
+
+			if ( 'valid' == $google_map_api_key_status ) {
+				$is_valid = true;
+			}
+
+		}
+
+		return $is_valid;
+	}
+
+	public function update_google_map_api_key() {
+		// Enable Google Map API Key
+		if ( isset( $_POST[ $this->google_map_api_key_option . '_enable' ] ) ) {
+			$old_google_map_api_key_enable = get_option( $this->google_map_api_key_option . '_enable', 0 );
+
+			update_option( $this->google_map_api_key_option . '_enable', 1 );
+
+			$option_value = trim( $_POST[ $this->google_map_api_key_option ] );
+
+			$old_google_map_api_key_option = get_option( $this->google_map_api_key_option );
+
+			if ( 1 != $old_google_map_api_key_enable || $option_value != $old_google_map_api_key_option ) {
+
+				update_option( $this->google_map_api_key_option, $option_value );
+
+				// Clear cached of google map api key status
+				delete_transient( $this->google_map_api_key_option . '_status' );
+			}
+
+		// Disable Google Map API Key
+		} elseif ( isset( $_POST[ $this->google_map_api_key_option ] ) ) {
+			$old_google_map_api_key_enable = get_option( $this->google_map_api_key_option . '_enable', 0 );
+
+			update_option( $this->google_map_api_key_option . '_enable', 0 );
+
+			$option_value = trim( $_POST[ $this->google_map_api_key_option ] );
+			update_option( $this->google_map_api_key_option, $option_value );
+
+			if ( 0 != $old_google_map_api_key_enable ) {
+				// Clear cached of google map api key status
+				delete_transient( $this->google_map_api_key_option . '_status' );
+			}
+		}
+	} 
 
 	/**
 	 * get_premium_video_data()

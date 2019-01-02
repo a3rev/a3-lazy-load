@@ -93,7 +93,8 @@
 .a3rev_panel_container .a3rev-ui-password{width:300px;max-width:70%;}
 
 /* Google API KEY Control */
-.a3rev_panel_container .a3rev-ui-google_api_key{width:350px;max-width:100%;}
+.a3rev_panel_container .a3rev-ui-google_api_key,
+.a3rev_panel_container .a3rev-ui-google_map_api_key{width:350px;max-width:100%;}
 .a3rev_panel_container .a3rev-ui-google-api-key-inside{margin-top:10px;}
 .a3rev_panel_container .a3rev-ui-google-valid-key-message,
 .a3rev_panel_container .a3rev-ui-google-unvalid-key-message{display:none;}

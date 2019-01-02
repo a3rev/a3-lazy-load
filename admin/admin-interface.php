@@ -384,7 +384,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 				
 				default :
 					// Do not include when it's separate option
-					if ( isset( $value['separate_option'] ) && $value['separate_option'] != false ) continue;
+					if ( isset( $value['separate_option'] ) && $value['separate_option'] != false ) break;
 					
 					// Remove [, ] characters from id argument
 					if ( strstr( $value['id'], '[' ) ) {
@@ -1144,7 +1144,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 	 * @return void
 	 * ========================================================================
 	 * Option Array Structure :
-	 * type					=> row | column | heading | ajax_submit | ajax_multi_submit | google_api_key | onoff_toggle_box 
+	 * type					=> row | column | heading | ajax_submit | ajax_multi_submit | google_api_key | google_map_api_key | onoff_toggle_box 
 	 * 						   | text | email | number | password | color | bg_color | textarea | select | multiselect | radio | onoff_radio | checkbox | onoff_checkbox 
 	 *						   | switcher_checkbox | image_size | single_select_page | typography | border | border_styles | border_corner | box_shadow 
 	 *						   | slider | upload | wp_editor | array_textfields | time_picker
@@ -1823,6 +1823,62 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 										value="<?php echo esc_attr( $google_api_key ); ?>"
 										class="a3rev-ui-text a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
 		                                placeholder="<?php echo __( 'Google Fonts API Key', 'a3-lazy-load' ); ?>"
+										<?php echo implode( ' ', $custom_attributes ); ?>
+										/>
+									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3-lazy-load' ); ?></p>
+									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.', 'a3-lazy-load' ); ?></p>
+								</div>
+							</div>
+						</td>
+					</tr><?php
+
+				break;
+
+				// Google Map API Key input
+				case 'google_map_api_key':
+
+					$google_map_api_key        = $this->settings_get_option( $this->google_map_api_key_option );
+					$google_map_api_key_enable = $this->settings_get_option( $this->google_map_api_key_option . '_enable', 0 );
+					if ( ! isset( $value['checked_label'] ) ) $value['checked_label'] = __( 'ON', 'a3-lazy-load' );
+					if ( ! isset( $value['unchecked_label'] ) ) $value['unchecked_label'] = __( 'OFF', 'a3-lazy-load' );
+
+					?><tr valign="top">
+						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
+							<label for="<?php echo $this->google_map_api_key_option; ?>"><?php echo __( 'Google Maps API', 'a3-lazy-load' ); ?></label>
+						</th>
+						<td class="forminp forminp-onoff_checkbox forminp-<?php echo sanitize_title( $value['type'] ) ?>">
+							<input
+								name="<?php echo $this->google_map_api_key_option; ?>_enable"
+                                id="<?php echo $this->google_map_api_key_option; ?>_enable"
+								class="a3rev-ui-onoff_checkbox a3rev-ui-onoff_google_api_key_enable"
+                                checked_label="<?php echo esc_html( $value['checked_label'] ); ?>"
+                                unchecked_label="<?php echo esc_html( $value['unchecked_label'] ); ?>"
+                                type="checkbox"
+								value="1"
+								<?php checked( $google_map_api_key_enable, 1 ); ?>
+								/> <span class="description" style="margin-left:5px;"><?php echo __( 'Switch ON to connect to Google Maps API', 'a3-lazy-load' ); ?></span>
+
+							<div>&nbsp;</div>
+							<div class="a3rev-ui-google-api-key-container" style="<?php if( 1 != $google_map_api_key_enable ) { echo 'display: none;'; } ?>">
+								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Map API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Maps API</a> to create a key", 'a3-lazy-load' ), 'https://developers.google.com/maps/documentation/javascript/get-api-key' ); ?></div>
+								<div class="a3rev-ui-google-api-key-inside 
+									<?php
+									if ( $this->is_valid_google_map_api_key() ) {
+										echo 'a3rev-ui-google-valid-key';
+									} elseif ( '' != $google_map_api_key ) {
+										echo 'a3rev-ui-google-unvalid-key';
+									}
+									?>
+									">
+									<input
+										name="<?php echo $this->google_map_api_key_option; ?>"
+										id="<?php echo $this->google_map_api_key_option; ?>"
+										type="text"
+										style="<?php echo esc_attr( $value['css'] ); ?>"
+										value="<?php echo esc_attr( $google_map_api_key ); ?>"
+										class="a3rev-ui-text a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
+		                                placeholder="<?php echo __( 'Google Map API Key', 'a3-lazy-load' ); ?>"
 										<?php echo implode( ' ', $custom_attributes ); ?>
 										/>
 									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3-lazy-load' ); ?></p>
