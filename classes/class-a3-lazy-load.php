@@ -350,7 +350,7 @@ class A3_Lazy_Load
 
 		if ( is_array( $A3_Lazy_Load->_skip_images_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $A3_Lazy_Load, 'preg_quote_with_wildcards' ), $A3_Lazy_Load->_skip_images_classes );
-			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		if ( ! ( is_array( $A3_Lazy_Load->_skip_images_classes ) && preg_match( $skip_images_regex, 'class="'.$attr['class'].'"' ) ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", 'src="'.$attr['src'].'"' ) ) {
@@ -385,7 +385,7 @@ class A3_Lazy_Load
 
 		if ( is_array( $this->_skip_images_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_images_classes );
-			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		$i = 0;
@@ -489,7 +489,7 @@ class A3_Lazy_Load
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
-			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		$i = 0;
@@ -535,7 +535,7 @@ class A3_Lazy_Load
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
-			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		$i = 0;
@@ -583,7 +583,7 @@ class A3_Lazy_Load
 
 		if ( is_array( $this->_skip_videos_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_videos_classes );
-			$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
 		$i = 0;
