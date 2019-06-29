@@ -37,7 +37,7 @@ class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
 		if ( is_admin() ) {
 
 			// include scripts to Admin UI Interface
-			add_action( $this->plugin_name . '_init_scripts', array( $this, 'uploader_js' ) );
+			add_action( $this->plugin_name . '_init_scripts', array( $this, 'uploader_script' ) );
 
 			// include styles to Admin UI Interface
 			add_action( $this->plugin_name . '_init_styles', array( $this, 'uploader_style' ) );
@@ -51,6 +51,10 @@ class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
 	public function admin_uploader_url() {
 		if ( $this->admin_uploader_url ) return $this->admin_uploader_url;
 		return $this->admin_uploader_url = untrailingslashit( plugins_url( '/', __FILE__ ) );
+	}
+
+	public function uploader_script() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'uploader_js' ) );
 	}
 
 	/*-----------------------------------------------------------------------------------*/

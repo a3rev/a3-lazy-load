@@ -350,45 +350,21 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 			if ( in_array( $value['type'], array( 'row', 'column', 'heading', 'ajax_submit', 'ajax_multi_submit' ) ) ) continue;
 			if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
 			if ( ! isset( $value['default'] ) ) $value['default'] = '';
-			
-			switch ( $value['type'] ) {
-				
+
+			if ( 'array_textfields' === $value['type'] ) {
 				// Array textfields
-				case 'array_textfields' :
-					if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
-					
-					foreach ( $value['ids'] as $text_field ) {
-						if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
-						if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
-						
-						// Do not include when it's separate option
-						if ( isset( $text_field['separate_option'] ) && $text_field['separate_option'] != false ) continue;
-						
-						// Remove [, ] characters from id argument
-						if ( strstr( $text_field['id'], '[' ) ) {
-							parse_str( esc_attr( $text_field['id'] ), $option_array );
+				if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) continue;
 				
-							// Option name is first key
-							$option_keys = array_keys( $option_array );
-							$first_key = current( $option_keys );
-								
-							$id_attribute		= $first_key;
-						} else {
-							$id_attribute		= esc_attr( $text_field['id'] );
-						}
-						
-						$default_settings[$id_attribute] = $text_field['default'];
-					}
+				foreach ( $value['ids'] as $text_field ) {
+					if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
+					if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
 					
-				break;
-				
-				default :
 					// Do not include when it's separate option
-					if ( isset( $value['separate_option'] ) && $value['separate_option'] != false ) break;
+					if ( isset( $text_field['separate_option'] ) && $text_field['separate_option'] != false ) continue;
 					
 					// Remove [, ] characters from id argument
-					if ( strstr( $value['id'], '[' ) ) {
-						parse_str( esc_attr( $value['id'] ), $option_array );
+					if ( strstr( $text_field['id'], '[' ) ) {
+						parse_str( esc_attr( $text_field['id'] ), $option_array );
 			
 						// Option name is first key
 						$option_keys = array_keys( $option_array );
@@ -396,17 +372,34 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 							
 						$id_attribute		= $first_key;
 					} else {
-						$id_attribute		= esc_attr( $value['id'] );
+						$id_attribute		= esc_attr( $text_field['id'] );
 					}
-
-					// Backward compatibility to old settings don't have line_height option for typography
-					if ( 'typography' == $value['type'] && ! isset( $value['default']['line_height'] ) ) {
-						$value['default']['line_height'] = '1.4em';
-					}
-
-					$default_settings[$id_attribute] = $value['default'];
+					
+					$default_settings[$id_attribute] = $text_field['default'];
+				}
+			} else {
+				// Do not include when it's separate option
+				if ( isset( $value['separate_option'] ) && $value['separate_option'] != false ) continue;
 				
-				break;
+				// Remove [, ] characters from id argument
+				if ( strstr( $value['id'], '[' ) ) {
+					parse_str( esc_attr( $value['id'] ), $option_array );
+		
+					// Option name is first key
+					$option_keys = array_keys( $option_array );
+					$first_key = current( $option_keys );
+						
+					$id_attribute		= $first_key;
+				} else {
+					$id_attribute		= esc_attr( $value['id'] );
+				}
+
+				// Backward compatibility to old settings don't have line_height option for typography
+				if ( 'typography' == $value['type'] && ! isset( $value['default']['line_height'] ) ) {
+					$value['default']['line_height'] = '1.4em';
+				}
+
+				$default_settings[$id_attribute] = $value['default'];
 			}
 		}
 		
@@ -617,136 +610,67 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 			
 			// Get the option name
 			$option_value = null;
-			
-			switch ( $value['type'] ) {
-	
-				// Checkbox type
-				case 'checkbox' :
-				case 'onoff_checkbox' :
-				case 'switcher_checkbox' :
-				
-					if ( ! isset( $value['checked_value'] ) ) $value['checked_value'] = 1;
-					if ( ! isset( $value['unchecked_value'] ) ) $value['unchecked_value'] = 0;
-					
-					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-						if ( $key != false ) {
-							if ( isset( $_POST[ $id_attribute ][ $key ] ) ) {
-								$option_value = $value['checked_value'];
-							} else {
-								$option_value = $value['unchecked_value'];
-							}	
-						} else {
-							if ( isset( $_POST[ $id_attribute ] ) ) {
-								$option_value = $value['checked_value'];
-							} else {
-								$option_value = $value['unchecked_value'];
-							}
-						}
-							
-					} else {
-						if ( $key != false ) {
-							if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
-								$option_value = $value['checked_value'];
-							} else {
-								$option_value = $value['unchecked_value'];
-							}	
-						} else {
-							if ( isset( $_POST[ $option_name ][ $id_attribute ] ) ) {
-								$option_value = $value['checked_value'];
-							} else {
-								$option_value = $value['unchecked_value'];
-							}
-						}
-					}
-	
-				break;
-				
-				// Array textfields
-				case 'array_textfields' :
-					if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
-					
-					foreach ( $value['ids'] as $text_field ) {
-						if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
-						if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
-						
-						// Remove [, ] characters from id argument
-						$key = false;
-						if ( strstr( $text_field['id'], '[' ) ) {
-							parse_str( esc_attr( $text_field['id'] ), $option_array );
-				
-							// Option name is first key
-							$option_keys = array_keys( $option_array );
-							$first_key = current( $option_keys );
-								
-							$id_attribute		= $first_key;
-							
-							$key = key( $option_array[ $id_attribute ] );
-						} else {
-							$id_attribute		= esc_attr( $text_field['id'] );
-						}
-						
-						// Get the option name
-						$option_value = null;
-						
-						if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-							if ( $key != false ) {
-								if ( isset( $_POST[ $id_attribute ][ $key ] ) ) {
-									$option_value = $_POST[ $id_attribute ][ $key ];
-								} else {
-									$option_value = '';
-								}	
-							} else {
-								if ( isset( $_POST[ $id_attribute ] ) ) {
-									$option_value = $_POST[ $id_attribute ];
-								} else {
-									$option_value = '';
-								}
-							}
-								
-						} else {
-							if ( $key != false ) {
-								if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
-									$option_value = $_POST[ $option_name ][ $id_attribute ][ $key ];
-								} else {
-									$option_value = '';
-								}	
-							} else {
-								if ( isset( $_POST[ $option_name ][ $id_attribute ] ) ) {
-									$option_value = $_POST[ $option_name ][ $id_attribute ];
-								} else {
-									$option_value = '';
-								}
-							}
-						}
 
-						// Set Default value if this field is required and has default value and option value is empty
-						if ( isset ( $text_field['required'] ) && $text_field['required'] && empty( $option_value ) && ! empty( $text_field['default'] ) ) {
-							$option_value = $text_field['default'];
-						}
-						
-						if ( strstr( $text_field['id'], '[' ) ) {
-							// Set keys and value
-	    					$key = key( $option_array[ $id_attribute ] );
-			
-							$update_options[ $id_attribute ][ $key ] = $option_value;
-							
-							if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
-								$update_separate_options[ $id_attribute ][ $key ] = $option_value;
-							}
-							
+			if ( in_array( $value['type'], array( 'checkbox', 'onoff_checkbox', 'switcher_checkbox' ) ) ) {
+				if ( ! isset( $value['checked_value'] ) ) $value['checked_value'] = 1;
+				if ( ! isset( $value['unchecked_value'] ) ) $value['unchecked_value'] = 0;
+				
+				if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+					if ( $key != false ) {
+						if ( isset( $_POST[ $id_attribute ][ $key ] ) ) {
+							$option_value = $value['checked_value'];
 						} else {
-							$update_options[ $id_attribute ] = $option_value;
-							
-							if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
-								$update_separate_options[ $id_attribute ] = $option_value;
-							}
+							$option_value = $value['unchecked_value'];
+						}	
+					} else {
+						if ( isset( $_POST[ $id_attribute ] ) ) {
+							$option_value = $value['checked_value'];
+						} else {
+							$option_value = $value['unchecked_value'];
 						}
 					}
+						
+				} else {
+					if ( $key != false ) {
+						if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
+							$option_value = $value['checked_value'];
+						} else {
+							$option_value = $value['unchecked_value'];
+						}	
+					} else {
+						if ( isset( $_POST[ $option_name ][ $id_attribute ] ) ) {
+							$option_value = $value['checked_value'];
+						} else {
+							$option_value = $value['unchecked_value'];
+						}
+					}
+				}
+			} elseif ( 'array_textfields' === $value['type'] ) {
+				if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) continue;
 					
-				break;
-	
-				// Other types
-				default :
+				foreach ( $value['ids'] as $text_field ) {
+					if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
+					if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
+					
+					// Remove [, ] characters from id argument
+					$key = false;
+					if ( strstr( $text_field['id'], '[' ) ) {
+						parse_str( esc_attr( $text_field['id'] ), $option_array );
+			
+						// Option name is first key
+						$option_keys = array_keys( $option_array );
+						$first_key = current( $option_keys );
+							
+						$id_attribute		= $first_key;
+						
+						$key = key( $option_array[ $id_attribute ] );
+					} else {
+						$id_attribute		= esc_attr( $text_field['id'] );
+					}
+					
+					// Get the option name
+					$option_value = null;
+					
 					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
 						if ( $key != false ) {
 							if ( isset( $_POST[ $id_attribute ][ $key ] ) ) {
@@ -778,56 +702,108 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 						}
 					}
 
-					// Just for Color type
-					if ( 'color' == $value['type'] && '' == trim( $option_value ) ) {
-						$option_value = 'transparent';
+					// Set Default value if this field is required and has default value and option value is empty
+					if ( isset ( $text_field['required'] ) && $text_field['required'] && empty( $option_value ) && ! empty( $text_field['default'] ) ) {
+						$option_value = $text_field['default'];
 					}
-					// Just for Background Color type
-					elseif ( 'bg_color' == $value['type'] && '' == trim( $option_value['color'] ) ) {
-						$option_value['color'] = 'transparent';
-					} elseif ( 'upload' == $value['type'] ) {
-						// Uploader: Set key and value for attachment id of upload type
-						if ( strstr( $value['id'], '[' ) ) {
-							$key = key( $option_array[ $id_attribute ] );
-
-							if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
-								if ( isset( $_POST[ $id_attribute ][ $key . '_attachment_id' ] ) ) {
-									$attachment_id = $_POST[ $id_attribute ][ $key . '_attachment_id' ];
-								} else {
-									$attachment_id = 0;
-								}
-
-								$update_separate_options[ $id_attribute ][ $key . '_attachment_id' ] = $attachment_id;
-							} else {
-								if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key . '_attachment_id' ] ) ) {
-									$attachment_id = $_POST[ $option_name ][ $id_attribute ][ $key . '_attachment_id' ];
-								} else {
-									$attachment_id = 0;
-								}
-
-								$update_options[ $id_attribute ][ $key . '_attachment_id' ] = $attachment_id;
-							}
-						} else {
-							if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
-								if ( isset( $_POST[ $id_attribute . '_attachment_id' ] ) ) {
-									$attachment_id = $_POST[ $id_attribute . '_attachment_id' ];
-								} else {
-									$attachment_id = 0;
-								}
-								$update_separate_options[ $id_attribute . '_attachment_id' ] = $attachment_id;
-							} else {
-								if ( isset( $_POST[ $option_name ][ $id_attribute . '_attachment_id' ] ) ) {
-									$attachment_id = $_POST[ $option_name ][ $id_attribute . '_attachment_id' ];
-								} else {
-									$attachment_id = 0;
-								}
-								$update_options[ $id_attribute . '_attachment_id' ] = $attachment_id;
-							}
+					
+					if ( strstr( $text_field['id'], '[' ) ) {
+						// Set keys and value
+    					$key = key( $option_array[ $id_attribute ] );
+		
+						$update_options[ $id_attribute ][ $key ] = $option_value;
+						
+						if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
+							$update_separate_options[ $id_attribute ][ $key ] = $option_value;
+						}
+						
+					} else {
+						$update_options[ $id_attribute ] = $option_value;
+						
+						if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
+							$update_separate_options[ $id_attribute ] = $option_value;
 						}
 					}
+				}
+			} else {
+				if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+					if ( $key != false ) {
+						if ( isset( $_POST[ $id_attribute ][ $key ] ) ) {
+							$option_value = $_POST[ $id_attribute ][ $key ];
+						} else {
+							$option_value = '';
+						}	
+					} else {
+						if ( isset( $_POST[ $id_attribute ] ) ) {
+							$option_value = $_POST[ $id_attribute ];
+						} else {
+							$option_value = '';
+						}
+					}
+						
+				} else {
+					if ( $key != false ) {
+						if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key ] ) ) {
+							$option_value = $_POST[ $option_name ][ $id_attribute ][ $key ];
+						} else {
+							$option_value = '';
+						}	
+					} else {
+						if ( isset( $_POST[ $option_name ][ $id_attribute ] ) ) {
+							$option_value = $_POST[ $option_name ][ $id_attribute ];
+						} else {
+							$option_value = '';
+						}
+					}
+				}
 
-				break;
-	
+				// Just for Color type
+				if ( 'color' == $value['type'] && '' == trim( $option_value ) ) {
+					$option_value = 'transparent';
+				}
+				// Just for Background Color type
+				elseif ( 'bg_color' == $value['type'] && '' == trim( $option_value['color'] ) ) {
+					$option_value['color'] = 'transparent';
+				} elseif ( 'upload' == $value['type'] ) {
+					// Uploader: Set key and value for attachment id of upload type
+					if ( strstr( $value['id'], '[' ) ) {
+						$key = key( $option_array[ $id_attribute ] );
+
+						if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
+							if ( isset( $_POST[ $id_attribute ][ $key . '_attachment_id' ] ) ) {
+								$attachment_id = $_POST[ $id_attribute ][ $key . '_attachment_id' ];
+							} else {
+								$attachment_id = 0;
+							}
+
+							$update_separate_options[ $id_attribute ][ $key . '_attachment_id' ] = $attachment_id;
+						} else {
+							if ( isset( $_POST[ $option_name ][ $id_attribute ][ $key . '_attachment_id' ] ) ) {
+								$attachment_id = $_POST[ $option_name ][ $id_attribute ][ $key . '_attachment_id' ];
+							} else {
+								$attachment_id = 0;
+							}
+
+							$update_options[ $id_attribute ][ $key . '_attachment_id' ] = $attachment_id;
+						}
+					} else {
+						if ( trim( $option_name ) != '' && $value['separate_option'] != false ) {
+							if ( isset( $_POST[ $id_attribute . '_attachment_id' ] ) ) {
+								$attachment_id = $_POST[ $id_attribute . '_attachment_id' ];
+							} else {
+								$attachment_id = 0;
+							}
+							$update_separate_options[ $id_attribute . '_attachment_id' ] = $attachment_id;
+						} else {
+							if ( isset( $_POST[ $option_name ][ $id_attribute . '_attachment_id' ] ) ) {
+								$attachment_id = $_POST[ $option_name ][ $id_attribute . '_attachment_id' ];
+							} else {
+								$attachment_id = 0;
+							}
+							$update_options[ $id_attribute . '_attachment_id' ] = $attachment_id;
+						}
+					}
+				}
 			}
 			
 			if ( !in_array( $value['type'], array( 'array_textfields' ) ) ) {
@@ -907,12 +883,10 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 						if ( ! isset( $value['type'] ) ) continue;
 						if ( in_array( $value['type'], array( 'row', 'column', 'heading', 'ajax_submit', 'ajax_multi_submit' ) ) ) continue;
 						if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
-						
-						switch ( $value['type'] ) {
-				
+
+						if ( 'array_textfields' === $value['type'] ) {
 							// Array textfields
-							case 'array_textfields' :
-								if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
+							if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) continue;
 								
 								foreach ( $value['ids'] as $text_field ) {
 									if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
@@ -925,15 +899,10 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 									}
 									if ( $text_field['free_version'] ) unset( $default_settings[ $text_field['id']] );
 								}
-								
-							break;
-							
-							default :
-								if ( ! isset( $value['default'] ) ) $value['default'] = '';
-								if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
-								if ( $value['free_version'] ) unset( $default_settings[ $value['id']] );
-							
-							break;
+						} else {
+							if ( ! isset( $value['default'] ) ) $value['default'] = '';
+							if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
+							if ( $value['free_version'] ) unset( $default_settings[ $value['id']] );
 						}
 					}
 					
@@ -956,86 +925,25 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 			
 			// For way it has an option name
 			if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
-			
-			switch ( $value['type'] ) {
-				
-				// Array textfields
-				case 'array_textfields' :
-					if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
-								
-					foreach ( $value['ids'] as $text_field ) {
-						if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
-						if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
-						if ( ! isset( $text_field['free_version'] ) ) {
-							if ( ! isset( $value['free_version'] ) ) 
-								$text_field['free_version'] = false;
-							else
-								$text_field['free_version'] = $value['free_version'];
-						}
-						
-						// Remove [, ] characters from id argument
-						$key = false;
-						if ( strstr( $text_field['id'], '[' ) ) {
-							parse_str( esc_attr( $text_field['id'] ), $option_array );
-				
-							// Option name is first key
-							$option_keys = array_keys( $option_array );
-							$first_key = current( $option_keys );
-								
-							$id_attribute		= $first_key;
 
-							$key = key( $option_array[ $id_attribute ] );
-						} else {
-							$id_attribute		= esc_attr( $text_field['id'] );
-						}
-						
-						if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-							if ( $reset && $text_field['free_version'] && !$free_version ) {
-								if ( $key != false ) {
-									$current_settings = get_option( $id_attribute, array() );
-									if ( ! is_array( $current_settings) ) {
-										$current_settings = array();
-									}
-									$current_settings[$key] = $text_field['default'];
-									update_option( $id_attribute,  $current_settings );
-								} else {
-									update_option( $id_attribute,  $text_field['default'] );
-								}
-							} elseif ( $reset && !$text_field['free_version'] ) {
-								if ( $key != false ) {
-									$current_settings = get_option( $id_attribute, array() );
-									if ( ! is_array( $current_settings) ) {
-										$current_settings = array();
-									}
-									$current_settings[$key] = $text_field['default'];
-									update_option( $id_attribute,  $current_settings );
-								} else {
-									update_option( $id_attribute,  $text_field['default'] );
-								}
-							} else {
-								if ( $key != false ) {
-								$current_settings = get_option( $id_attribute, array() );
-								if ( ! is_array( $current_settings) ) {
-									$current_settings = array();
-								}
-								if ( ! isset( $current_settings[$key] ) ) {
-									$current_settings[$key] = $text_field['default'];
-									update_option( $id_attribute,  $current_settings );
-								}
-								} else {
-									add_option( $id_attribute,  $text_field['default'] );
-								}
-							}
-						}
-					}
+			if ( 'array_textfields' === $value['type'] ) {
+				// Array textfields
+				if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) continue;
 								
-				break;
-							
-				default :
+				foreach ( $value['ids'] as $text_field ) {
+					if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
+					if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
+					if ( ! isset( $text_field['free_version'] ) ) {
+						if ( ! isset( $value['free_version'] ) ) 
+							$text_field['free_version'] = false;
+						else
+							$text_field['free_version'] = $value['free_version'];
+					}
+					
 					// Remove [, ] characters from id argument
 					$key = false;
-					if ( strstr( $value['id'], '[' ) ) {
-						parse_str( esc_attr( $value['id'] ), $option_array );
+					if ( strstr( $text_field['id'], '[' ) ) {
+						parse_str( esc_attr( $text_field['id'] ), $option_array );
 			
 						// Option name is first key
 						$option_keys = array_keys( $option_array );
@@ -1045,49 +953,103 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 
 						$key = key( $option_array[ $id_attribute ] );
 					} else {
-						$id_attribute		= esc_attr( $value['id'] );
+						$id_attribute		= esc_attr( $text_field['id'] );
 					}
 					
 					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-						if ( $reset && $value['free_version'] && !$free_version ) {
+						if ( $reset && $text_field['free_version'] && !$free_version ) {
 							if ( $key != false ) {
 								$current_settings = get_option( $id_attribute, array() );
 								if ( ! is_array( $current_settings) ) {
 									$current_settings = array();
 								}
-								$current_settings[$key] = $value['default'];
+								$current_settings[$key] = $text_field['default'];
 								update_option( $id_attribute,  $current_settings );
 							} else {
-								update_option( $id_attribute,  $value['default'] );
+								update_option( $id_attribute,  $text_field['default'] );
 							}
-						} elseif ( $reset && !$value['free_version'] ) {
+						} elseif ( $reset && !$text_field['free_version'] ) {
 							if ( $key != false ) {
 								$current_settings = get_option( $id_attribute, array() );
 								if ( ! is_array( $current_settings) ) {
 									$current_settings = array();
 								}
-								$current_settings[$key] = $value['default'];
+								$current_settings[$key] = $text_field['default'];
 								update_option( $id_attribute,  $current_settings );
 							} else {
-								update_option( $id_attribute,  $value['default'] );
+								update_option( $id_attribute,  $text_field['default'] );
 							}
 						} else {
 							if ( $key != false ) {
-								$current_settings = get_option( $id_attribute, array() );
-								if ( ! is_array( $current_settings) ) {
-									$current_settings = array();
-								}
-								if ( ! isset( $current_settings[$key] ) ) {
-									$current_settings[$key] = $value['default'];
-									update_option( $id_attribute,  $current_settings );
-								}
+							$current_settings = get_option( $id_attribute, array() );
+							if ( ! is_array( $current_settings) ) {
+								$current_settings = array();
+							}
+							if ( ! isset( $current_settings[$key] ) ) {
+								$current_settings[$key] = $text_field['default'];
+								update_option( $id_attribute,  $current_settings );
+							}
 							} else {
-								add_option( $id_attribute,  $value['default'] );
+								add_option( $id_attribute,  $text_field['default'] );
 							}
 						}
 					}
-							
-				break;
+				}
+			} else {
+				// Remove [, ] characters from id argument
+				$key = false;
+				if ( strstr( $value['id'], '[' ) ) {
+					parse_str( esc_attr( $value['id'] ), $option_array );
+		
+					// Option name is first key
+					$option_keys = array_keys( $option_array );
+					$first_key = current( $option_keys );
+						
+					$id_attribute		= $first_key;
+
+					$key = key( $option_array[ $id_attribute ] );
+				} else {
+					$id_attribute		= esc_attr( $value['id'] );
+				}
+				
+				if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+					if ( $reset && $value['free_version'] && !$free_version ) {
+						if ( $key != false ) {
+							$current_settings = get_option( $id_attribute, array() );
+							if ( ! is_array( $current_settings) ) {
+								$current_settings = array();
+							}
+							$current_settings[$key] = $value['default'];
+							update_option( $id_attribute,  $current_settings );
+						} else {
+							update_option( $id_attribute,  $value['default'] );
+						}
+					} elseif ( $reset && !$value['free_version'] ) {
+						if ( $key != false ) {
+							$current_settings = get_option( $id_attribute, array() );
+							if ( ! is_array( $current_settings) ) {
+								$current_settings = array();
+							}
+							$current_settings[$key] = $value['default'];
+							update_option( $id_attribute,  $current_settings );
+						} else {
+							update_option( $id_attribute,  $value['default'] );
+						}
+					} else {
+						if ( $key != false ) {
+							$current_settings = get_option( $id_attribute, array() );
+							if ( ! is_array( $current_settings) ) {
+								$current_settings = array();
+							}
+							if ( ! isset( $current_settings[$key] ) ) {
+								$current_settings[$key] = $value['default'];
+								update_option( $id_attribute,  $current_settings );
+							}
+						} else {
+							add_option( $id_attribute,  $value['default'] );
+						}
+					}
+				}
 			}
 			
 		}
