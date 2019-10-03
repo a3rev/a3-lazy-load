@@ -194,6 +194,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 == Changelog ==
 
+= 1.9.4 =
+* Allow for transparent/translucent background color when loading
+
 = 1.9.3 - 2019/06/29 =
 * This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress 5.2.2
 * Fix - PHP warning continue targeting switch is equivalent to break for compatibility on PHP 7.3

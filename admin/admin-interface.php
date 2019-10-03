@@ -140,7 +140,7 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 		wp_register_script( 'jquery-datetime-picker', $this->admin_plugin_url() . '/assets/js/datetimepicker/jquery.datetimepicker.js', array( 'jquery' ), true, true );
 		
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'wp-color-picker' );
+		wp_enqueue_script( 'wp-color-picker-alpha', $this->admin_plugin_url() . '/assets/js/wp-color-picker-alpha/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), $this->framework_version, true );
 		wp_enqueue_script( 'jquery-datetime-picker' );
 		if ( is_rtl() ) {
 			wp_enqueue_script( 'jquery-ui-slider-rtl' );
@@ -2172,7 +2172,8 @@ class A3_Lazy_Load_Admin_Interface extends A3_Lazy_Load_Admin_UI
 								id="<?php echo $id_attribute; ?>-color"
 								type="text"
 								value="<?php echo esc_attr( $color ); ?>"
-								class="a3rev-color-picker"
+								class="a3rev-color-picker color-picker"
+								data-alpha="true"
 								<?php echo $default_color; ?>
 								/>
 							</div>
