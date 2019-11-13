@@ -168,6 +168,9 @@ class A3_Lazy_Load
 
 		wp_enqueue_script( 'jquery-lazyloadxt-extend' );
 
+		// Disable Jetpack's devicepx (has a conflict with a3 Lazy Load [retains the placeholder as the higher-dpi image asset via srcset])
+		wp_dequeue_script( 'devicepx' );
+
 		$A3_Lazy_Load = A3_Lazy_Load::_instance();
 
 		$A3_Lazy_Load->localize_printed_scripts();
