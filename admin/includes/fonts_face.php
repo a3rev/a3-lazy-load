@@ -368,7 +368,7 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 			update_option( $this->google_api_key_option . '_enable', 1 );
 
-			$option_value = trim( $_POST[ $this->google_api_key_option ] );
+			$option_value = trim( sanitize_text_field( $_POST[ $this->google_api_key_option ] ) );
 
 			$old_google_api_key_option = get_option( $this->google_api_key_option );
 
@@ -386,7 +386,7 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 			update_option( $this->google_api_key_option . '_enable', 0 );
 
-			$option_value = trim( $_POST[ $this->google_api_key_option ] );
+			$option_value = trim( sanitize_text_field( $_POST[ $this->google_api_key_option ] ) );
 			update_option( $this->google_api_key_option, $option_value );
 
 			if ( 0 != $old_google_api_key_enable ) {
@@ -465,8 +465,9 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 				// Get font list from default webfonts.json file of plugin
 				if ( 'invalid' == $google_api_key_status && file_exists( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' ) ) {
-					$webfonts  = file_get_contents( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' );
-					if ( false != $webfonts ) {
+					$response = wp_remote_get( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json', array( 'timeout' => 120 ) );
+					$webfonts = wp_remote_retrieve_body( $response );
+					if ( ! empty( $webfonts ) ) {
 						$json_string = get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
 						$response_fonts = json_decode( $json_string, true );
 					}
@@ -518,8 +519,9 @@ class A3_Lazy_Load_Fonts_Face extends A3_Lazy_Load_Admin_UI
 
 				// Get font list from default webfonts.json file of plugin
 				if ( file_exists( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' ) ) {
-					$webfonts  = file_get_contents( $this->admin_plugin_dir() . '/assets/webfonts/webfonts.json' );
-					if ( false != $webfonts ) {
+					$response = wp_remote_get( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json', array( 'timeout' => 120 ) );
+					$webfonts = wp_remote_retrieve_body( $response );
+					if ( ! empty( $webfonts ) ) {
 						$json_string = get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
 						$response_fonts = json_decode( $json_string, true );
 					}

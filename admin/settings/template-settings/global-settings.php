@@ -528,12 +528,31 @@ class A3_Lazy_Load_Global_Settings extends A3_Lazy_Load_Admin_UI
                 'is_box'	=> true,
            	),
 			array(
-				'name' 		=> __( 'Threshold', 'a3-lazy-load' ),
+				'name' 		=> __( 'Threshold (px)', 'a3-lazy-load' ),
 				'id' 		=> 'a3l_edgeY',
-				'desc'		=> 'px ' . __( 'Expands visible page area (viewport) in vertical direction by the amount of pixels set. Elements start to load as soon as the reach the threshold instead of when they reach the actual viewport.', 'a3-lazy-load' ),
+				'desc'		=> __( 'Expands visible page area (viewport) in vertical direction by the amount of pixels set. Elements start to load as soon as they reach the threshold instead of when they reach the actual viewport.', 'a3-lazy-load' ),
 				'type' 		=> 'text',
 				'default'	=> 0,
 				'css'		=> 'width: 80px;'
+			),
+
+			array(
+				'name' 		=> __( 'Jetpack Site Accelerator (Proton) Compatibility', 'a3-lazy-load' ),
+				'class'		=> 'a3l_apply_to_load_container',
+                'type' 		=> 'heading',
+                'id'		=> 'a3l_jetpack_compatibility_box',
+                'is_box'	=> true,
+           	),
+			array(
+				'name' 		=> __( 'Jetpack Compatibility', 'a3-lazy-load' ),
+				'desc' 		=>  __("If using Jetpack Site Accelerator turn this option on so your Jetpack CDN images can be lazy loaded.", 'a3-lazy-load' ),
+                'id' 		=> 'a3l_jetpack_site_accelerator_compatibility',
+				'type' 		=> 'onoff_checkbox',
+				'default'	=> false,
+				'checked_value'		=> true,
+				'unchecked_value'	=> false,
+				'checked_label'		=> __( 'ON', 'a3-lazy-load' ),
+				'unchecked_label' 	=> __( 'OFF', 'a3-lazy-load' ),
 			),
 		) );
 

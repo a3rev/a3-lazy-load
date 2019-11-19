@@ -187,7 +187,7 @@ class A3_Lazy_Load_Admin_Init extends A3_Lazy_Load_Admin_UI
 
 	    ?>
         <div class="wrap">
-            <div class="icon32 icon32-a3rev-ui-settings icon32-a3rev<?php echo $current_page; ?>" id="icon32-a3rev<?php echo $current_page; ?>"><br /></div>
+            <div class="icon32 icon32-a3rev-ui-settings icon32-a3rev<?php echo esc_attr( $current_page ); ?>" id="icon32-a3rev<?php echo esc_attr( $current_page ); ?>"><br /></div>
             <?php
 				$tabs = apply_filters( $this->plugin_name . '-' . $current_page . '_settings_tabs_array', array() );
 
@@ -299,7 +299,7 @@ class A3_Lazy_Load_Admin_Init extends A3_Lazy_Load_Admin_UI
         <?php
 			foreach ( $subtabs as $subtab ) {
 		?>
-        	<div class="section" id="<?php echo trim( $subtab['name'] ); ?>">
+        	<div class="section" id="<?php echo trim( esc_attr( $subtab['name'] ) ); ?>">
             <?php if ( isset( $subtab['callback_function'] ) && !empty( $subtab['callback_function'] ) ) call_user_func( $subtab['callback_function'] ); ?>
             </div>
         <?php

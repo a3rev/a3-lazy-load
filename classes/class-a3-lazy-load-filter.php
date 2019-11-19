@@ -1,5 +1,12 @@
 <?php
-class A3_Lazy_Load_Hook_Filter
+
+namespace A3Rev\LazyLoad;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+class Hook_Filter
 {
 	public static function a3_wp_admin() {
 		wp_enqueue_style( 'a3rev-wp-admin-style', A3_LAZY_LOAD_CSS_URL . '/a3_wp_admin.css' );
@@ -65,4 +72,3 @@ class A3_Lazy_Load_Hook_Filter
 	}
 
 }
-?>

@@ -1,5 +1,12 @@
 <?php
-class A3_Lazy_Load_Excludes
+
+namespace A3Rev\LazyLoad;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+class Excludes
 {
 	public function __construct() {
 
@@ -156,8 +163,3 @@ class A3_Lazy_Load_Excludes
 		return false;
 	}
 }
-
-global $a3_lazy_load_excludes;
-$a3_lazy_load_excludes = new A3_Lazy_Load_Excludes();
-
-?>

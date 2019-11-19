@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 5.2.2
-Stable tag: 1.9.3
+Tested up to: 5.3.0
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,6 +193,20 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.0.0 - 2019/11/19 =
+* This feature release has a lot. PHP is upgraded to Composer PHP Dependency Manager, Compatibility with Jetpack Accelerator, a full security review, and compatibility with with WordPress 5.3.0
+* Feature - Plugin fully refactored to Composer for cleaner and faster PHP code
+* Feature - Add Jetpack Accelerator (Proton CDN images) compatibility. Props [@ KZeni](https://github.com/KZeni)
+* Tweak - Define new option box so that you can turn ON|OFF Jetpack Compatibility
+* Tweak - Remove the hard coded PHP error_reporting display errors false from compile sass to css
+* Tweak - Test for compatibility with WordPress 5.3.0
+* Tweak - Support for backward compatibility for 3rd party plugin use some functions from old class A3_Lazy_Load
+* Tweak - Allow the "skip" class to have single or double quotes. Props [@joneslloyd](https://github.com/joneslloyd)
+* Dev - Support new filter tag 'a3_lazy_load_placeholder_url' for change value of placeholder_url Props [@joneslloyd](https://github.com/joneslloyd)
+* Dev - Support new filter tag 'a3_lazy_load_iframe_placeholder_url' for change value of iframe_placeholder_url
+* Dev - Replace file_get_contents with HTTP API wp_remote_get
+* Dev - Ensure that all inputs are sanitized and all outputs are escaped
 
 = 1.9.3 - 2019/06/29 =
 * This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress 5.2.2
@@ -421,6 +435,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+This feature release has a lot. PHP is upgraded to Composer PHP Dependency Manager, Compatibility with Jetpack Accelerator, a full security review, and compatibility with with WordPress 5.3.0
 
 = 1.9.3 =
 * This is a maintenance upgrade to fix a potentially fatal error conflict with sites running PHP 7.3 plus compatibility with WordPress 5.2.2

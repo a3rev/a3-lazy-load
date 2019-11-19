@@ -1,9 +1,12 @@
 <?php
+
+namespace A3Rev\LazyLoad;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class A3_Lazy_Load_Addons_Page
+class Addons
 {
 	public function __construct() {
 
@@ -221,5 +224,3 @@ class A3_Lazy_Load_Addons_Page
 		<?php
 	}
 }
-
-return new A3_Lazy_Load_Addons_Page();

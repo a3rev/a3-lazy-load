@@ -31,7 +31,7 @@ class A3_Lazy_Load_Admin_UI
 	 * You must change to correct plugin name that you are working
 	 */
 
-	public $framework_version      = '2.1.0';
+	public $framework_version      = '2.2.0';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
 	public $plugin_path            = A3_LAZY_LOAD_NAME;
 	public $google_api_key_option  = '';
@@ -174,7 +174,7 @@ class A3_Lazy_Load_Admin_UI
 
 			update_option( $this->google_map_api_key_option . '_enable', 1 );
 
-			$option_value = trim( $_POST[ $this->google_map_api_key_option ] );
+			$option_value = trim( sanitize_text_field( $_POST[ $this->google_map_api_key_option ] ) );
 
 			$old_google_map_api_key_option = get_option( $this->google_map_api_key_option );
 
@@ -192,7 +192,7 @@ class A3_Lazy_Load_Admin_UI
 
 			update_option( $this->google_map_api_key_option . '_enable', 0 );
 
-			$option_value = trim( $_POST[ $this->google_map_api_key_option ] );
+			$option_value = trim( sanitize_text_field( $_POST[ $this->google_map_api_key_option ] ) );
 			update_option( $this->google_map_api_key_option, $option_value );
 
 			if ( 0 != $old_google_map_api_key_enable ) {

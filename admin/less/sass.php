@@ -71,7 +71,6 @@ class A3_Lazy_Load_Less
 
         global $wp_filesystem;
 
-		@ini_set( 'display_errors', false );
         $_upload_dir = wp_upload_dir();
         $wp_filesystem->chmod($_upload_dir['basedir'], 0755);
         if (! $wp_filesystem->is_dir($_upload_dir['basedir'] . '/sass')) {

@@ -1,5 +1,12 @@
 <?php
-class A3_Lazy_Load
+
+namespace A3Rev;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+class LazyLoad
 {
 	const version = A3_LAZY_VERSION;
 	protected $iframe_placeholder_url;
@@ -35,11 +42,11 @@ class A3_Lazy_Load
 			return;
 		}
 
-		if ( true == $a3_lazy_load_global_settings['a3l_load_disable_on_wptouch'] && A3_Lazy_Load::is_wptouch() ) {
+		if ( true == $a3_lazy_load_global_settings['a3l_load_disable_on_wptouch'] && self::is_wptouch() ) {
 			return;
 		}
 
-		if ( true == $a3_lazy_load_global_settings['a3l_load_disable_on_mobilepress'] && A3_Lazy_Load::is_mobilepress() ) {
+		if ( true == $a3_lazy_load_global_settings['a3l_load_disable_on_mobilepress'] && self::is_mobilepress() ) {
 			return;
 		}
 
@@ -169,9 +176,11 @@ class A3_Lazy_Load
 		wp_enqueue_script( 'jquery-lazyloadxt-extend' );
 
 		// Disable Jetpack's devicepx (has a conflict with a3 Lazy Load [retains the placeholder as the higher-dpi image asset via srcset])
-		wp_dequeue_script( 'devicepx' );
+		if ( isset( $a3_lazy_load_global_settings['a3l_jetpack_site_accelerator_compatibility'] ) && $a3_lazy_load_global_settings['a3l_jetpack_site_accelerator_compatibility'] ) {
+			wp_dequeue_script( 'devicepx' );
+		}
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		$A3_Lazy_Load->localize_printed_scripts();
 
@@ -287,7 +296,7 @@ class A3_Lazy_Load
 
 		global $a3_lazy_load_global_settings;
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		$content = apply_filters( 'a3_lazy_load_html_before', $content );
 
@@ -317,7 +326,7 @@ class A3_Lazy_Load
 
 		global $a3_lazy_load_global_settings;
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		$content = apply_filters( 'a3_lazy_load_images_before', $content );
 
@@ -335,7 +344,7 @@ class A3_Lazy_Load
 	static function sidebar_after_filter_images() {
 		$content = ob_get_clean();
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		echo $A3_Lazy_Load->filter_images( $content );
 
@@ -343,13 +352,13 @@ class A3_Lazy_Load
 	}
 
 	static function filter_content_images( $content ) {
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		return $A3_Lazy_Load->filter_images( $content );
 	}
 
 	static function get_attachment_image_attributes( $attr ) {
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		if ( is_array( $A3_Lazy_Load->_skip_images_classes ) ) {
 			$skip_images_preg_quoted = array_map( array( $A3_Lazy_Load, 'preg_quote_with_wildcards' ), $A3_Lazy_Load->_skip_images_classes );
@@ -450,7 +459,7 @@ class A3_Lazy_Load
 
 		global $a3_lazy_load_global_settings;
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		$content = apply_filters( 'a3_lazy_load_videos_before', $content );
 
@@ -468,7 +477,7 @@ class A3_Lazy_Load
 	static function sidebar_after_filter_videos() {
 		$content = ob_get_clean();
 
-		$A3_Lazy_Load = A3_Lazy_Load::_instance();
+		$A3_Lazy_Load = self::_instance();
 
 		echo $A3_Lazy_Load->filter_videos( $content );
 
@@ -624,26 +633,3 @@ class A3_Lazy_Load
 		return $content;
 	}
 }
-
-add_action( 'wp', 'a3_lazy_load_instance', 10, 0 );
-function a3_lazy_load_instance() {
-	$allow_instance = true;
-
-	if ( is_feed() ) {
-		$allow_instance = false;
-	}
-
-	if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
-		$allow_instance = false;
-	}
-
-	// Compatibility with Better AMP plugin
-	if ( function_exists( 'is_better_amp' ) && is_better_amp() ) {
-		$allow_instance = false;
-	}
-
-	if ( $allow_instance ) {
-		A3_Lazy_Load::_instance();
-	}
-}
-?>
