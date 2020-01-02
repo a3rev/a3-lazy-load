@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.5
-Tested up to: 5.3.0
-Stable tag: 2.0.0
+Tested up to: 5.3.2
+Stable tag: 2.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -63,6 +63,19 @@ a3 Lazy Load has built in support for content that is added by iframe from any s
 * There are no setting options for exclude /amp - Lazy Load is just never applied to the /amp endpoint
 * When the url is loaded in browser without /amp Lazy Load is applied 
 
+= JETPACK SITE ACCELERATOR (Proton) =
+
+This is an option that you turn on as the Jetpack Accelerator (Proton CDN images) has its own lazy load feature that needs to be OFF first to be able use a3 Lazy Load as your lazy Load engine. Some users prefer to use a3 Lazy Load as it applies Lazy Load to the whole site not just images.
+
+= WebP IMAGES =
+
+As of a3 Lazy Load has built in automatic support for WebP images. There are no settings for this as a3 Lazy Load will automatically detect if an image has a WebP version and load that. If no WebP image exists the appropriate jpg or png version will be loaded. Also fully support browser detection of WebP.
+
+
+= WOOCOMMERCE =
+
+a3 lazy Load is built and tested to be fully compatible with the very widely used WooCommerce plugin  
+
 = ADVANCED CUSTOM FIELDS =
 
 Fully compatible with the very popular Advanced Custom Fields plugin, Free and Premium versions. 
@@ -75,9 +88,6 @@ a3 Lazy Load gives you the option to lazy load images with a FADE IN or SPINNER 
 * SPINNER [see demo](http://ressio.github.io/lazy-load-xt/demo/spinner.htm)
 * Option to create a custom Lazy Load pre-load background colour
 
-= WOOCOMMERCE =
-
-a3 lazy Load is built and tested to be fully compatible with the very widely used WooCommerce plugin
 
 = PERFORMANCE TWEAKS =
 
@@ -112,8 +122,9 @@ These are just some of the more popular plugins that are either tested 100% comp
 * Plugin - WordPress AMP
 * Plugin - WPTouch. Note - Set to not apply on Mobiles if WPTouch is installed
 * Plugin - MobilePress - Set to not apply on Mobiles if MobilePress is installed
+* WebP Plugins - Smush, EWWW Image Optimizer, Imagify, WebP Express 
 * Plugins - Will not conflict with any plugin that has lazy load built in
-* CDN's - Cloudfront, Cloudflare and all other known CDN architecture.
+* CDN's - JetPack Accelerator, Cloudfront, Cloudflare and all other known CDN architecture.
 
 = MORE FEATURES =
 
@@ -132,8 +143,8 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
  
 = Minimum Requirements =
 
-* WordPress 4.6 or greater
-* PHP version 5.6.0 or greater
+* WordPress 4.9 or greater
+* PHP version 7.0.0 or greater
 * MySQL version 5.6 or greater OR MariaDB version 10.0 or greater
 
 == Frequently Asked Questions ==
@@ -193,6 +204,13 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.1.0 - 2020/01/02 =
+* This feature release adds support for WebP images (this support is automatic there are no settings for it), plus compatibility with WordPress 5.3.2
+* Feature - Add auto support WebP images 
+* Tweak - Update lazyloadxt.srcset for WebP image support
+* Tweak - Update lazy style for WebP image support
+* Tweak - Test for compatibility with WordPress 5.3.2
 
 = 2.0.0 - 2019/11/19 =
 * This feature release has a lot. PHP is upgraded to Composer PHP Dependency Manager, Compatibility with Jetpack Accelerator, a full security review, and compatibility with with WordPress 5.3.0
@@ -435,6 +453,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+This feature release adds support for WebP images (this support is automatic there are no settings for it), plus compatibility with WordPress 5.3.2
 
 = 2.0.0 =
 This feature release has a lot. PHP is upgraded to Composer PHP Dependency Manager, Compatibility with Jetpack Accelerator, a full security review, and compatibility with with WordPress 5.3.0

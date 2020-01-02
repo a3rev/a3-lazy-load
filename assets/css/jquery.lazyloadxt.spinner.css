@@ -7,3 +7,6 @@
 figure.wp-block-image img.lazy-hidden {
 	min-width: 150px;
 }
+picture source[type="image/webp"] {
+	display: block;
+}

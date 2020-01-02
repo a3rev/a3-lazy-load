@@ -33,7 +33,7 @@
             options[property] = srcsetOptions[property];
         }
     }
-    options.selector += ',img[' + options.srcsetAttr + ']';
+    options.selector += ',img[' + options.srcsetAttr + '],source[' + options.srcsetAttr + ']';
 
     function mathFilter(array, action) {
         return Math[action].apply(null, $.map(array, function (item) {
@@ -103,6 +103,21 @@
     }
 
     $(document).on('lazyshow', 'img', function (e, $el) {
+        var srcset = $el.attr(options.srcsetAttr);
+
+        if (srcset) {
+            if (!options.srcsetExtended && srcsetSupport) {
+                $el.attr('srcset', srcset);
+                $el.attr('data-srcset', '');
+            } else {
+                $el.lazyLoadXT.srcAttr = parseSrcset;
+            }
+        }
+    });
+
+    $(document).on('lazyshow', 'source', function (e, $el) {
+        $(this).removeClass('lazy-hidden');
+        
         var srcset = $el.attr(options.srcsetAttr);
 
         if (srcset) {

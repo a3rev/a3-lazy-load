@@ -389,6 +389,7 @@ class LazyLoad
 			$include_noscript = $a3_lazy_load_global_settings['a3l_image_include_noscript'];
 		}
 
+		// Normal image
 		$matches = array();
 		preg_match_all( '/<img[\s\r\n]+.*?>/is', $content, $matches );
 
@@ -420,6 +421,45 @@ class LazyLoad
 
 				if ( $include_noscript ) {
 					$replaceHTML .= '<noscript>' . $imgHTML . '</noscript>';
+				}
+
+				array_push( $search, $imgHTML );
+				array_push( $replace, $replaceHTML );
+			}
+		}
+
+		$search = array_unique( $search );
+		$replace = array_unique( $replace );
+
+		$content = str_replace( $search, $replace, $content );
+
+		// Picture source, support for webp
+		$matches = array();
+		preg_match_all( '/<source[\s\r\n]+.*?>/is', $content, $matches );
+
+		$search = array();
+		$replace = array();
+
+		if ( is_array( $this->_skip_images_classes ) ) {
+			$skip_images_preg_quoted = array_map( array( $this, 'preg_quote_with_wildcards' ), $this->_skip_images_classes );
+			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
+		}
+
+		$i = 0;
+		foreach ( $matches[0] as $imgHTML ) {
+
+			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
+			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-srcset=['\"]/is", $imgHTML )  ) {
+				$i++;
+				// replace the srcset and add the data-srcset attribute
+				$replaceHTML = '';
+				$replaceHTML = preg_replace( '/<source(.*?)srcset=/is', '<source$1srcset="" data-srcset=', $imgHTML );
+
+				// add the lazy class to the img element
+				if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/is', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );
+				} else {
+					$replaceHTML = preg_replace( '/<source/is', '<source class="lazy lazy-hidden"', $replaceHTML );
 				}
 
 				array_push( $search, $imgHTML );
