@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-          "A3Rev\\": [ "classes/" ]
+          "A3Rev\\": [ "classes/", "admin" ]
         }
     }
 }

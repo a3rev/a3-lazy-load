@@ -1,9 +1,11 @@
 <?php
 /* "Copyright 2012 a3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\LazyLoad\FrameWork {
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 A3rev Plugin Admin Init
 
@@ -20,7 +22,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class A3_Lazy_Load_Admin_Init extends A3_Lazy_Load_Admin_UI
+class Admin_Init extends Admin_UI
 {
 
 	/**
@@ -317,7 +319,4 @@ class A3_Lazy_Load_Admin_Init extends A3_Lazy_Load_Admin_UI
 	}
 }
 
-global $a3_lazy_load_admin_init;
-$a3_lazy_load_admin_init = new A3_Lazy_Load_Admin_Init();
-
-?>
+}

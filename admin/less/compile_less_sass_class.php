@@ -1,4 +1,10 @@
 <?php
+
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Compile_Less_Sass {
 
 	public function __construct(){
@@ -53,4 +59,3 @@ class Compile_Less_Sass {
 
 	}
 }
-?>

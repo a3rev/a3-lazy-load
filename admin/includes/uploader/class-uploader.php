@@ -1,9 +1,11 @@
 <?php
 /* "Copyright 2012 a3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\LazyLoad\FrameWork {
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 A3rev Plugin Uploader
 
@@ -22,7 +24,7 @@ TABLE OF CONTENTS
 - inside_popup()
 
 -----------------------------------------------------------------------------------*/
-class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
+class Uploader extends Admin_UI
 {
 
 	/**
@@ -135,7 +137,4 @@ class A3_Lazy_Load_Uploader extends A3_Lazy_Load_Admin_UI
 	}
 }
 
-global $a3_lazy_load_uploader;
-$a3_lazy_load_uploader = new A3_Lazy_Load_Uploader();
-
-?>
+}

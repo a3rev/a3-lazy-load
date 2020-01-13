@@ -1,9 +1,9 @@
 === a3 Lazy Load ===
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
-Requires at least: 4.5
+Requires at least: 4.9
 Tested up to: 5.3.2
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -151,8 +151,8 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 = How do I exclude individual objects from Lazy Load? =
 
-Use this built in class name to exclude lazy load on individual images, videos and iframes.
-<code>a3-notlazy</code>
+Images, Videos / iframes can be excluded from Lazy Load either by existing classnames or if none exist by manually adding the <code>skip-lazy</code> class to the element you want lazy load to skip, example
+<code><img class="skip-lazy> , <video class="skip-lazy"></code>
 
 = Why are some images, videos, objects not Lazy Loaded? =
 
@@ -204,6 +204,15 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.2.0 - 2020/01/13 =
+* This feature release completes the full refactor (frontend and backend) of the plugins PHP to Composer plus introduces new standardized skip-lazy exclusion class with backward compatibility support for a3-notlazy class
+* Feature - Plugin Framework fully refactored to Composer for cleaner code and faster PHP code
+* Tweak - Update plugin for compatibility with new version of plugin Framework
+* Dev - Add standardized skip-lazy exclusion class thanks to Frank Goossens for initiating this.
+* Dev - Retain backward compatibility support for old a3-notlazy class for existing users
+* Tweak - Add using new skip-lazy class instructions to the plugins admin menus
+* Tweak - Update the plugins description FQAs about the skip-lazy class
 
 = 2.1.0 - 2020/01/02 =
 * This feature release adds support for WebP images (this support is automatic there are no settings for it), plus compatibility with WordPress 5.3.2
@@ -453,6 +462,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+This feature release completes the full refactor (frontend and backend) of the plugins PHP to Composer plus introduces new standardized skip-lazy exclusion class with backward compatibility support for a3-notlazy class
 
 = 2.1.0 =
 This feature release adds support for WebP images (this support is automatic there are no settings for it), plus compatibility with WordPress 5.3.2

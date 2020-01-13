@@ -1,5 +1,10 @@
 <?php
 
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * lessphp v0.4.0
  * http://leafo.net/lessphp
@@ -3672,5 +3677,3 @@ class a3_lessc_formatter_lessjs extends a3_lessc_formatter_classic {
 	public $assignSeparator = ": ";
 	public $selectorSeparator = ",";
 }
-
-

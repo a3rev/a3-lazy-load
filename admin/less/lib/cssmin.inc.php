@@ -1,5 +1,10 @@
 <?php
 
+// File Security Check
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /*!
  * cssmin.php v2.4.8-4
  * Author: Tubal Martin - http://tubalmartin.me/

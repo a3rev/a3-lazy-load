@@ -17,6 +17,7 @@ class ComposerStaticInit77a467d5323ba7825007e91ddb8ae762
         'A3Rev\\' => 
         array (
             0 => __DIR__ . '/../..' . '/classes',
+            1 => __DIR__ . '/../..' . '/admin',
         ),
     );
 
@@ -24,6 +25,15 @@ class ComposerStaticInit77a467d5323ba7825007e91ddb8ae762
         'A3Rev\\LazyLoad' => __DIR__ . '/../..' . '/classes/class-a3-lazy-load.php',
         'A3Rev\\LazyLoad\\Addons' => __DIR__ . '/../..' . '/classes/addons/class-a3-lazy-load-addons-page.php',
         'A3Rev\\LazyLoad\\Excludes' => __DIR__ . '/../..' . '/classes/class-a3-lazy-load-excludes.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Admin_Init' => __DIR__ . '/../..' . '/admin/admin-init.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Admin_Interface' => __DIR__ . '/../..' . '/admin/admin-interface.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Admin_UI' => __DIR__ . '/../..' . '/admin/admin-ui.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Fonts_Face' => __DIR__ . '/../..' . '/admin/includes/fonts_face.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Less_Sass' => __DIR__ . '/../..' . '/admin/less/sass.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Pages\\Settings' => __DIR__ . '/../..' . '/admin/admin-pages/admin-settings-page.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Settings\\Global_Panel' => __DIR__ . '/../..' . '/admin/settings/template-settings/global-settings.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Tabs\\Global_Settings' => __DIR__ . '/../..' . '/admin/tabs/template-settings/global-settings-tab.php',
+        'A3Rev\\LazyLoad\\FrameWork\\Uploader' => __DIR__ . '/../..' . '/admin/includes/uploader/class-uploader.php',
         'A3Rev\\LazyLoad\\Hook_Filter' => __DIR__ . '/../..' . '/classes/class-a3-lazy-load-filter.php',
     );
 

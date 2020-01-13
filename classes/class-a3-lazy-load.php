@@ -70,9 +70,9 @@ class LazyLoad
 			$this->_skip_images_classes = array_map( 'trim', explode( ',', $skip_images_classes ) );
 		}
 		if ( is_array( $this->_skip_images_classes ) ) {
-			$this->_skip_images_classes = array_merge( array('a3-notlazy'), $this->_skip_images_classes );
+			$this->_skip_images_classes = array_merge( array( 'skip-lazy', 'a3-notlazy' ), $this->_skip_images_classes );
 		} else {
-			$this->_skip_images_classes = array('a3-notlazy');
+			$this->_skip_images_classes = array( 'skip-lazy', 'a3-notlazy' );
 		}
 
 		if ( $a3_lazy_load_global_settings['a3l_apply_to_images'] == true ) {
@@ -105,9 +105,9 @@ class LazyLoad
 			$this->_skip_videos_classes = array_map( 'trim', explode( ',', $skip_videos_classes ) );
 		}
 		if ( is_array( $this->_skip_videos_classes ) ) {
-			$this->_skip_videos_classes = array_merge( array('a3-notlazy', 'wp-video-shortcode'), $this->_skip_videos_classes );
+			$this->_skip_videos_classes = array_merge( array( 'skip-lazy', 'a3-notlazy', 'wp-video-shortcode' ), $this->_skip_videos_classes );
 		} else {
-			$this->_skip_videos_classes = array('a3-notlazy','wp-video-shortcode');
+			$this->_skip_videos_classes = array( 'skip-lazy', 'a3-notlazy', 'wp-video-shortcode' );
 		}
 
 		if ( $a3_lazy_load_global_settings['a3l_apply_to_videos'] == true ) {

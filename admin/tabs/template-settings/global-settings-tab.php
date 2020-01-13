@@ -1,9 +1,13 @@
 <?php
 /* "Copyright 2012 a3 Revolution Web Design" This software is distributed under the terms of GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 */
+
+namespace A3Rev\LazyLoad\FrameWork\Tabs {
+
+use A3Rev\LazyLoad\FrameWork;
+
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
-?>
-<?php
+
 /*-----------------------------------------------------------------------------------
 a3 LazyLoad Global Tab
 
@@ -22,7 +26,7 @@ TABLE OF CONTENTS
 
 -----------------------------------------------------------------------------------*/
 
-class A3_Lazy_Load_Global_Settings_Tab extends A3_Lazy_Load_Admin_UI
+class Global_Settings extends FrameWork\Admin_UI
 {
 	/**
 	 * @var string
@@ -103,7 +107,8 @@ class A3_Lazy_Load_Global_Settings_Tab extends A3_Lazy_Load_Admin_UI
 	public function settings_include() {
 
 		// Includes Settings file
-		include_once( $this->admin_plugin_dir() . '/settings/template-settings/global-settings.php' );
+		global $a3_lazy_load_global_settings_panel;
+		$a3_lazy_load_global_settings_panel = new FrameWork\Settings\Global_Panel();
 
 	}
 
@@ -118,15 +123,16 @@ class A3_Lazy_Load_Global_Settings_Tab extends A3_Lazy_Load_Admin_UI
 		$a3_lazy_load_global_settings_panel->settings_form();
 		$this->plugin_extension_end();
 
-		//global $a3_lazy_load_admin_init;
+		//global ${$this->plugin_prefix.'admin_init'};
 
-		//$a3_lazy_load_admin_init->admin_settings_tab( $this->parent_page, $this->tab_data() );
+		//${$this->plugin_prefix.'admin_init'}->admin_settings_tab( $this->parent_page, $this->tab_data() );
 
 	}
 }
 
-global $a3_lazy_load_global_settings_tab;
-$a3_lazy_load_global_settings_tab = new A3_Lazy_Load_Global_Settings_Tab();
+}
+
+namespace {
 
 /**
  * people_contact_grid_view_tab_manager()
@@ -137,4 +143,4 @@ function a3_lazy_load_global_settings_tab_manager() {
 	$a3_lazy_load_global_settings_tab->tab_manager();
 }
 
-?>
+}

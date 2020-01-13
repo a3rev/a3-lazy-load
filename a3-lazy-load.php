@@ -2,10 +2,10 @@
 /*
 Plugin Name: a3 Lazy Load
 Description: Speed up your site and enhance frontend user's visual experience in PC's, Tablets and mobile with a3 Lazy Load.
-Version: 2.1.0
+Version: 2.2.0
 Author: a3rev Software
 Author URI: https://a3rev.com/
-Requires at least: 4.0
+Requires at least: 4.9
 Tested up to: 5.3.2
 Text Domain: a3-lazy-load
 Domain Path: /languages
@@ -32,11 +32,32 @@ define('A3_LAZY_LOAD_CSS_URL', A3_LAZY_LOAD_URL . '/assets/css');
 define('A3_LAZY_LOAD_IMAGES_URL', A3_LAZY_LOAD_URL . '/assets/images');
 
 define( 'A3_LAZY_LOAD_KEY', 'a3_lazy_load' );
-define( 'A3_LAZY_VERSION', '2.1.0' );
+define( 'A3_LAZY_LOAD_PREFIX', 'a3_lazy_load_' );
+define( 'A3_LAZY_VERSION', '2.2.0' );
 define( 'A3_LAZY_LOAD_G_FONTS', false );
+
+use \A3Rev\LazyLoad\FrameWork;
 
 if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
+
+	/**
+	 * Plugin Framework init
+	 */
+	global ${A3_LAZY_LOAD_PREFIX.'admin_interface'};
+	${A3_LAZY_LOAD_PREFIX.'admin_interface'} = new FrameWork\Admin_Interface();
+
+	global $a3_lazy_load_settings_page;
+	$a3_lazy_load_settings_page = new FrameWork\Pages\Settings();
+
+	global ${A3_LAZY_LOAD_PREFIX.'admin_init'};
+	${A3_LAZY_LOAD_PREFIX.'admin_init'} = new FrameWork\Admin_Init();
+
+	global ${A3_LAZY_LOAD_PREFIX.'less'};
+	${A3_LAZY_LOAD_PREFIX.'less'} = new FrameWork\Less_Sass();
+
+	// End - Plugin Framework init
+
 
 	global $a3_lazy_load_excludes;
 	$a3_lazy_load_excludes = new \A3Rev\LazyLoad\Excludes();
@@ -65,16 +86,8 @@ function a3_lazy_load_plugin_textdomain() {
 // Disable for load new google font faces
 add_filter( A3_LAZY_LOAD_KEY . '_new_google_fonts_enable', '__return_false' );
 
-include( 'admin/admin-ui.php' );
-include( 'admin/admin-interface.php' );
-
-include( 'admin/admin-pages/admin-settings-page.php' );
-
 // Backwards compatibility for 3rd party plugin use functions from this plugin
 include( 'classes/classes-backwards-compatibility.php' );
-
-include( 'admin/admin-init.php' );
-include( 'admin/less/sass.php' );
 
 include( 'admin/a3-lazy-load-admin.php' );
 
