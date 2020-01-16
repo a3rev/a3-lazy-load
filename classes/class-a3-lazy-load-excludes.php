@@ -162,4 +162,14 @@ class Excludes
 
 		return false;
 	}
+
+	public function has_skip_lazy_attribute( $html ) {
+		$has_skip_lazy = false;
+
+		if ( stristr( $html, ' data-skip-lazy ' ) !== false || stristr( $html, ' data-skip-lazy=' ) !== false || stristr( $html, ' data-skip-lazy/>' ) !== false || stristr( $html, ' data-skip-lazy>' ) !== false ) {
+			$has_skip_lazy = true;
+		}
+
+		return $has_skip_lazy;
+	}
 }

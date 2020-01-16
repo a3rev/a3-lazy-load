@@ -382,6 +382,7 @@ class LazyLoad
 	}
 
 	protected function _filter_images( $content, $include_noscript = null ) {
+		global $a3_lazy_load_excludes;
 
 		if ( null === $include_noscript ) {
 			global $a3_lazy_load_global_settings;
@@ -405,7 +406,7 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the src and add the data-src attribute
 				$replaceHTML = '';
@@ -449,7 +450,7 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-srcset=['\"]/is", $imgHTML )  ) {
+			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-srcset=['\"]/is", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the srcset and add the data-srcset attribute
 				$replaceHTML = '';
@@ -525,6 +526,7 @@ class LazyLoad
 	}
 
 	protected function _filter_videos( $content, $include_noscript = null ) {
+		global $a3_lazy_load_excludes;
 
 		if ( null === $include_noscript ) {
 			global $a3_lazy_load_global_settings;
@@ -551,7 +553,7 @@ class LazyLoad
 			}
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the src and add the data-src attribute
 				$replaceHTML = '';
@@ -594,7 +596,7 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the src and add the data-src attribute
 
@@ -642,7 +644,7 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_videos_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/ data-src=['\"]/is", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the src and add the data-src attribute
 				$replaceHTML = '';

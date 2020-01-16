@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.9
 Tested up to: 5.3.2
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -151,8 +151,15 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
 
 = How do I exclude individual objects from Lazy Load? =
 
-Images, Videos / iframes can be excluded from Lazy Load either by existing classnames or if none exist by manually adding the <code>skip-lazy</code> class to the element you want lazy load to skip, example
-<code><img class="skip-lazy> , <video class="skip-lazy"></code>
+Images, Videos / iframes can be excluded from Lazy Load by existing classnames or if none exist exclusions can be done manually via exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute. Examples
+Exclude by classname <code>&#x3C;img class="skip-lazy"&#x3E; , &#x3C;video class="skip-lazy"&#x3E;</code>
+Exclude by attribute <code>&#x3C;img data-skip-lazy&#x3E; , &#x3C;video data-skip-lazy&#x3E;</code>
+
+<strong>the text changes for the Images option box</strong>
+Images can be excluded from Lazy Load by entering existing image classnames below or if the image has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the image. Examples, by class <code>&#x3C;img class="skip-lazy"&#x3E;</code> , by attribute <code>&#x3C;img data-skip-lazy&#x3E;</code>
+
+<strong>the Videos</strong>
+Videos and iFrames can be excluded from Lazy Load either by entering existing classnames below or if it has has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the video / iframe. Examples, by class <code>&#x3C;video class="skip-lazy"&#x3E;</code>, by attribute <code>&#x3C;video data-skip-lazy&#x3E;</code>
 
 = Why are some images, videos, objects not Lazy Loaded? =
 
@@ -204,6 +211,12 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.2.1 - 2020/01/16 =
+* This maintenance release adds support for the Lazy Load exclusion attribute 'data-skip-lazy'
+* Tweak - Add support for lazy load exclusion by attribute 'data-skip-lazy'
+* Tweak - Update the plugins readme description about support for exclusion attribute
+* Tweak - Update plugins admin Image and Video options boxes with help text about exclusion by attribute
 
 = 2.2.0 - 2020/01/13 =
 * This feature release completes the full refactor (frontend and backend) of the plugins PHP to Composer plus introduces new standardized skip-lazy exclusion class with backward compatibility support for a3-notlazy class
@@ -462,6 +475,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.2.1 =
+This maintenance release adds support for the Lazy Load exclusion attribute 'data-skip-lazy'
 
 = 2.2.0 =
 This feature release completes the full refactor (frontend and backend) of the plugins PHP to Composer plus introduces new standardized skip-lazy exclusion class with backward compatibility support for a3-notlazy class
