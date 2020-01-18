@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
 Requires at least: 4.9
 Tested up to: 5.3.2
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -155,12 +155,6 @@ Images, Videos / iframes can be excluded from Lazy Load by existing classnames o
 Exclude by classname <code>&#x3C;img class="skip-lazy"&#x3E; , &#x3C;video class="skip-lazy"&#x3E;</code>
 Exclude by attribute <code>&#x3C;img data-skip-lazy&#x3E; , &#x3C;video data-skip-lazy&#x3E;</code>
 
-<strong>the text changes for the Images option box</strong>
-Images can be excluded from Lazy Load by entering existing image classnames below or if the image has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the image. Examples, by class <code>&#x3C;img class="skip-lazy"&#x3E;</code> , by attribute <code>&#x3C;img data-skip-lazy&#x3E;</code>
-
-<strong>the Videos</strong>
-Videos and iFrames can be excluded from Lazy Load either by entering existing classnames below or if it has has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the video / iframe. Examples, by class <code>&#x3C;video class="skip-lazy"&#x3E;</code>, by attribute <code>&#x3C;video data-skip-lazy&#x3E;</code>
-
 = Why are some images, videos, objects not Lazy Loaded? =
 
 a3 Lazy Load can only be applied to objects that are added using core WordPress functions. If your theme or a plugin developer adds objects such as images or videos via a custom written function, a3 lazy Load cannot know what that custom function is and hence cannot Lazy Load the object.
@@ -211,6 +205,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.2.2 - 2020/01/18 =
+* This maintenance release is to update incorrect help text regarding usage of the new class and attribute exclusion strings
+* Tweak - Update incorrect FQA help text on plugins description
+* Tweak - Update admin panel option box image and video exclusion class and attribute help text.
 
 = 2.2.1 - 2020/01/16 =
 * This maintenance release adds support for the Lazy Load exclusion attribute 'data-skip-lazy'
@@ -475,6 +474,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+This maintenance release is to update incorrect help text regarding usage of the new class and attribute exclusion strings
 
 = 2.2.1 =
 This maintenance release adds support for the Lazy Load exclusion attribute 'data-skip-lazy'

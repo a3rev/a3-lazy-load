@@ -329,7 +329,7 @@ class Global_Panel extends FrameWork\Admin_UI
 				'name' 		=> __( 'Exclude Images', 'a3-lazy-load' ),
                 'type' 		=> 'heading',
 				'class'		=> 'a3l_apply_to_load_images_container',
-				'desc'		=> __( 'Images can be excluded from Lazy Load either by entering existing image classnames below or if the image has no classname by adding the <code>skip-lazy</code> class to the image, example <code>&#x3C;img class="skip-lazy"&#x3E;</code>', 'a3-lazy-load' )
+				'desc'		=> __( 'Images can be excluded from Lazy Load by entering existing image classnames below or if the image has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the image. Examples, by class <code>&#x3C;img class="skip-lazy"&#x3E;</code> , by attribute <code>&#x3C;img data-skip-lazy&#x3E;</code>', 'a3-lazy-load' )
            	),
 			array(
 				'name' => __( 'Skip Images Classes', 'a3-lazy-load' ),
@@ -399,7 +399,7 @@ class Global_Panel extends FrameWork\Admin_UI
 				'name' 		=> __( 'Exclude Videos / iframes', 'a3-lazy-load' ),
                 'type' 		=> 'heading',
 				'class'		=> 'a3l_apply_to_load_videos_container',
-				'desc'		=> __( 'Videos and iFrames can be excluded from Lazy Load either by entering the existing classnames below or if if it has has no classname by adding the <code>skip-lazy</code> class to the video / iframe, example <code>&#x3C;video class="skip-lazy"&#x3E;</code>', 'a3-lazy-load' )
+				'desc'		=> __( 'Videos and iFrames can be excluded from Lazy Load either by entering existing classnames below or if it has has no classname by adding the exclusion <code>skip-lazy</code> classname or <code>data-skip-lazy</code> attribute to the video / iframe. Examples, by class <code>&#x3C;video class="skip-lazy"&#x3E;</code>, by attribute <code>&#x3C;video data-skip-lazy&#x3E;</code>', 'a3-lazy-load' )
            	),
 			array(
 				'name' => __( 'Skip Videos Classes', 'a3-lazy-load' ),
