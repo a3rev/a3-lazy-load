@@ -1,9 +1,9 @@
 === a3 Lazy Load ===
 Contributors: a3rev, a3rev Software, nguyencongtuan
-Tags: a3 lazy load, Lazy Loading , image lazy load, lazyload
+Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
 Tested up to: 5.3.2
-Stable tag: 2.2.2
+Stable tag: 2.3.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,18 +26,22 @@ Images are the number one element that slows page load and increases bandwidth u
 * Apply to post thumbnails
 * Apply to gravatars
 
+= HORIZONTAL SCROLL =
+
+Supports lazy loading of images in containers that use horizontal scroll. The admin Images options has a section where you enter the classname or ID of the container that uses horizontal scroll.
+
 = MORE THAN JUST IMAGES =
 
 = VIDEO LAZY LOAD =
 
 a3 Lazy Load supports all WordPress video Embeds including Youtube, Vimeo and HTML5 video - for a full list see the [WordPress Codex Embeds](http://codex.wordpress.org/Embeds) list. The WordPress embed method of copying and pasting the video url into posts and pages content area is fully supported. 
 
-<strong>Note</strong> - Works with Videos added by Text and HTML Widgets but not the new WordPress Video widget. That widget does not pull iframe at first load, it use JavaScript to replace html to iframe and hence a3 lazy Load can't see it to apply.  
+<strong>Note</strong> - Works with Videos added by Text and HTML Widgets but not the new WordPress Video widget. That widget does not pull iframe at first load, it uses JavaScript to replace html to iframe and hence a3 lazy Load can't see it to apply.  
 
 From the a3 lazy Load admin panel turn Video Support ON | OFF. When ON you can choose to ON | OFF lazy load for videos in
 
 * Video embeded by URL in Post and Pages (All Content areas)
-* Video in Widget types, Text Widget and HTML Wigets.
+* Video in Widget types, Text Widget and HTML Widgets.
 * Youtube [see demo](http://ressio.github.io/lazy-load-xt/demo/youtube-iframe.htm)
 * Video [see demo](http://ressio.github.io/lazy-load-xt/demo/video-html5.htm)
 * Fully Compatible with the popular [Youtube Embed Plugin](https://wordpress.org/plugins/youtube-embed/)
@@ -65,20 +69,12 @@ a3 Lazy Load has built in support for content that is added by iframe from any s
 
 = JETPACK SITE ACCELERATOR (Proton) =
 
-This is an option that you turn on as the Jetpack Accelerator (Proton CDN images) has its own lazy load feature that needs to be OFF first to be able use a3 Lazy Load as your lazy Load engine. Some users prefer to use a3 Lazy Load as it applies Lazy Load to the whole site not just images.
+This is an option that you turn on as the Jetpack Accelerator (Proton CDN images) has its own lazy load feature that needs to be OFF first to be able use a3 Lazy Load as your lazy Load engine. Some users prefer to use a3 Lazy Load as it applies Lazy Load to videos and iframes as well as images.
 
 = WebP IMAGES =
 
-As of a3 Lazy Load has built in automatic support for WebP images. There are no settings for this as a3 Lazy Load will automatically detect if an image has a WebP version and load that. If no WebP image exists the appropriate jpg or png version will be loaded. Also fully support browser detection of WebP.
+a3 Lazy Load has built in automatic support for WebP images. There are no settings for this as a3 Lazy Load will automatically detect if an image has a WebP version and lazy load the WebP version. If no WebP image exists, the appropriate jpg or png version will be lazy loaded. Also fully support browser detection of WebP.
 
-
-= WOOCOMMERCE =
-
-a3 lazy Load is built and tested to be fully compatible with the very widely used WooCommerce plugin  
-
-= ADVANCED CUSTOM FIELDS =
-
-Fully compatible with the very popular Advanced Custom Fields plugin, Free and Premium versions. 
 
 = LAZY LOAD EFFECTS =
 
@@ -114,10 +110,12 @@ Don't forget when a developer does add full compatibility with a3 Lazy Load plea
 
 These are just some of the more popular plugins that are either tested 100% compatible with a3 Lazy Load or tags has been added for 100% compatibility.   
 
-* Plugin - Advanced Custom Fields
+* Plugin - Advanced Custom Fields (Free and Premium)
 * Plugin - WooCommerce
+* Plugin - JetPack
+* Plugin - Elementor (Free and Pro)
 * Plugin - WP Offload
-* Plugin - WP Super Cache and W3 Total Cache plugins
+* Plugin - WP Super Cache, W3 Total Cache, Autoptimize
 * Plugin - Youtube Embed
 * Plugin - WordPress AMP
 * Plugin - WPTouch. Note - Set to not apply on Mobiles if WPTouch is installed
@@ -205,6 +203,13 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.3.0 - 2020/02/25 =
+* This feature release adds support for horizontal scroll images plus a bug fix for compatibility with Revolution Slider
+* Feature - Add support for lazy loading images in a container that have horizontal scroll
+* Feature - Add Horizontal Scroll section to the Lazy Load Images option box on the admin panel
+* Feature - Apply Horizontal Scroll lazy load to any container by classname or ID
+* Fix - Compatibility with Revolution slider. Their JS has changed in a resent update causing a conflict which meant that the slider images did not show with a3 Lazy Load activated.
 
 = 2.2.2 - 2020/01/18 =
 * This maintenance release is to update incorrect help text regarding usage of the new class and attribute exclusion strings
@@ -474,6 +479,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+This feature release adds support for horizontal scroll images plus a bug fix for compatibility with Revolution Slider
 
 = 2.2.2 =
 This maintenance release is to update incorrect help text regarding usage of the new class and attribute exclusion strings

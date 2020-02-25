@@ -75,6 +75,9 @@ class LazyLoad
 			$this->_skip_images_classes = array( 'skip-lazy', 'a3-notlazy' );
 		}
 
+		// Fix the confliction with Rev Slider
+		$this->_skip_images_classes = array_merge( array( 'rev-slidebg' ), $this->_skip_images_classes );
+
 		if ( $a3_lazy_load_global_settings['a3l_apply_to_images'] == true ) {
 			add_filter( 'a3_lazy_load_images', array( $this, 'filter_images' ), 10, 2 );
 
@@ -109,6 +112,9 @@ class LazyLoad
 		} else {
 			$this->_skip_videos_classes = array( 'skip-lazy', 'a3-notlazy', 'wp-video-shortcode' );
 		}
+
+		// Fix the confliction with Rev Slider
+		$this->_skip_videos_classes = array_merge( array( 'rev-slidebg' ), $this->_skip_videos_classes );
 
 		if ( $a3_lazy_load_global_settings['a3l_apply_to_videos'] == true ) {
 			add_filter( 'a3_lazy_load_videos', array( $this, 'filter_videos' ), 10, 2 );
@@ -198,8 +204,17 @@ class LazyLoad
 		}
 
 		if ( wp_script_is( 'jquery-lazyloadxt-extend' ) ) {
+			$horizontal_container_classnames = '';
+			if ( ! empty( $a3_lazy_load_global_settings['a3l_horizontal_trigger_classnames'] ) ) {
+				$horizontal_trigger_classnames = explode(',', $a3_lazy_load_global_settings['a3l_horizontal_trigger_classnames'] );
+				$horizontal_trigger_classnames = array_map( 'trim', $horizontal_trigger_classnames );
+				$horizontal_trigger_classnames = array_filter( $horizontal_trigger_classnames );
+				$horizontal_container_classnames = implode(',', $horizontal_trigger_classnames );
+			}
+
 			wp_localize_script( 'jquery-lazyloadxt-extend', 'a3_lazyload_extend_params', apply_filters( 'a3_lazyload_extend_params', array(
-				'edgeY' 	=> (int) $a3_lazy_load_global_settings['a3l_edgeY'],
+				'edgeY'                           => (int) $a3_lazy_load_global_settings['a3l_edgeY'],
+				'horizontal_container_classnames' => $horizontal_container_classnames
 			) ) );
 		}
 	}
