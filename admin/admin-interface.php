@@ -298,12 +298,10 @@ class Admin_Interface extends Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function admin_includes() {
 		// Includes Font Face Lib
-		global ${$this->plugin_prefix.'fonts_face'};
-		${$this->plugin_prefix.'fonts_face'} = new Fonts_Face();
+		$GLOBALS[$this->plugin_prefix.'fonts_face'] = new Fonts_Face();
 		
 		// Includes Uploader Lib
-		global ${$this->plugin_prefix.'uploader'};
-		${$this->plugin_prefix.'uploader'} = new Uploader();
+		$GLOBALS[$this->plugin_prefix.'uploader'] = new Uploader();
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -425,9 +423,7 @@ class Admin_Interface extends Admin_UI
 		$new_settings = array(); $new_single_setting = ''; // :)
 		
 		// Get settings for option values is an array and it's in single option name for all settings
-		if ( trim( $option_name ) != '' ) {
-			global ${$option_name};
-			
+		if ( trim( $option_name ) != '' ) {			
 			$default_settings = $this->get_settings_default( $options, $option_name );
 			
 			$current_settings = get_option( $option_name );
@@ -437,7 +433,7 @@ class Admin_Interface extends Admin_UI
 			$current_settings = array_map( array( $this, 'admin_stripslashes' ), $current_settings );
 			$current_settings = apply_filters( $this->plugin_name . '_' . $option_name . '_get_settings' , $current_settings );
 			
-			$$option_name = $current_settings;
+			$GLOBALS[$option_name] = $current_settings;
 			
 		}
 		
@@ -465,7 +461,6 @@ class Admin_Interface extends Admin_UI
 			}
 			
 			if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-				global ${$id_attribute};
 				
 				$current_setting = get_option( $id_attribute, $value['default'] );
 				
@@ -496,7 +491,7 @@ class Admin_Interface extends Admin_UI
 				
 				$current_setting = apply_filters( $this->plugin_name . '_' . $id_attribute . '_get_setting' , $current_setting );
 				
-				$$id_attribute = $current_setting;
+				$GLOBALS[$id_attribute] = $current_setting;
 			}
 		}
 		
@@ -515,7 +510,7 @@ class Admin_Interface extends Admin_UI
 
 				if ( trim( $option_name ) != '' ) {
 					update_option( $option_name, $new_settings );
-					$$option_name = $new_settings;
+					$GLOBALS[$option_name] = $new_settings;
 				}
 				
 				foreach ( $options as $value ) {
@@ -543,7 +538,7 @@ class Admin_Interface extends Admin_UI
 					
 					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
 						update_option( $id_attribute,  $new_single_setting );
-						$$id_attribute = $new_single_setting;
+						$GLOBALS[$id_attribute] = $new_single_setting;
 					}
 				}
 			}
@@ -1360,7 +1355,7 @@ class Admin_Interface extends Admin_UI
 	 */
 	 
 	public function admin_forms( $options, $form_key, $option_name = '', $form_messages = array() ) {
-		global ${$this->plugin_prefix.'fonts_face'}, ${$this->plugin_prefix.'uploader'}, $current_subtab;
+		global $current_subtab;
 		
 		$new_settings = array(); $new_single_setting = ''; // :)
 		$admin_message = '';
@@ -1890,7 +1885,7 @@ class Admin_Interface extends Admin_UI
 								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key", 'a3-lazy-load' ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
 								<div class="a3rev-ui-google-api-key-inside 
 									<?php
-									if ( ${$this->plugin_prefix.'fonts_face'}->is_valid_google_api_key() ) {
+									if ( $GLOBALS[$this->plugin_prefix.'fonts_face']->is_valid_google_api_key() ) {
 										echo 'a3rev-ui-google-valid-key';
 									} elseif ( '' != $google_api_key ) {
 										echo 'a3rev-ui-google-unvalid-key';
@@ -2712,7 +2707,7 @@ class Admin_Interface extends Admin_UI
 								>
 								<optgroup label="<?php _e( '-- Default Fonts --', 'a3-lazy-load' ); ?>">
                                 <?php
-									foreach ( ${$this->plugin_prefix.'fonts_face'}->get_default_fonts() as $val => $text ) {
+									foreach ( $GLOBALS[$this->plugin_prefix.'fonts_face']->get_default_fonts() as $val => $text ) {
 										?>
                                         <option value="<?php echo esc_attr( $val ); ?>" <?php
 												selected( esc_attr( $val ), esc_attr( $face ) );
@@ -2723,7 +2718,7 @@ class Admin_Interface extends Admin_UI
                                 </optgroup>
                                 <optgroup label="<?php _e( '-- Google Fonts --', 'a3-lazy-load' ); ?>">
                                 <?php
-									foreach ( ${$this->plugin_prefix.'fonts_face'}->get_google_fonts() as $font ) {
+									foreach ( $GLOBALS[$this->plugin_prefix.'fonts_face']->get_google_fonts() as $font ) {
 										?>
                                         <option value="<?php echo esc_attr( $font['name'] ); ?>" <?php
 												selected( esc_attr( $font['name'] ), esc_attr( $face ) );
@@ -3396,7 +3391,7 @@ class Admin_Interface extends Admin_UI
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
                         	<?php echo $description; ?>
-                        	<?php echo ${$this->plugin_prefix.'uploader'}->upload_input( $name_attribute, $id_attribute, $option_value, $attachment_id, $value['default'], $value['name'], $class, esc_attr( $value['css'] ) , '', $strip_methods );?>
+                        	<?php echo $GLOBALS[$this->plugin_prefix.'uploader']->upload_input( $name_attribute, $id_attribute, $option_value, $attachment_id, $value['default'], $value['name'], $class, esc_attr( $value['css'] ) , '', $strip_methods );?>
 						</td>
 					</tr><?php
 									

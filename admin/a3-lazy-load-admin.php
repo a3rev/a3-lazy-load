@@ -3,8 +3,7 @@
 function a3_lazy_load_activated(){
 	update_option('a3_lazy_load_version', A3_LAZY_VERSION );
 
-	global ${A3_LAZY_LOAD_PREFIX.'admin_init'};
-	delete_metadata( 'user', 0, ${A3_LAZY_LOAD_PREFIX.'admin_init'}->plugin_name . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
+	delete_metadata( 'user', 0, $GLOBALS[A3_LAZY_LOAD_PREFIX.'admin_init']->plugin_name . '-' . 'plugin_framework_global_box' . '-' . 'opened', '', true );
 
 	update_option('a3_lazy_load_just_installed', true);
 }
@@ -18,8 +17,7 @@ function a3_lazy_load_init() {
 		delete_option( 'a3_lazy_load_just_installed' );
 
 		// Set Settings Default from Admin Init
-		global ${A3_LAZY_LOAD_PREFIX.'admin_init'};
-		${A3_LAZY_LOAD_PREFIX.'admin_init'}->set_default_settings();
+		$GLOBALS[A3_LAZY_LOAD_PREFIX.'admin_init']->set_default_settings();
 	}
 
 	a3_lazy_load_plugin_textdomain();
@@ -27,11 +25,10 @@ function a3_lazy_load_init() {
 	a3_lazy_load_upgrade_plugin();
 }
 
-global ${A3_LAZY_LOAD_PREFIX.'admin_init'};
-${A3_LAZY_LOAD_PREFIX.'admin_init'}->init();
+$GLOBALS[A3_LAZY_LOAD_PREFIX.'admin_init']->init();
 
 // Add upgrade notice to Dashboard pages
-add_filter( ${A3_LAZY_LOAD_PREFIX.'admin_init'}->plugin_name . '_plugin_extension_boxes', array( '\A3Rev\LazyLoad\Hook_Filter', 'plugin_extension_box' ) );
+add_filter( $GLOBALS[A3_LAZY_LOAD_PREFIX.'admin_init']->plugin_name . '_plugin_extension_boxes', array( '\A3Rev\LazyLoad\Hook_Filter', 'plugin_extension_box' ) );
 
 // Add language
 add_action('init', 'a3_lazy_load_init', 105);

@@ -123,9 +123,7 @@ class Global_Settings extends FrameWork\Admin_UI
 		$a3_lazy_load_global_settings_panel->settings_form();
 		$this->plugin_extension_end();
 
-		//global ${$this->plugin_prefix.'admin_init'};
-
-		//${$this->plugin_prefix.'admin_init'}->admin_settings_tab( $this->parent_page, $this->tab_data() );
+		//$GLOBALS[$this->plugin_prefix.'admin_init']->admin_settings_tab( $this->parent_page, $this->tab_data() );
 
 	}
 }

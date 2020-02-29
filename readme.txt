@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
 Tested up to: 5.3.2
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,13 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.3.1 - 2020/02/29 =
+* This maintenance release contains various PHP code updates to resolve PHP warnings and depreciations in PHP 7.0 to 7.4 
+* Fix - Update global ${$this- to $GLOBALS[$this to resolve 7.0+ PHP warnings
+* Fix - Update global ${$option} to $GLOBALS[$option] to resolve 7.0+ PHP warnings
+* Fix - Update less PHP lib that use square brackets [] instead of curly braces {} for Array , depreciated in PHP 7.4
+* Fix - Validate for do not use get_magic_quotes_gpc function for PHP 7.4
 
 = 2.3.0 - 2020/02/25 =
 * This feature release adds support for horizontal scroll images plus a bug fix for compatibility with Revolution Slider
@@ -479,6 +486,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.3.1 =
+This maintenance release contains various PHP code updates to resolve PHP warnings and depreciations in PHP 7.0 to 7.4
 
 = 2.3.0 =
 This feature release adds support for horizontal scroll images plus a bug fix for compatibility with Revolution Slider
