@@ -562,7 +562,7 @@ class Global_Panel extends FrameWork\Admin_UI
 			),
 
 			array(
-				'name' 		=> __( 'Jetpack Site Accelerator (Proton) Compatibility', 'a3-lazy-load' ),
+				'name' 		=> __( 'Jetpack Site Accelerator (Photon) Compatibility', 'a3-lazy-load' ),
 				'class'		=> 'a3l_apply_to_load_container',
                 'type' 		=> 'heading',
                 'id'		=> 'a3l_jetpack_compatibility_box',

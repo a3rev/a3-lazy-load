@@ -67,9 +67,9 @@ a3 Lazy Load has built in support for content that is added by iframe from any s
 * There are no setting options for exclude /amp - Lazy Load is just never applied to the /amp endpoint
 * When the url is loaded in browser without /amp Lazy Load is applied 
 
-= JETPACK SITE ACCELERATOR (Proton) =
+= JETPACK SITE ACCELERATOR (Photon) =
 
-This is an option that you turn on as the Jetpack Accelerator (Proton CDN images) has its own lazy load feature that needs to be OFF first to be able use a3 Lazy Load as your lazy Load engine. Some users prefer to use a3 Lazy Load as it applies Lazy Load to videos and iframes as well as images.
+This is an option that you turn on as the Jetpack Accelerator (Photon CDN images) has its own lazy load feature that needs to be OFF first to be able use a3 Lazy Load as your lazy Load engine. Some users prefer to use a3 Lazy Load as it applies Lazy Load to videos and iframes as well as images.
 
 = WebP IMAGES =
 
@@ -248,7 +248,7 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 = 2.0.0 - 2019/11/19 =
 * This feature release has a lot. PHP is upgraded to Composer PHP Dependency Manager, Compatibility with Jetpack Accelerator, a full security review, and compatibility with with WordPress 5.3.0
 * Feature - Plugin fully refactored to Composer for cleaner and faster PHP code
-* Feature - Add Jetpack Accelerator (Proton CDN images) compatibility. Props [@ KZeni](https://github.com/KZeni)
+* Feature - Add Jetpack Accelerator (Photon CDN images) compatibility. Props [@ KZeni](https://github.com/KZeni)
 * Tweak - Define new option box so that you can turn ON|OFF Jetpack Compatibility
 * Tweak - Remove the hard coded PHP error_reporting display errors false from compile sass to css
 * Tweak - Test for compatibility with WordPress 5.3.0
