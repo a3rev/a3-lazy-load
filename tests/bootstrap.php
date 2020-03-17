@@ -26,7 +26,7 @@ function _manually_load_plugin() {
 	update_option('pvc_just_installed', false);
 
 	require dirname( dirname( __FILE__ ) ) . '/a3-lazy-load.php';
-	update_option('a3_pvc_version', A3_LAZY_VERSION);
+	update_option('a3_lazy_load_version', A3_LAZY_VERSION);
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
