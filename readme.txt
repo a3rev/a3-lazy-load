@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 2.3.2
+Tested up to: 5.4.2
+Stable tag: 2.3.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,6 +203,12 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.3.3 – 2020/07/17 =
+* This maintenance release is compatibility with WordPress 5.4.2 and a bug fix for a conflict with the latest version 4.3 of WooCommerce
+* Tweak – Test for compatibility with WordPress 5.4.2
+* Tweak – Test for compatibility with WooCommerce 4.3.0
+* Fix - Support lazy load for WC Product Images
 
 = 2.3.2 - 2020/03/17 =
 * This maintenance release has compatibility for WordPress 5.4, WooCommerce 4.0, full compliance with WordPress PHP coding standards plus a typo fix.
@@ -493,6 +499,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.3.3 =
+This maintenance release is compatibility with WordPress 5.4.2 and a bug fix for a conflict with the latest version 4.3 of WooCommerce
 
 = 2.3.2 =
 This maintenance release has compatibility for WordPress 5.4, WooCommerce 4.0, full compliance with WordPress PHP coding standards plus a typo fix.

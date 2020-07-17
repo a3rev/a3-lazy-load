@@ -100,6 +100,7 @@ class LazyLoad
 			if ( $a3_lazy_load_global_settings['a3l_apply_image_to_gravatars'] == true ) {
 				add_filter( 'get_avatar', array( $this, 'filter_images' ), 200 );
 			}
+			add_filter( 'woocommerce_product_get_image', array( $this, 'filter_images' ), 200 );
 		}
 
 		// Apply for Videos
