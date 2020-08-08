@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
-Tested up to: 5.4.2
-Stable tag: 2.3.3
+Tested up to: 5.5.0
+Stable tag: 2.4.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,6 +16,10 @@ a3 Lazy Load is a Mobile Oriented, very simple to use plugin that will speed up 
 a3 Lazy Load is inspired by and powered by the ressio [Lazy-Load-xt JavaScript](https://github.com/ressio/lazy-load-xt).
 
 a3 Lazy Load is the most fully featured, incredibly easy to set up lazy load plugin for WordPress. Use the plugins admin settings to easily define what elements are lazy loaded and when they become visible in the users browser. As the user scrolls down the page the next lot of elements you have applied lazy Load to are only loaded as they become visible in the view port.
+
+= 100% COMPATABLE WITH WORDPRESS 5.5 =
+
+WordPress 5.5 introduced lazy loading for all images uploaded to a site’s media library. a3 Lazy Load Image options work side-by-side with this, but then enhances it by lazy loading all the images loaded from outside of the media library or on older browsers that do not support the new WP attribute. 
 
 = IMAGE LAZY LOAD =
 
@@ -204,10 +208,18 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 == Changelog ==
 
-= 2.3.3 – 2020/07/17 =
+= 2.4.0 - 2020/08/08 =
+* This feature release has full compatibility with WP 5.5 core image lazy loading. Just Update and a3 Lazy Load will work side-by-side with the WP core image lazy load. No settings to update and a3 lazy load will enhance it by lazy loading images the new core feature misses and on older browsers that do not support the new feature.  
+* Feature - Full compatibility with WordPress 5.5 core image lazy load feature
+* Tweak - Test for compatibility with WordPress 5.5
+* Tweak - Test for compatibility with WooCommerce 4.3.1
+* Tweak - Update plugins description with notes about WP 5.5 compatibility
+* Tweak - Update plugins Image Options help text about WP 5.5 compatibility
+
+= 2.3.3 - 2020/07/17 =
 * This maintenance release is compatibility with WordPress 5.4.2 and a bug fix for a conflict with the latest version 4.3 of WooCommerce
-* Tweak – Test for compatibility with WordPress 5.4.2
-* Tweak – Test for compatibility with WooCommerce 4.3.0
+* Tweak - Test for compatibility with WordPress 5.4.2
+* Tweak - Test for compatibility with WooCommerce 4.3.0
 * Fix - Support lazy load for WC Product Images
 
 = 2.3.2 - 2020/03/17 =
@@ -300,7 +312,7 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 * Feature - Add support for using Wildcards in images and videos skipped classes
 * Tweak - Upgrade lazyloadxt lib to latest version 1.1.0
 * Tweak - Rename jquery.lazyloadxt.js to jquery.lazyloadxt.extra.js
-* Tweak - Add new Exclude by URI’s and Page Types Options box and help text
+* Tweak - Add new Exclude by URI's and Page Types Options box and help text
 * Tweak - Test for compatibility with WordPress 4.9.8
 * Tweak - Test for compatibility with WooCommerce 3.4.4
 * Tweak - Test for compatibility with Gutenberg 3.4.0
@@ -499,6 +511,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.0 =
+This feature release has full compatibility with WP 5.5 core image lazy loading. Just Update and a3 Lazy Load will work side-by-side with the WP core image lazy load. No settings to update and a3 lazy load will enhance it by lazy loading images the new core feature misses and on older browsers that do not support the new feature.
 
 = 2.3.3 =
 This maintenance release is compatibility with WordPress 5.4.2 and a bug fix for a conflict with the latest version 4.3 of WooCommerce

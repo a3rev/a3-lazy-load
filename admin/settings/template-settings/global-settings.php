@@ -257,6 +257,7 @@ class Global_Panel extends FrameWork\Admin_UI
 				'name' 		=> __( 'Enable Lazy Load for Images', 'a3-lazy-load' ),
                 'id' 		=> 'a3l_apply_to_images',
                 'class'		=> 'a3l_apply_to_images',
+                'desc'		=> __( '100% Compatible with WordPress 5.5 image lazy load and will enhance its coverage on this site.', 'a3-lazy-load' ),
 				'type' 		=> 'onoff_checkbox',
 				'default'	=> true,
 				'checked_value'		=> true,
