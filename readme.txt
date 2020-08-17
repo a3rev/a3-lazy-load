@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
 Tested up to: 5.5.0
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -207,6 +207,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.4.1 - 2020/08/17 =
+* This maintenance release resolves a conflict with jQuery helper plugin and WordPress 5.5
+* Fix - Update plugin framework script, remove jQuery.browser is deprecated to resolve conflict with jQuery Migrate Helper plugin
 
 = 2.4.0 - 2020/08/08 =
 * This feature release has full compatibility with WP 5.5 core image lazy loading. Just Update and a3 Lazy Load will work side-by-side with the WP core image lazy load. No settings to update and a3 lazy load will enhance it by lazy loading images the new core feature misses and on older browsers that do not support the new feature.  
@@ -511,6 +515,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+This maintenance release resolves a conflict with jQuery helper plugin and WordPress 5.5
 
 = 2.4.0 =
 This feature release has full compatibility with WP 5.5 core image lazy loading. Just Update and a3 Lazy Load will work side-by-side with the WP core image lazy load. No settings to update and a3 lazy load will enhance it by lazy loading images the new core feature misses and on older browsers that do not support the new feature.

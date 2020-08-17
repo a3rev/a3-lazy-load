@@ -4,29 +4,6 @@
   var iOSCheckbox, matched, userAgent,
     __slice = [].slice;
 
-  if ($.browser == null) {
-    userAgent = navigator.userAgent || "";
-    jQuery.uaMatch = function(ua) {
-      var match;
-
-      ua = ua.toLowerCase();
-      match = /(chrome)[ \/]([\w.]+)/.exec(ua) || /(webkit)[ \/]([\w.]+)/.exec(ua) || /(opera)(?:.*version)?[ \/]([\w.]+)/.exec(ua) || /(msie) ([\w.]+)/.exec(ua) || ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+))?/.exec(ua) || [];
-      return {
-        browser: match[1] || "",
-        version: match[2] || "0"
-      };
-    };
-    matched = jQuery.uaMatch(userAgent);
-    jQuery.browser = {};
-    if (matched.browser) {
-      jQuery.browser[matched.browser] = true;
-      jQuery.browser.version = matched.version;
-    }
-    if (jQuery.browser.webkit) {
-      jQuery.browser.safari = true;
-    }
-  }
-
   iOSCheckbox = (function() {
     function iOSCheckbox(elem, options) {
       var key, opts, value;
@@ -74,9 +51,7 @@
     };
 
     iOSCheckbox.prototype.disableTextSelection = function() {
-      if ($.browser.msie) {
         return $([this.handle, this.offLabel, this.onLabel, this.container]).attr("unselectable", "on");
-      }
     };
 
     iOSCheckbox.prototype._getDimension = function(elem, dimension) {
@@ -240,9 +215,6 @@
         width: containerWidth - this.containerRadius - 16
       });
       offset = this.containerRadius + 1;
-      if ($.browser.msie && $.browser.version < 7) {
-        offset -= 3;
-      }
       this.rightSide = containerWidth - this._getDimension(this.handle, "width") - offset;
 	  leftHandle = this.rightSide;
 	  if ( leftHandle == 0 ) leftHandle = -1;
