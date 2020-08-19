@@ -1,9 +1,8 @@
 .lazy-hidden,.entry img.lazy-hidden, img.thumbnail.lazy-hidden {
     opacity: 0.2;
-    background-color: #ffffff;
 }
 figure.wp-block-image img.lazy-hidden {
-	min-width: 150px;
+	min-width: 100%;
 }
 .lazy-loaded {
     -webkit-transition: opacity 0.3s;
