@@ -33,7 +33,7 @@ define('A3_LAZY_LOAD_IMAGES_URL', A3_LAZY_LOAD_URL . '/assets/images');
 
 define( 'A3_LAZY_LOAD_KEY', 'a3_lazy_load' );
 define( 'A3_LAZY_LOAD_PREFIX', 'a3_lazy_load_' );
-define( 'A3_LAZY_VERSION', '2.4.1' );
+define( 'A3_LAZY_VERSION', '2.4.1a' );
 define( 'A3_LAZY_LOAD_G_FONTS', false );
 
 use \A3Rev\LazyLoad\FrameWork;

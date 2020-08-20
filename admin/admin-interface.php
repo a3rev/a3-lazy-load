@@ -199,42 +199,42 @@ class Admin_Interface extends Admin_UI
 					update_user_meta( $user_id, $this->plugin_name . '-' . trim( $form_key ), $opened_box );
 					break;
 
-				case 'check_new_version':
-					$transient_name = sanitize_key( $_REQUEST['transient_name'] );
-					delete_transient( $transient_name );
+				// case 'check_new_version':
+				// 	$transient_name = sanitize_key( $_REQUEST['transient_name'] );
+				// 	delete_transient( $transient_name );
 
-					$new_version = '';
+				// 	$new_version = '';
 
-					$version_message = $this->get_version_message();
-					$has_new_version = 1;
-					if ( '' == trim( $version_message ) ) {
-						$version_message = __( 'Great! You have the latest version installed.', 'a3-lazy-load' );
-						$has_new_version = 0;
-					} else {
-						delete_option( $this->plugin_name . '_clean_on_deletion');
-						if ( is_array( $new_version ) && 'valid' == $new_version['is_valid_key'] ) {
-							$current_update_plugins = get_site_transient( 'update_plugins' );
-							if ( isset( $current_update_plugins->response ) ) {
-								if ( empty( $current_update_plugins->response[$this->plugin_path] ) ) {
-									$current_update_plugins->response[$this->plugin_path] = new \stdClass();
-								}
-								$current_update_plugins->response[$this->plugin_path]->url = "http://www.a3rev.com";
-								$current_update_plugins->response[$this->plugin_path]->slug = $this->plugin_name;
-								$current_update_plugins->response[$this->plugin_path]->package = $new_version["url"];
-								$current_update_plugins->response[$this->plugin_path]->new_version = $new_version['version'];
-								$current_update_plugins->response[$this->plugin_path]->upgrade_notice = $new_version['upgrade_notice'];
-								$current_update_plugins->response[$this->plugin_path]->id = "0";
-								set_site_transient( 'update_plugins', $current_update_plugins );
-							}
-						}
-					}
+				// 	$version_message = $this->get_version_message();
+				// 	$has_new_version = 1;
+				// 	if ( '' == trim( $version_message ) ) {
+				// 		$version_message = __( 'Great! You have the latest version installed.', 'a3-lazy-load' );
+				// 		$has_new_version = 0;
+				// 	} else {
+				// 		delete_option( $this->plugin_name . '_clean_on_deletion');
+				// 		if ( is_array( $new_version ) && 'valid' == $new_version['is_valid_key'] ) {
+				// 			$current_update_plugins = get_site_transient( 'update_plugins' );
+				// 			if ( isset( $current_update_plugins->response ) ) {
+				// 				if ( empty( $current_update_plugins->response[$this->plugin_path] ) ) {
+				// 					$current_update_plugins->response[$this->plugin_path] = new \stdClass();
+				// 				}
+				// 				$current_update_plugins->response[$this->plugin_path]->url = "http://www.a3rev.com";
+				// 				$current_update_plugins->response[$this->plugin_path]->slug = $this->plugin_name;
+				// 				$current_update_plugins->response[$this->plugin_path]->package = $new_version["url"];
+				// 				$current_update_plugins->response[$this->plugin_path]->new_version = $new_version['version'];
+				// 				$current_update_plugins->response[$this->plugin_path]->upgrade_notice = $new_version['upgrade_notice'];
+				// 				$current_update_plugins->response[$this->plugin_path]->id = "0";
+				// 				set_site_transient( 'update_plugins', $current_update_plugins );
+				// 			}
+				// 		}
+				// 	}
 
-					$response_data = array(
-						'has_new_version' => $has_new_version,
-						'version_message' => $version_message,
-					);
-					echo json_encode( $response_data );
-					break;
+				// 	$response_data = array(
+				// 		'has_new_version' => $has_new_version,
+				// 		'version_message' => $version_message,
+				// 	);
+				// 	echo json_encode( $response_data );
+				// 	break;
 			}
 
 		}
