@@ -105,6 +105,27 @@ class JSGithubUpdater {
       $downloadLink = add_query_arg(['access_token' => $this->accessToken], $downloadLink);
     }
 
+    $matches = null;
+    preg_match("/requires:\s([\d\.]+)/i", $this->githubAPIResult->body, $matches);
+    if (!empty($matches)) {
+      if (is_array($matches)) {
+        if (count($matches) > 1) {
+          $response->requires = $matches[1];
+        }
+      }
+    }
+    
+    // Gets the tested version of WP if available
+    $matches = null;
+    preg_match( "/tested:\s([\d\.]+)/i", $this->githubAPIResult->body, $matches );
+    if (! empty($matches)) {
+      if (is_array($matches) ) {
+        if (count($matches) > 1) {
+          $response->tested = $matches[1];
+        }
+      }
+    }
+
     $response->download_link = $downloadLink;
 
     return $response;
