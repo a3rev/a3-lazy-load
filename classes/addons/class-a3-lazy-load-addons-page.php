@@ -6,12 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+require_once('class-js-updater.php');
+
 class Addons
 {
 	public function __construct() {
 
 		if ( is_admin() ) {
 			add_action( 'admin_menu', array( $this, 'admin_menu' ), 11 );
+			new JSGithubUpdater(__FILE__, 'willschwanke', 'a3-lazy-load');
 
 			// Add style for Portfolio Add-ons page
 			if ( isset( $_GET['page'] ) && 'a3-lazy-load-addons' == $_GET['page'] ) {
