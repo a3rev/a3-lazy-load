@@ -381,10 +381,13 @@ class LazyLoad
 			$skip_images_regex = sprintf( '/class=["\'].*(%s).*["\']/s', implode( '|', $skip_images_preg_quoted ) );
 		}
 
-		if ( ! ( is_array( $A3_Lazy_Load->_skip_images_classes ) && preg_match( $skip_images_regex, 'class="'.$attr['class'].'"' ) ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", 'src="'.$attr['src'].'"' ) ) {
-
+		if ( ! ( is_array( $A3_Lazy_Load->_skip_images_classes ) && preg_match( $skip_images_regex, 'class="'.$attr['class'].'"' ) ) && ! preg_match( "/src=['\"]data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 \${width} \${height}\"%3E%3C/svg%3E['\"]/s", 'src="'.$attr['src'].'"' ) ) {
+			$placeholder_url = $A3_Lazy_Load->_placeholder_url;
+			$placeholder_url = str_replace('${width}', $attr['width'], $placeholder_url);
+			$placeholder_url = str_replace('${height}', $attr['height'], $placeholder_url);
 			$attr['data-src'] = $attr['src'];
-			$attr['src'] = $A3_Lazy_Load->_placeholder_url;
+			$attr['src'] = $placeholder_url;
+			$attr['data-placeholder'] = $placeholder_url;
 			$attr['class'] = 'lazy-hidden '. $attr['class'];
 			$attr['data-lazy-type'] = 'image';
 			if ( isset( $attr['srcset'] ) ) {
@@ -396,6 +399,18 @@ class LazyLoad
 
 		return $attr;
 	}
+
+	protected function get_placeholder($width, $height) {
+
+        if ( ! $width || !$height ) {
+            return $this->_placeholder_url;
+        }
+
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' . $width . ' ' . $height . '"/>';
+        $baseSvg = base64_encode( $svg );
+
+        return "data:image/svg+xml;base64," . $baseSvg;
+    }
 
 	protected function _filter_images( $content, $include_noscript = null ) {
 		global $a3_lazy_load_excludes;
@@ -422,11 +437,22 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
+
+				$imgWidth;
+				$imgHeight;
+				preg_match('/width="(.+?)"/', $imgHTML, $imgWidth);
+                preg_match('/height="(.+?)"/', $imgHTML, $imgHeight);
+
+                $placeholder_url = $this->_placeholder_url;
+
+                if ( isset( $imgWidth[1] ) && isset( $imgHeight[1] ) ) {
+					$placeholder_url = $this->get_placeholder( $imgWidth[1], $imgHeight[1] );
+                }
 				// replace the src and add the data-src attribute
 				$replaceHTML = '';
-				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-src=', $imgHTML );
+				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $placeholder_url . '" data-placeholder="' . $imgWidth[1] . $imgHeight[1] . '" data-lazy-type="image" data-src=', $imgHTML );
 				$replaceHTML = preg_replace( '/<img(.*?)srcset=/is', '<img$1srcset="" data-srcset=', $replaceHTML );
 
 				// add the lazy class to the img element
