@@ -1,7 +1,5 @@
 <?php
 
-use A3Rev\LazyLoad;
-
 if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }

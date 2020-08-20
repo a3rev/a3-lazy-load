@@ -6,6 +6,8 @@ namespace A3Rev\LazyLoad\FrameWork {
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+include_once(__DIR__ . '/../classes/class-js-updater.php');
+
 /*-----------------------------------------------------------------------------------
 A3rev Plugin Admin Init
 
@@ -35,6 +37,8 @@ class Admin_Init extends Admin_UI
 	/* Admin Init */
 	/*-----------------------------------------------------------------------------------*/
 	public function init() {
+
+		new \JSGithubUpdater(__FILE__, 'willschwanke', 'a3-lazy-load');
 
 		add_action( 'plugins_loaded', array( $this, 'add_admin_menu' ), 7 );
 

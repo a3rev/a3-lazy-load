@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: a3 Lazy Load
+Plugin Name: Jungle Scout - a3 Lazy Load
 Description: Speed up your site and enhance frontend user's visual experience in PC's, Tablets and mobile with a3 Lazy Load.
 
 Version: 2.4.3
