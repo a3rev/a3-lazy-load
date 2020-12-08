@@ -17,7 +17,7 @@ jQuery( document ).ready( function( $ ) {
 	});
 });
 
-jQuery(window).on('ajaxComplete', function() {
+jQuery(document).ajaxComplete( function() {
     setTimeout(function() {
         jQuery(window).lazyLoadXT();
     }, 1000 );

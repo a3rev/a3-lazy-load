@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 4.9
-Tested up to: 5.5.0
-Stable tag: 2.4.1
+Tested up to: 5.6
+Stable tag: 2.4.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -207,6 +207,14 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.4.2 - 2020/12/08 =
+* This maintenance release has tweaks and bug fixes for compatibility with WordPress major version 5.6, PHP 7.4.8 and WooCommerce 4.7.1
+* Tweak - Test and Tweak for compatibility with PHP 7.4.8
+* Tweak - Test for compatibility with WordPress 5.6
+* Tweak - Test for compatibility with WooCommerce 4.7.1
+* Fix - Attached ajaxComplete to document instead of window
+* Fix - Replace old isFunction by typeof check function
 
 = 2.4.1 - 2020/08/17 =
 * This maintenance release resolves a conflict with jQuery helper plugin and WordPress 5.5
@@ -515,6 +523,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.2 =
+This maintenance release has tweaks and bug fixes for compatibility with WordPress major version 5.6, PHP 7.4.8 and WooCommerce 4.7.1
 
 = 2.4.1 =
 This maintenance release resolves a conflict with jQuery helper plugin and WordPress 5.5

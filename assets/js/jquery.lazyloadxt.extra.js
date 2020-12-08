@@ -40,7 +40,6 @@
             visibleOnly: true
         },
         $window = $(window),
-        $isFunction = $.isFunction,
         $extend = $.extend,
         $data = $.data || function (el, name) {
             return $(el).data(name);
@@ -134,7 +133,7 @@
     function triggerEvent(event, $el) {
         var handler = options['on' + event];
         if (handler) {
-            if ($isFunction(handler)) {
+            if ( typeof handler === "function" ) {
                 handler.call($el[0]);
             } else {
                 if (handler.addClass) {
@@ -211,7 +210,7 @@
                     triggerEvent('show', $el);
 
                     var srcAttr = objData.srcAttr,
-                        src = $isFunction(srcAttr) ? srcAttr($el) : el.getAttribute(srcAttr);
+                        src = typeof srcAttr === "function" ? srcAttr($el) : el.getAttribute(srcAttr);
 
                     if (src) {
                         el.src = src;
@@ -320,7 +319,7 @@
 
     $(document).on('lazyshow', 'video', function (e, $el) {
         var srcAttr = $el.lazyLoadXT.srcAttr,
-            isFuncSrcAttr = $.isFunction(srcAttr),
+            isFuncSrcAttr = ( typeof srcAttr === "function" ),
             changed = false;
 
         $el.attr('poster', $el.attr(options.videoPoster));

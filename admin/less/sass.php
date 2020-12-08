@@ -75,11 +75,8 @@ class Less_Sass
         global $wp_filesystem;
 
         $_upload_dir = wp_upload_dir();
-        $wp_filesystem->chmod($_upload_dir['basedir'], 0755);
         if (! $wp_filesystem->is_dir($_upload_dir['basedir'] . '/sass')) {
             $wp_filesystem->mkdir($_upload_dir['basedir'] . '/sass', 0755);
-        } else {
-            $wp_filesystem->chmod($_upload_dir['basedir'] . '/sass', 0755);
         }
 
 		if ( trim( $css_file_name ) == '' ) $css_file_name = $this->css_file_name;
@@ -103,16 +100,6 @@ class Less_Sass
             $mixinsless = $this->plugin_dir.'/admin/less/assets/css/mixins.less';
             $a3rev_mixins_less = $_upload_dir['basedir'].'/sass/'.$mixins.'.less';
             $wp_filesystem->copy($mixinsless, $a3rev_mixins_less, true );
-        }
-
-        $files = array_diff(scandir($_upload_dir['basedir'] . '/sass'), array(
-            '.',
-            '..'
-        ));
-        if ($files) {
-            foreach ($files as $file) {
-                $wp_filesystem->chmod($_upload_dir['basedir'] . '/sass/' . $file, 0644);
-            }
         }
 
         $sass_data = '';
