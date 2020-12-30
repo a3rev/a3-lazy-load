@@ -33,7 +33,7 @@ class Admin_UI
 	 * You must change to correct plugin name that you are working
 	 */
 
-	public $framework_version      = '2.3.0';
+	public $framework_version      = '2.4.0';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
 	public $plugin_path            = A3_LAZY_LOAD_NAME;
 	public $google_api_key_option  = '';

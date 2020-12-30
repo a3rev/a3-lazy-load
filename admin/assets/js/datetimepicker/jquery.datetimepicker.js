@@ -600,11 +600,11 @@
 					$(this).parent().parent().hide();
 
 					datetimepicker.trigger('xchange.xdsoft');
-					if (options.onChangeMonth && $.isFunction(options.onChangeMonth)) {
+					if (options.onChangeMonth && typeof options.onChangeMonth === "function" ) {
 						options.onChangeMonth.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 
-					if (year !== _xdsoft_datetime.currentTime.getFullYear() && $.isFunction(options.onChangeYear)) {
+					if (year !== _xdsoft_datetime.currentTime.getFullYear() && typeof options.onChangeYear === "function" ) {
 						options.onChangeYear.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 				});
@@ -612,11 +612,11 @@
 			datetimepicker.setOptions = function (_options) {
 				options = $.extend(true, {}, options, _options);
 
-				if (_options.allowTimes && $.isArray(_options.allowTimes) && _options.allowTimes.length) {
+				if (_options.allowTimes && Array.isArray(_options.allowTimes) && _options.allowTimes.length) {
 					options.allowTimes = $.extend(true, [], _options.allowTimes);
 				}
 
-				if (_options.weekends && $.isArray(_options.weekends) && _options.weekends.length) {
+				if (_options.weekends && Array.isArray(_options.weekends) && _options.weekends.length) {
 					options.weekends = $.extend(true, [], _options.weekends);
 				}
 
@@ -732,7 +732,7 @@
 							.replace(/s/g, '59');
 					}
 
-					if ($.type(options.mask) === 'string') {
+					if (typeof options.mask === 'string') {
 						if (!isValidValue(options.mask, input.val())) {
 							input.val(options.mask.replace(/[0-9]/g, '_'));
 						}
@@ -757,7 +757,7 @@
 								}
 
 								val = val.substr(0, pos) + digit + val.substr(pos + 1);
-								if ($.trim(val) === '') {
+								if (val.trim() === '') {
 									val = options.mask.replace(/[0-9]/g, '_');
 								} else {
 									if (pos === options.mask.length) {
@@ -774,7 +774,7 @@
 								if (isValidValue(options.mask, val)) {
 									this.value = val;
 									setCaretPos(this, pos);
-								} else if ($.trim(val) === '') {
+								} else if (val.trim() === '') {
 									this.value = options.mask.replace(/[0-9]/g, '_');
 								} else {
 									input.trigger('error_input.xdsoft');
@@ -794,7 +794,7 @@
 					input
 						.off('blur.xdsoft')
 						.on('blur.xdsoft', function () {
-							if (options.allowBlank && !$.trim($(this).val()).length) {
+							if (options.allowBlank && !$(this).val().trim().length) {
 								$(this).val(null);
 								datetimepicker.data('xdsoft_datetime').empty();
 							} else if (!Date.parseDate($(this).val(), options.format)) {
@@ -912,11 +912,11 @@
 					);
 					_this.currentTime.setMonth(month);
 
-					if (options.onChangeMonth && $.isFunction(options.onChangeMonth)) {
+					if (options.onChangeMonth && typeof options.onChangeMonth === "function" ) {
 						options.onChangeMonth.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 
-					if (year !== _this.currentTime.getFullYear() && $.isFunction(options.onChangeYear)) {
+					if (year !== _this.currentTime.getFullYear() && typeof options.onChangeYear === "function" ) {
 						options.onChangeYear.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 
@@ -937,7 +937,7 @@
 						)
 					);
 					_this.currentTime.setMonth(month);
-					if (options.onChangeMonth && $.isFunction(options.onChangeMonth)) {
+					if (options.onChangeMonth && typeof options.onChangeMonth === "function" ) {
 						options.onChangeMonth.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 					datetimepicker.trigger('xchange.xdsoft');
@@ -1135,7 +1135,7 @@
 
 							classes.push('xdsoft_date');
 
-							if (options.beforeShowDay && $.isFunction(options.beforeShowDay.call)) {
+							if (options.beforeShowDay && typeof options.beforeShowDay.call === "function" ) {
 								customDateSettings = options.beforeShowDay.call(datetimepicker, start);
 							} else {
 								customDateSettings = null;
@@ -1165,7 +1165,7 @@
 								classes.push('xdsoft_weekend');
 							}
 
-							if (options.beforeShowDay && $.isFunction(options.beforeShowDay)) {
+							if (options.beforeShowDay && typeof options.beforeShowDay === "function" ) {
 								classes.push(options.beforeShowDay(start));
 							}
 
@@ -1223,7 +1223,7 @@
 							time += '<div class="xdsoft_time ' + classes.join(' ') + '" data-hour="' + h + '" data-minute="' + m + '">' + now.dateFormat(options.formatTime) + '</div>';
 						};
 
-						if (!options.allowTimes || !$.isArray(options.allowTimes) || !options.allowTimes.length) {
+						if (!options.allowTimes || !Array.isArray(options.allowTimes) || !options.allowTimes.length) {
 							for (i = 0, j = 0; i < (options.hours12 ? 12 : 24); i += 1) {
 								for (j = 0; j < 60; j += options.step) {
 									h = (i < 10 ? '0' : '') + i;
@@ -1310,7 +1310,7 @@
 						datetimepicker.trigger('close.xdsoft');
 					}
 
-					if (options.onSelectDate &&	$.isFunction(options.onSelectDate)) {
+					if (options.onSelectDate && typeof options.onSelectDate === "function" ) {
 						options.onSelectDate.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), xdevent);
 					}
 
@@ -1345,7 +1345,7 @@
 						datetimepicker.trigger('close.xdsoft');
 					}
 
-					if (options.onSelectTime && $.isFunction(options.onSelectTime)) {
+					if (options.onSelectTime && typeof options.onSelectTime === "function" ) {
 						options.onSelectTime.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), xdevent);
 					}
 					datetimepicker.data('changed', true);
@@ -1394,7 +1394,7 @@
 
 			datetimepicker
 				.on('changedatetime.xdsoft', function (event) {
-					if (options.onChangeDateTime && $.isFunction(options.onChangeDateTime)) {
+					if (options.onChangeDateTime && typeof options.onChangeDateTime === "function" ) {
 						var $input = datetimepicker.data('input');
 						options.onChangeDateTime.call(datetimepicker, _xdsoft_datetime.currentTime, $input, event);
 						delete options.value;
@@ -1402,7 +1402,7 @@
 					}
 				})
 				.on('generate.xdsoft', function () {
-					if (options.onGenerate && $.isFunction(options.onGenerate)) {
+					if (options.onGenerate && typeof options.onGenerate === "function" ) {
 						options.onGenerate.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'));
 					}
 					if (triggerAfterOpen) {
@@ -1442,7 +1442,7 @@
 			datetimepicker
 				.on('open.xdsoft', function (event) {
 					var onShow = true;
-					if (options.onShow && $.isFunction(options.onShow)) {
+					if (options.onShow && typeof options.onShow === "function" ) {
 						onShow = options.onShow.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), event);
 					}
 					if (onShow !== false) {
@@ -1466,7 +1466,7 @@
 						.find('.xdsoft_month,.xdsoft_year')
 							.find('.xdsoft_select')
 								.hide();
-					if (options.onClose && $.isFunction(options.onClose)) {
+					if (options.onClose && typeof options.onClose === "function" ) {
 						onClose = options.onClose.call(datetimepicker, _xdsoft_datetime.currentTime, datetimepicker.data('input'), event);
 					}
 					if (onClose !== false && !options.opened && !options.inline) {
@@ -1576,7 +1576,7 @@
 		return this.each(function () {
 			var datetimepicker = $(this).data('xdsoft_datetimepicker');
 			if (datetimepicker) {
-				if ($.type(opt) === 'string') {
+				if (typeof opt === 'string') {
 					switch (opt) {
 					case 'show':
 						$(this).select().focus();
@@ -1602,7 +1602,7 @@
 				}
 				return 0;
 			}
-			if ($.type(opt) !== 'string') {
+			if ( typeof opt !== 'string') {
 				if (!options.lazyInit || options.open || options.inline) {
 					createDateTimePicker($(this));
 				} else {
@@ -1622,7 +1622,7 @@
  *
  * Requires: jQuery 1.2.2+
  */
-!function(a){"function"==typeof define&&define.amd?define(["jquery"],a):"object"==typeof exports?module.exports=a:a(jQuery)}(function(a){function b(b){var g=b||window.event,h=i.call(arguments,1),j=0,l=0,m=0,n=0,o=0,p=0;if(b=a.event.fix(g),b.type="mousewheel","detail"in g&&(m=-1*g.detail),"wheelDelta"in g&&(m=g.wheelDelta),"wheelDeltaY"in g&&(m=g.wheelDeltaY),"wheelDeltaX"in g&&(l=-1*g.wheelDeltaX),"axis"in g&&g.axis===g.HORIZONTAL_AXIS&&(l=-1*m,m=0),j=0===m?l:m,"deltaY"in g&&(m=-1*g.deltaY,j=m),"deltaX"in g&&(l=g.deltaX,0===m&&(j=-1*l)),0!==m||0!==l){if(1===g.deltaMode){var q=a.data(this,"mousewheel-line-height");j*=q,m*=q,l*=q}else if(2===g.deltaMode){var r=a.data(this,"mousewheel-page-height");j*=r,m*=r,l*=r}if(n=Math.max(Math.abs(m),Math.abs(l)),(!f||f>n)&&(f=n,d(g,n)&&(f/=40)),d(g,n)&&(j/=40,l/=40,m/=40),j=Math[j>=1?"floor":"ceil"](j/f),l=Math[l>=1?"floor":"ceil"](l/f),m=Math[m>=1?"floor":"ceil"](m/f),k.settings.normalizeOffset&&this.getBoundingClientRect){var s=this.getBoundingClientRect();o=b.clientX-s.left,p=b.clientY-s.top}return b.deltaX=l,b.deltaY=m,b.deltaFactor=f,b.offsetX=o,b.offsetY=p,b.deltaMode=0,h.unshift(b,j,l,m),e&&clearTimeout(e),e=setTimeout(c,200),(a.event.dispatch||a.event.handle).apply(this,h)}}function c(){f=null}function d(a,b){return k.settings.adjustOldDeltas&&"mousewheel"===a.type&&b%120===0}var e,f,g=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],i=Array.prototype.slice;if(a.event.fixHooks)for(var j=g.length;j;)a.event.fixHooks[g[--j]]=a.event.mouseHooks;var k=a.event.special.mousewheel={version:"3.1.12",setup:function(){if(this.addEventListener)for(var c=h.length;c;)this.addEventListener(h[--c],b,!1);else this.onmousewheel=b;a.data(this,"mousewheel-line-height",k.getLineHeight(this)),a.data(this,"mousewheel-page-height",k.getPageHeight(this))},teardown:function(){if(this.removeEventListener)for(var c=h.length;c;)this.removeEventListener(h[--c],b,!1);else this.onmousewheel=null;a.removeData(this,"mousewheel-line-height"),a.removeData(this,"mousewheel-page-height")},getLineHeight:function(b){var c=a(b),d=c["offsetParent"in a.fn?"offsetParent":"parent"]();return d.length||(d=a("body")),parseInt(d.css("fontSize"),10)||parseInt(c.css("fontSize"),10)||16},getPageHeight:function(b){return a(b).height()},settings:{adjustOldDeltas:!0,normalizeOffset:!0}};a.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})});
+!function(a){"function"==typeof define&&define.amd?define(["jquery"],a):"object"==typeof exports?module.exports=a:a(jQuery)}(function(a){function b(b){var g=b||window.event,h=i.call(arguments,1),j=0,l=0,m=0,n=0,o=0,p=0;if(b=a.event.fix(g),b.type="mousewheel","detail"in g&&(m=-1*g.detail),"wheelDelta"in g&&(m=g.wheelDelta),"wheelDeltaY"in g&&(m=g.wheelDeltaY),"wheelDeltaX"in g&&(l=-1*g.wheelDeltaX),"axis"in g&&g.axis===g.HORIZONTAL_AXIS&&(l=-1*m,m=0),j=0===m?l:m,"deltaY"in g&&(m=-1*g.deltaY,j=m),"deltaX"in g&&(l=g.deltaX,0===m&&(j=-1*l)),0!==m||0!==l){if(1===g.deltaMode){var q=a.data(this,"mousewheel-line-height");j*=q,m*=q,l*=q}else if(2===g.deltaMode){var r=a.data(this,"mousewheel-page-height");j*=r,m*=r,l*=r}if(n=Math.max(Math.abs(m),Math.abs(l)),(!f||f>n)&&(f=n,d(g,n)&&(f/=40)),d(g,n)&&(j/=40,l/=40,m/=40),j=Math[j>=1?"floor":"ceil"](j/f),l=Math[l>=1?"floor":"ceil"](l/f),m=Math[m>=1?"floor":"ceil"](m/f),k.settings.normalizeOffset&&this.getBoundingClientRect){var s=this.getBoundingClientRect();o=b.clientX-s.left,p=b.clientY-s.top}return b.deltaX=l,b.deltaY=m,b.deltaFactor=f,b.offsetX=o,b.offsetY=p,b.deltaMode=0,h.unshift(b,j,l,m),e&&clearTimeout(e),e=setTimeout(c,200),(a.event.dispatch||a.event.handle).apply(this,h)}}function c(){f=null}function d(a,b){return k.settings.adjustOldDeltas&&"mousewheel"===a.type&&b%120===0}var e,f,g=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],i=Array.prototype.slice;if(a.event.fixHooks)for(var j=g.length;j;)a.event.fixHooks[g[--j]]=a.event.mouseHooks;var k=a.event.special.mousewheel={version:"3.1.12",setup:function(){if(this.addEventListener)for(var c=h.length;c;)this.addEventListener(h[--c],b,!1);else this.onmousewheel=b;a.data(this,"mousewheel-line-height",k.getLineHeight(this)),a.data(this,"mousewheel-page-height",k.getPageHeight(this))},teardown:function(){if(this.removeEventListener)for(var c=h.length;c;)this.removeEventListener(h[--c],b,!1);else this.onmousewheel=null;a.removeData(this,"mousewheel-line-height"),a.removeData(this,"mousewheel-page-height")},getLineHeight:function(b){var c=a(b),d=c["offsetParent"in a.fn?"offsetParent":"parent"]();return d.length||(d=a("body")),parseInt(d.css("fontSize"),10)||parseInt(c.css("fontSize"),10)||16},getPageHeight:function(b){return a(b).height()},settings:{adjustOldDeltas:!0,normalizeOffset:!0}};a.fn.extend({mousewheel:function(a){return a?this.on("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.off("mousewheel",a)}})});
 
 // Parse and Format Library
 //http://www.xaprb.com/blog/2005/12/12/javascript-closures-for-runtime-efficiency/

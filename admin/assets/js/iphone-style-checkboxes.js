@@ -47,7 +47,7 @@
       this.offSpan = this.offLabel.children('span');
       this.onLabel = $("<label class='" + this.labelOnClass + "'>\n  <span>" + this.checkedLabel + "</span>\n</label>").appendTo(this.container);
       this.onSpan = this.onLabel.children('span');
-      return this.handle = $("<div class='" + this.handleClass + "'>\n  <div class='" + this.handleRightClass + "'>\n    <div class='" + this.handleCenterClass + "' />\n  </div>\n</div>").appendTo(this.container).before("<span class='iPhoneCheckBeforeContainer'>&nbsp;</span><span class='iPhoneCheckAfterContainer'>&nbsp;</span>");
+      return this.handle = $("<div class='" + this.handleClass + "'>\n  <div class='" + this.handleRightClass + "'>\n    <div class='" + this.handleCenterClass + "'>\n  </div>\n</div>").appendTo(this.container).before("<span class='iPhoneCheckBeforeContainer'>&nbsp;</span><span class='iPhoneCheckAfterContainer'>&nbsp;</span>");
     };
 
     iOSCheckbox.prototype.disableTextSelection = function() {
@@ -74,6 +74,9 @@
       if (mode === "container") {
         newWidth = onLabelWidth > offLabelWidth ? onLabelWidth : offLabelWidth;
         newWidth += this._getDimension(this.handle, "width") + this.handleMargin;
+        if( this.customWidth === true ){
+          newWidth = this.containerWidth;
+        }
         return this.container.css({
           width: newWidth
         });
@@ -194,16 +197,16 @@
       };
       localMouseUp = function(event) {
         self.onGlobalUp.apply(self, arguments);
-        $(document).unbind('mousemove touchmove', localMouseMove);
-        return $(document).unbind('mouseup touchend', localMouseUp);
+        $(document).off('mousemove touchmove', localMouseMove);
+        return $(document).off('mouseup touchend', localMouseUp);
       };
       this.elem.change(function() {
         return self.refresh();
       });
-      return this.container.bind('mousedown touchstart', function(event) {
+      return this.container.on('mousedown touchstart', function(event) {
         self.onMouseDown.apply(self, arguments);
-        $(document).bind('mousemove touchmove', localMouseMove);
-        return $(document).bind('mouseup touchend', localMouseUp);
+        $(document).on('mousemove touchmove', localMouseMove);
+        return $(document).on('mouseup touchend', localMouseUp);
       });
     };
 
@@ -268,6 +271,8 @@
     };
 
     iOSCheckbox.defaults = {
+      customWidth: false,
+      containerWidth: 80,
       duration: 200,
       checkedLabel: 'ON',
       uncheckedLabel: 'OFF',
@@ -336,6 +341,8 @@
       options = {};
     }
     opts = $.extend({}, options, {
+      customWidth: false,
+      containerWidth: 80,
       resizeHandle: false,
       disabledClass: 'iOSCheckDisabled',
       containerClass: 'iOSCheckContainer',

@@ -2,7 +2,7 @@
 
     $.fn.bindWithDelay = function( type, data, fn, timeout, throttle ) {
 
-        if ( $.isFunction( data ) ) {
+        if ( typeof data === "function" ) {
             throttle = timeout;
             timeout = fn;
             fn = data;
@@ -31,7 +31,7 @@
 
             cb.guid = fn.guid;
 
-            $(this).bind(type, data, cb);
+            $(this).on(type, data, cb);
         });
     };
 

@@ -3,7 +3,8 @@ jQuery( function ( $ ) {
 	// TABS
 	$('ul.a3-metabox-data-tabs').show();
 	$('div.a3-metabox-panel-wrap').each(function(){
-		$(this).find('div.a3-metabox-panel:not(:first)').hide();
+		$(this).find('div.a3-metabox-panel').hide();
+		$(this).find('div.a3-metabox-panel').first().show();
 	});
 	$('ul.a3-metabox-data-tabs a').click(function(){
 		var panel_wrap =  $(this).closest('div.a3-metabox-panel-wrap');
