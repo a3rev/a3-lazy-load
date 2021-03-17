@@ -1537,7 +1537,7 @@
 					if ([ENTER].indexOf(key) !== -1) {
 						elementSelector = $("input:visible,textarea:visible");
 						datetimepicker.trigger('close.xdsoft');
-						elementSelector.eq(elementSelector.index(this) + 1).focus();
+						elementSelector.eq(elementSelector.index(this) + 1).trigger('focus');
 						return false;
 					}
 					if ([TAB].indexOf(key) !== -1) {
@@ -1579,7 +1579,7 @@
 				if (typeof opt === 'string') {
 					switch (opt) {
 					case 'show':
-						$(this).select().focus();
+						$(this).trigger('select').trigger('focus');
 						datetimepicker.trigger('open.xdsoft');
 						break;
 					case 'hide':

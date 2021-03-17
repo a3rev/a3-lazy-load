@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.0
 Tested up to: 5.7
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -198,6 +198,33 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.4.5 - 2021/03/17 =
+* This maintenance release updates 23 deprecated jQuery functions for compatibility with the latest version of jQuery in WordPress 5.7
+* Tweak - Update JavaScript on plugin framework for compatibility with latest version of jQuery and resolve PHP warning event shorthand is deprecated.
+* Tweak - Replace deprecated .change( handler ) with .on( 'change', handler ) 
+* Tweak - Replace deprecated .change() with .trigger('change') 
+* Tweak - Replace deprecated .focus( handler ) with .on( 'focus', handler )
+* Tweak - Replace deprecated .focus() with .trigger('focus')
+* Tweak - Replace deprecated .click( handler ) with .on( 'click', handler )
+* Tweak - Replace deprecated .click() with .trigger('click')
+* Tweak - Replace deprecated .select( handler ) with .on( 'select', handler )
+* Tweak - Replace deprecated .select() with .trigger('select') 
+* Tweak - Replace deprecated .blur( handler ) with .on( 'blur', handler ) 
+* Tweak - Replace deprecated .blur() with .trigger('blur') 
+* Tweak - Replace deprecated .resize( handler ) with .on( 'resize', handler ) 
+* Tweak - Replace deprecated .submit( handler ) with .on( 'submit', handler ) 
+* Tweak - Replace deprecated .scroll( handler ) with .on( 'scroll', handler ) 
+* Tweak - Replace deprecated .mousedown( handler ) with .on( 'mousedown', handler ) 
+* Tweak - Replace deprecated .mouseover( handler ) with .on( 'mouseover', handler ) 
+* Tweak - Replace deprecated .mouseout( handler ) with .on( 'mouseout', handler )
+* Tweak - Replace deprecated .keydown( handler ) with .on( 'keydown', handler ) 
+* Tweak - Replace deprecated .attr('disabled', 'disabled') with .prop('disabled', true) 
+* Tweak - Replace deprecated .removeAttr('disabled') with .prop('disabled', false) 
+* Tweak - Replace deprecated .attr('selected', 'selected') with .prop('selected', true) 
+* Tweak - Replace deprecated .removeAttr('selected') with .prop('selected', false) 
+* Tweak - Replace deprecated .attr('checked', 'checked') with .prop('checked', true) 
+* Tweak - Replace deprecated .removeAttr('checked') with .prop('checked', false)
 
 = 2.4.4 - 2021/03/09 = 
 * This maintenance release is for compatibility with WordPress 5.7
@@ -542,6 +569,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.5 =
+This maintenance release updates 23 deprecated jQuery functions for compatibility with the latest version of jQuery in WordPress 5.7
 
 = 2.4.4 =
 This maintenance release is for compatibility with WordPress 5.7

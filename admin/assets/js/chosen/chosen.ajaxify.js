@@ -86,7 +86,7 @@ function chosen_ajaxify(id, ajax_url){
 
                     jQuery('div#' + div_id + '_chosen' + ' .chosen-search input').val(keyword);
                     jQuery('div#' + div_id + '_chosen' + ' .chosen-search input').removeAttr('readonly');
-                    jQuery('div#' + div_id + '_chosen' + ' .chosen-search input').focus();
+                    jQuery('div#' + div_id + '_chosen' + ' .chosen-search input').trigger('focus');
                     // emphasis keywords
                     jQuery('div#' + div_id + '_chosen' + ' .active-result').each(function(){
                         var html = jQuery(this).html();
@@ -153,7 +153,7 @@ function chosen_ajaxify(id, ajax_url){
                     jQuery('div#' + div_id + '_chosen' + ' input').val(keyword);
                     jQuery('div#' + div_id + '_chosen' + ' input').removeAttr('readonly');
                     jQuery('div#' + div_id + '_chosen' + ' input').css('width', old_input_width);
-                    jQuery('div#' + div_id + '_chosen' + ' input').focus();
+                    jQuery('div#' + div_id + '_chosen' + ' input').trigger('focus');
                     // put that underscores
                     jQuery('div#' + div_id + '_chosen' + ' .active-result').each(function(){
                         var html = jQuery(this).html();
@@ -169,7 +169,7 @@ function chosen_ajaxify(id, ajax_url){
 
 function chosen_depend_on(id, id_depend_on, ajax_url){
     var OLD_VALUE = jQuery('#'+id_depend_on).val();
-    jQuery('#'+id_depend_on).change(function(event){
+    jQuery('#'+id_depend_on).on( 'change', function(event){
         var val = jQuery(this).val();
         if(val != OLD_VALUE){
             jQuery.ajax({

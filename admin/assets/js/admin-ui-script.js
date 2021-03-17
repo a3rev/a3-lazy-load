@@ -147,7 +147,7 @@
 								onChange: function(elem, value) {
 										var status = value.toString();
 										if ( status == 'true') {
-											$('input[name="' + input_name + '"]').not(current_item).removeAttr('checked').removeAttr('checkbox-disabled').iphoneStyle("refresh");
+											$('input[name="' + input_name + '"]').not(current_item).prop('checked',false).removeAttr('checkbox-disabled').iphoneStyle("refresh");
 										}
 										$('input[name="' + input_name + '"]').trigger("a3rev-ui-onoff_radio-switch", [elem.val(), status]);
 									},
@@ -165,7 +165,7 @@
 		/* Apply for normal checkbox */
 		$('.a3rev_panel_container .hide_options_if_checked').each(function(){
 
-			$(this).find('input').eq(0).change(function() {
+			$(this).find('input').eq(0).on( 'change', function() {
 
 				if ($(this).is(':checked')) {
 					$(this).closest('fieldset, tr').nextUntil( '.hide_options_if_checked, .show_options_if_checked', '.hidden_option').hide();
@@ -173,12 +173,12 @@
 					$(this).closest('fieldset, tr').nextUntil( '.hide_options_if_checked, .show_options_if_checked', '.hidden_option').show();
 				}
 
-			}).change();
+			}).trigger('change');
 
 		});
 		$('.a3rev_panel_container .show_options_if_checked').each(function(){
 
-			$(this).find('input').eq(0).change(function() {
+			$(this).find('input').eq(0).on( 'change', function() {
 
 				if ($(this).is(':checked')) {
 					$(this).closest('fieldset, tr').nextUntil( '.hide_options_if_checked, .show_options_if_checked', '.hidden_option').show();
@@ -186,7 +186,7 @@
 					$(this).closest('fieldset, tr').nextUntil( '.hide_options_if_checked, .show_options_if_checked', '.hidden_option').hide();
 				}
 
-			}).change();
+			}).trigger('change');
 
 		});
 
@@ -244,7 +244,7 @@
 				$('div.a3_subsubsub_section ' + $(this).attr('href') ).show();
 			}
 		});
-		$('div.a3_subsubsub_section ul.subsubsub li a').click(function(){
+		$('div.a3_subsubsub_section ul.subsubsub li a').on( 'click', function(){
 			var clicked = $(this);
 			var section = clicked.closest('.a3_subsubsub_section');
 			var target  = clicked.attr('href');

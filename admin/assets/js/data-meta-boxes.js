@@ -6,7 +6,7 @@ jQuery( function ( $ ) {
 		$(this).find('div.a3-metabox-panel').hide();
 		$(this).find('div.a3-metabox-panel').first().show();
 	});
-	$('ul.a3-metabox-data-tabs a').click(function(){
+	$('ul.a3-metabox-data-tabs a').on( 'click', function(){
 		var panel_wrap =  $(this).closest('div.a3-metabox-panel-wrap');
 		$('ul.a3-metabox-data-tabs li', panel_wrap).removeClass('active');
 		$(this).parent().addClass('active');
@@ -14,7 +14,7 @@ jQuery( function ( $ ) {
 		$( $(this).attr('href') ).show();
 		return false;
 	});
-	$('ul.a3-metabox-data-tabs li:visible').eq(0).find('a').click();
+	$('ul.a3-metabox-data-tabs li:visible').eq(0).find('a').trigger('click');
 
 	// META BOXES - Open/close
 	$('.a3-metabox-wrapper').on('click', '.a3-metabox-item h3', function(event){

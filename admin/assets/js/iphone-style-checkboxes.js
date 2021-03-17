@@ -200,7 +200,7 @@
         $(document).off('mousemove touchmove', localMouseMove);
         return $(document).off('mouseup touchend', localMouseUp);
       };
-      this.elem.change(function() {
+      this.elem.on( 'change', function() {
         return self.refresh();
       });
       return this.container.on('mousedown touchstart', function(event) {
