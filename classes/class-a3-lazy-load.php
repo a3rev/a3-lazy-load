@@ -425,8 +425,14 @@ class LazyLoad
 			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
 				$i++;
 				// replace the src and add the data-src attribute
-				$replaceHTML = '';
-				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-src=', $imgHTML );
+				$replaceHTML = $imgHTML;
+
+				if ( ! preg_match( "/ data-src=['\"]/is", $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-src=', $replaceHTML );
+				} elseif ( preg_match( "/ src=['\"]/is", $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/ src=(["\'])(.*?)["\']/is', ' src="' . $this->_placeholder_url . '"', $replaceHTML );
+				}
+
 				$replaceHTML = preg_replace( '/<img(.*?)srcset=/is', '<img$1srcset="" data-srcset=', $replaceHTML );
 
 				// add the lazy class to the img element
@@ -619,7 +625,14 @@ class LazyLoad
 
 				$replaceHTML = '';
 				$replaceHTML = preg_replace( '/video(.*?)src=/is', 'video$1 data-lazy-type="video" data-src=', $imgHTML );
-				$replaceHTML = preg_replace( '/video(.*?)poster=/is', 'video$1poster="' . $this->_placeholder_url . '" data-lazy-type="video" data-poster=', $replaceHTML );
+
+				if ( ! preg_match( "/ data-poster=['\"]/is", $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/video(.*?)poster=/is', 'video$1poster="' . $this->_placeholder_url . '" data-lazy-type="video" data-poster=', $replaceHTML );
+				} elseif ( preg_match( "/ poster=['\"]/is", $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/ poster=(["\'])(.*?)["\']/is', ' poster="' . $this->_placeholder_url . '"', $replaceHTML );
+				} else {
+					$replaceHTML = preg_replace( '/<video/is', '<video poster="' . $this->_placeholder_url . '"', $replaceHTML );
+				}
 
 				// add the lazy class to the img element
 				if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
