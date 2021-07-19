@@ -228,7 +228,7 @@ class Admin_Init extends Admin_UI
 							$tab_data = $tab;
 						}
 						echo ' ' . esc_attr( sanitize_title( $tab['name'] ) );
-						echo '">' . $tab['label'] . '</a>';
+						echo '">' . esc_html( $tab['label'] ) . '</a>';
 					}
 
 					do_action( $this->plugin_name . '-' . $current_page . '_settings_tabs' );
@@ -281,7 +281,7 @@ class Admin_Init extends Admin_UI
 			$separate_text = '';
 			$activated_first_subtab = false;
 			foreach ( $subtabs as $subtab ) {
-				echo '<li>' . $separate_text . '<a href="#' . trim( $subtab['name'] ) . '" class="';
+				echo '<li>' . $separate_text . '<a href="#' . trim( esc_attr( $subtab['name'] ) ) . '" class="';
 				if ( $current_subtab == '' && $activated_first_subtab === false ) {
 					echo 'current';
 					$activated_first_subtab = true;
@@ -289,7 +289,7 @@ class Admin_Init extends Admin_UI
 				} elseif ( $current_subtab == $subtab['name'] ) {
 					echo 'current';
 				}
-				echo '">' . $subtab['label'] . '</a></li>' . "\n";
+				echo '">' . esc_html( $subtab['label'] ) . '</a></li>' . "\n";
 
 				$separate_text = ' | ';
 			}

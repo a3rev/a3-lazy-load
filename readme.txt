@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.0
-Tested up to: 5.7.2
-Stable tag: 2.4.6
+Tested up to: 5.8
+Stable tag: 2.4.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -198,6 +198,13 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.4.7 - 2021/07/19 =
+* This maintenance release has code tweaks for WordPress 5.8 compatibility plus Security hardening.
+* Tweak - Test for lazy load work correctly with  new WebP extension that WordPress 5.8 support
+* Tweak - Test for compatibility with WordPress 5.8
+* Security - Add more variable, options and html escaping
+* Security - Get variable via name instead of use extract
 
 = 2.4.6 - 2021/06/08 =
 * This maintenance release has code tweaks to resolve conflicts with third party plugs that use data-src and data-poster attributes, plus compatibility with WordPress 5.7.2 
@@ -575,6 +582,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.7 =
+This maintenance release has code tweaks for WordPress 5.8 compatibility plus Security hardening.
 
 = 2.4.6 =
 This maintenance release has code tweaks to resolve conflicts with third party plugs that use data-src and data-poster attributes, plus compatibility with WordPress 5.7.2
