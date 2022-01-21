@@ -350,6 +350,41 @@
 			}
 		});
 
+		/* Apply Validate Google API Key Submit */
+		$(document).on( 'click', '.a3rev-ui-google-api-key-validate-button', function(){
+			var bt_validate = $(this);
+			var g_api_key_container = $(this).parents('.a3rev-ui-google-api-key-inside');
+			var g_api_key_field = g_api_key_container.children('.a3rev-ui-google-api-key');
+			var g_api_key = g_api_key_field.val();
+			var g_api_key_type = g_api_key_field.data('type');
+			if ( ! bt_validate.hasClass('validating') && '' != g_api_key ) {
+				bt_validate.addClass('validating');
+				g_api_key_container.removeClass('a3rev-ui-google-valid-key a3rev-ui-google-unvalid-key');
+
+				var check_data = {
+					action:			a3_admin_ui_script_params.plugin + '_a3_admin_ui_event',
+					type: 			'validate_google_api_key',
+					g_key:          g_api_key,
+					g_key_type:     g_api_key_type, 
+					security:		a3_admin_ui_script_params.security
+				};
+
+				$.post( a3_admin_ui_script_params.ajax_url, check_data, function(response){
+					bt_validate.removeClass('validating');
+
+					// Get response
+					data = JSON.parse( response );
+					if ( 0 == data.is_valid ) {
+						g_api_key_container.removeClass('a3rev-ui-google-valid-key');
+						g_api_key_container.addClass('a3rev-ui-google-unvalid-key');
+					} else {
+						g_api_key_container.addClass('a3rev-ui-google-valid-key');
+						g_api_key_container.removeClass('a3rev-ui-google-unvalid-key');
+					}
+				});
+			}
+		});
+
 		/* Apply Ajax Submit */
 		$(document).on( 'click', '.a3rev-ui-ajax_submit-button', function(){
 			var bt_ajax_submit = $(this);

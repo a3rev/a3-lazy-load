@@ -419,6 +419,29 @@ class Fonts_Face extends Admin_UI
 
 	}
 
+	public function validate_google_api_key( $g_key = '' ) {
+		$g_key = trim( $g_key );
+		$response_fonts = array();
+
+		if ( ! empty( $g_key ) ) {
+			$respone_api = wp_remote_get( "https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=" . $g_key,
+				array(
+					'sslverify' => false,
+					'timeout'   => 45
+				)
+			);
+
+			// Check it is a valid request
+			if ( ! is_wp_error( $respone_api ) ) {
+
+				$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body']; // @codingStandardsIgnoreLine // phpcs:ignore
+				$response_fonts = json_decode( $json_string, true );
+			}
+		}
+
+		return $response_fonts;
+	}
+
 	public function is_valid_google_api_key( $cache=true ) {
 		$is_valid = false;
 
@@ -438,29 +461,18 @@ class Fonts_Face extends Admin_UI
 			}
 
 			if ( ! $google_api_key_status ) {
-				$respone_api = wp_remote_get( "https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=" . trim( $this->google_api_key ),
-					array(
-						'sslverify' => false,
-						'timeout'   => 45
-					)
-				);
 
 				$font_list = array();
-				$response_fonts = array();
+				$response_fonts = $this->validate_google_api_key( $this->google_api_key );
 
 				// Check it is a valid request
-				if ( ! is_wp_error( $respone_api ) ) {
-
-					$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body'];
-					$response_fonts = json_decode( $json_string, true );
-
+				if ( ! empty( $response_fonts ) ) {
 					// Make sure that the valid response from google is not an error message
 					if ( ! isset( $response_fonts['error'] ) ) {
 						$google_api_key_status = 'valid';
 					} else {
 						$google_api_key_status = 'invalid';
 					}
-
 				} else {
 					$google_api_key_status = 'invalid';
 				}
@@ -470,7 +482,7 @@ class Fonts_Face extends Admin_UI
 					$response = wp_remote_get( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json', array( 'timeout' => 120 ) );
 					$webfonts = wp_remote_retrieve_body( $response );
 					if ( ! empty( $webfonts ) ) {
-						$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
+						$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts; // @codingStandardsIgnoreLine // phpcs:ignore
 						$response_fonts = json_decode( $json_string, true );
 					}
 				}
@@ -524,7 +536,7 @@ class Fonts_Face extends Admin_UI
 					$response = wp_remote_get( $this->admin_plugin_url() . '/assets/webfonts/webfonts.json', array( 'timeout' => 120 ) );
 					$webfonts = wp_remote_retrieve_body( $response );
 					if ( ! empty( $webfonts ) ) {
-						$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts;
+						$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $webfonts ) : $webfonts; // @codingStandardsIgnoreLine // phpcs:ignore
 						$response_fonts = json_decode( $json_string, true );
 					}
 				}

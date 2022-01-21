@@ -105,6 +105,9 @@
 .a3rev_panel_container .a3rev-ui-google-valid-key .a3rev-ui-google-valid-key-message,
 .a3rev_panel_container .a3rev-ui-google-unvalid-key .a3rev-ui-google-unvalid-key-message{display:block;}
 
+.a3rev_panel_container .a3rev-ui-google-api-key-container .a3rev-ui-google-api-key-validate-button.validating,
+.a3rev_panel_container .a3rev-ui-google-api-key-container .a3rev-ui-google-api-key-validate-button.validating:hover{animation: progress-bar 1s infinite linear;-ms-animation: progress-bar 1s infinite linear;-moz-animation: progress-bar 1s infinite linear;-webkit-animation: progress-bar 1s infinite linear;background: rgba(0, 0, 0, 0) repeating-linear-gradient(-45deg, #0077ff, #0077ff 10px, #c3defd 10px, #c3defd 24px) repeat scroll 0 0 / 68px 68px;transition: width 2s ease 0.1s;}
+
 /* Manual Check New Version Control */
 .a3rev_panel_container .a3rev-ui-version-checking{display:none;margin-top:6px;background-image:url('../images/loading-bottom.gif');background-repeat:no-repeat;background-size:100% auto;width:16px;height:16px;}
 .a3rev_panel_container .a3rev-ui-check-version-message{font-size:13px;}
@@ -116,10 +119,13 @@
 /* Ajax Submit Control */
 .a3rev_panel_container .a3rev-ui-ajax_submit-control,
 .a3rev_panel_container .a3rev-ui-ajax_multi_submit-control{margin-bottom:6px;position:relative;}
+.a3rev_panel_container .a3rev-ui-google-api-key-container .a3rev-ui-google-api-key-validate-button,
 .a3rev_panel_container .a3rev-ui-ajax_submit-control .a3rev-ui-ajax_submit-button,
 .a3rev_panel_container .a3rev-ui-ajax_multi_submit-control .a3rev-ui-ajax_multi_submit-button{border-radius:5px;border:none;background:#2186fa;color:#fff;font-size:16px;padding:8px 15px;transition:all 0.5s ease 0.1s;cursor:pointer;height:40px;box-sizing:border-box;margin-bottom:5px;}
+.a3rev_panel_container .a3rev-ui-google-api-key-container .a3rev-ui-google-api-key-validate-button:hover,
 .a3rev_panel_container .a3rev-ui-ajax_submit-control .a3rev-ui-ajax_submit-button:hover,
 .a3rev_panel_container .a3rev-ui-ajax_multi_submit-control .a3rev-ui-ajax_multi_submit-button:hover{background:#f4741b;}
+.a3rev_panel_container .a3rev-ui-google-api-key-container .a3rev-ui-google-api-key-validate-button.disabled,
 .a3rev_panel_container .a3rev-ui-ajax_submit-control .a3rev-ui-ajax_submit-button.disabled,
 .a3rev_panel_container .a3rev-ui-ajax_multi_submit-control .a3rev-ui-ajax_multi_submit-button.disabled{background:#999;cursor:default;}
 .a3rev_panel_container .a3rev-ui-ajax_submit-control .a3rev-ui-ajax_submit-successed,

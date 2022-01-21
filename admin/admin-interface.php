@@ -235,6 +235,49 @@ class Admin_Interface extends Admin_UI
 					);
 					echo json_encode( $response_data );
 					break;
+
+				case 'validate_google_api_key':
+					$g_key      = sanitize_text_field( $_REQUEST['g_key'] );
+					$g_key_type = sanitize_text_field( $_REQUEST['g_key_type'] );
+
+					$is_valid = false;
+					if ( ! empty( $g_key ) ) {
+						if ( 'font' == $g_key_type ) {
+							$response_fonts = $GLOBALS[$this->plugin_prefix.'fonts_face']->validate_google_api_key( $g_key );
+							if ( ! isset( $response_fonts['error'] ) ) {
+								$is_valid = true;
+							}
+
+							if ( $is_valid ) {
+								$google_api_key_status = 'valid';
+							} else {
+								$google_api_key_status = 'invalid';
+							}
+
+							//caching google api status for 24 hours
+							set_transient( $this->google_api_key_option . '_status', $google_api_key_status, 86400 );
+
+							update_option( $this->google_api_key_option . '_enable', 1 );
+							update_option( $this->google_api_key_option, trim( $g_key ) );
+						} else {
+							$is_valid = $this->validate_google_map_api_key( $g_key );
+							update_option( $this->google_map_api_key_option . '_enable', 1 );
+							update_option( $this->google_map_api_key_option, trim( $g_key ) );
+						}
+					}
+
+					if ( $is_valid ) {
+						$is_valid = 1;
+					} else {
+						$is_valid = 0;
+					}
+
+					$response_data = array(
+						'is_valid' => $is_valid,
+					);
+					echo json_encode( $response_data );
+
+					break;
 			}
 
 		}
@@ -1458,7 +1501,7 @@ class Admin_Interface extends Admin_UI
 				$description = $tip = '';
 			}
 	
-			if ( $description && in_array( $value['type'], array( 'manual_check_version', 'ajax_submit', 'ajax_multi_submit', 'textarea', 'radio', 'onoff_radio', 'typography', 'border', 'border_styles', 'array_textfields', 'wp_editor', 'upload' ) ) ) {
+			if ( $description && in_array( $value['type'], array( 'manual_check_version', 'ajax_submit', 'ajax_multi_submit', 'textarea', 'radio', 'onoff_radio', 'typography', 'border', 'border_styles', 'array_textfields', 'wp_editor', 'upload', 'google_api_key', 'google_map_api_key' ) ) ) {
 				$description = '<div class="desc" style="margin-bottom:5px;">' . wptexturize( $description ) . '</div>';
 			} elseif ( $description ) {
 				$description = '<span class="description" style="margin-left:5px;">' . wptexturize( $description ) . '</span>';
@@ -1882,7 +1925,13 @@ class Admin_Interface extends Admin_UI
 
 							<div>&nbsp;</div>
 							<div class="a3rev-ui-google-api-key-container" style="<?php if( 1 != $google_api_key_enable ) { echo 'display: none;'; } ?>">
-								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key", 'a3-lazy-load' ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
+								<?php 
+									if ( ! empty( $description ) ) { 
+										echo $description; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ 
+									} else {
+								?>
+								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Fonts API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Developer API</a> to create a key" ), 'https://developers.google.com/fonts/docs/developer_api#APIKey' ); ?></div>
+								<?php } ?>
 								<div class="a3rev-ui-google-api-key-inside 
 									<?php
 									if ( $GLOBALS[$this->plugin_prefix.'fonts_face']->is_valid_google_api_key() ) {
@@ -1893,17 +1942,23 @@ class Admin_Interface extends Admin_UI
 									?>
 									">
 									<input
+										data-type="font"
 										name="<?php echo esc_attr( $this->google_api_key_option ); ?>"
 										id="<?php echo esc_attr( $this->google_api_key_option ); ?>"
 										type="text"
 										style="<?php echo esc_attr( $value['css'] ); ?>"
 										value="<?php echo esc_attr( $google_api_key ); ?>"
-										class="a3rev-ui-text a3rev-ui-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?> <?php echo esc_attr( $value['class'] ); ?>"
-		                                placeholder="<?php echo __( 'Google Fonts API Key', 'a3-lazy-load' ); ?>"
+										class="a3rev-ui-text a3rev-ui-google-api-key a3rev-ui-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?> <?php echo esc_attr( $value['class'] ); ?>"
+		                                placeholder="<?php echo __( 'Google Fonts API Key' ); ?>"
 										<?php echo implode( ' ', $custom_attributes );	// XSS ok ?>
 										/>
-									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3-lazy-load' ); ?></p>
-									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.', 'a3-lazy-load' ); ?></p>
+									<button
+									name="<?php echo esc_attr( $this->google_api_key_option ); ?>_validate_bt"
+									id="<?php echo esc_attr( $this->google_api_key_option ); ?>_validate_bt"
+									type="button"
+									class="a3rev-ui-google-api-key-validate-button a3rev-ui-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>-button"><?php echo __( 'Validate' ); ?></button>
+									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.' ); ?></p>
+									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.' ); ?></p>
 								</div>
 							</div>
 						</td>
@@ -1938,7 +1993,13 @@ class Admin_Interface extends Admin_UI
 
 							<div>&nbsp;</div>
 							<div class="a3rev-ui-google-api-key-container" style="<?php if( 1 != $google_map_api_key_enable ) { echo 'display: none;'; } ?>">
-								<div class="a3rev-ui-google-api-key-description"><?php echo sprintf( __( "Enter your existing Google Map API Key below. Don't have a key? Visit <a href='%s' target='_blank'>Google Maps API</a> to create a key", 'a3-lazy-load' ), 'https://developers.google.com/maps/documentation/javascript/get-api-key' ); ?></div>
+							<?php 
+								if ( ! empty( $description ) ) { 
+									echo $description; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ 
+								} else {
+							?>
+								<div class="a3rev-ui-google-api-key-description" style="margin-bottom:5px;"><?php echo sprintf( __( "Enter your Google Maps API Key and save changes, or go to <a href='%s' target='_blank'>Google Maps API</a> to create a new key. The key must have the Geocoding API, Maps Embed API and Maps JavaScript API as a minimum." ), 'https://developers.google.com/maps/documentation/javascript/get-api-key' ); ?></div>
+							<?php } ?>
 								<div class="a3rev-ui-google-api-key-inside 
 									<?php
 									if ( $this->is_valid_google_map_api_key() ) {
@@ -1949,6 +2010,7 @@ class Admin_Interface extends Admin_UI
 									?>
 									">
 									<input
+										data-type="map"
 										name="<?php echo esc_attr( $this->google_map_api_key_option ); ?>"
 										id="<?php echo esc_attr( $this->google_map_api_key_option ); ?>"
 										type="text"
@@ -1958,8 +2020,13 @@ class Admin_Interface extends Admin_UI
 		                                placeholder="<?php echo __( 'Google Map API Key', 'a3-lazy-load' ); ?>"
 										<?php echo implode( ' ', $custom_attributes );	// XSS ok ?>
 										/>
-									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid and automatic font updates are enabled.', 'a3-lazy-load' ); ?></p>
-									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.', 'a3-lazy-load' ); ?></p>
+									<button
+									name="<?php echo esc_attr( $this->google_map_api_key_option ); ?>_validate_bt"
+									id="<?php echo esc_attr( $this->google_map_api_key_option ); ?>_validate_bt"
+									type="button"
+									class="a3rev-ui-google-api-key-validate-button a3rev-ui-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>-button"><?php echo __( 'Validate' ); ?></button>
+									<p class="a3rev-ui-google-valid-key-message"><?php echo __( 'Your Google API Key is valid.' ); ?></p>
+									<p class="a3rev-ui-google-unvalid-key-message"><?php echo __( 'Please enter a valid Google API Key.' ); ?></p>
 								</div>
 							</div>
 						</td>

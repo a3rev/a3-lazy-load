@@ -1,9 +1,9 @@
 === a3 Lazy Load ===
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
-Requires at least: 5.0
-Tested up to: 5.8
-Stable tag: 2.4.8
+Requires at least: 5.6
+Tested up to: 5.9
+Stable tag: 2.4.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,9 +16,9 @@ a3 Lazy Load is a Mobile Oriented, very simple to use plugin that will speed up 
 a3 Lazy Load is inspired by and powered by the ressio [Lazy-Load-xt JavaScript](https://github.com/ressio/lazy-load-xt).
 
 
-= 100% COMPATABLE WITH WORDPRESS 5.7 =
+= 100% COMPATABLE WITH WORDPRESS 5.9 =
 
-WordPress 5.5 introduced lazy loading for all images uploaded to a sites media library and 5.7 introduces Core lazy load for iframes. a3 Lazy Load Image options work side-by-side with these, but then enhances it by lazy loading all the images loaded from outside of the media library, or on older browsers that do not support the new WP attribute and any iframes or videos that are not lazy loaded by WordPress. 
+WordPress 5.5 introduced lazy loading for all images uploaded to a sites media library and 5.7 introduces Core lazy load for iframes and 5.9 contains performance enhancements. a3 Lazy Load Image options work side-by-side with these, but then enhances it by lazy loading all the images loaded from outside of the media library, or on older browsers that do not support the new WP attribute and any iframes or videos that are not lazy loaded by WordPress. 
 
 = IMAGE LAZY LOAD =
 
@@ -136,9 +136,8 @@ Want to add a new language to a3 Lazy Load? Great! You can contribute via [trans
  
 = Minimum Requirements =
 
-* WordPress 5.0 or greater
-* PHP version 7.0.0 or greater
-* MySQL version 5.6 or greater OR MariaDB version 10.0 or greater
+* PHP version 7.4 or greater is recommended
+* MySQL version 5.6 or greater is recommended
 
 == Frequently Asked Questions ==
 
@@ -198,6 +197,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.4.9 - 2022/01/21 =
+* This is a maintenance release for compatibility with WordPress major version 5.9
+* Tweak - Test for compatibility with WordPress 5.9
+* Framework - Update a3rev Plugin Framework to version 2.5.0
 
 = 2.4.8 - 2021/11/20 =
 * This maintenance release has check for compatibility with PHP 8.x
@@ -586,6 +590,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.4.9 =
+This is a maintenance release for compatibility with WordPress major version 5.9
 
 = 2.4.8 =
 * This maintenance release has check for compatibility with PHP 8.x

@@ -33,7 +33,7 @@ class Admin_UI
 	 * You must change to correct plugin name that you are working
 	 */
 
-	public $framework_version      = '2.4.1';
+	public $framework_version      = '2.5.0';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
 	public $plugin_path            = A3_LAZY_LOAD_NAME;
 	public $google_api_key_option  = '';
@@ -132,40 +132,50 @@ class Admin_UI
 			}
 
 			if ( ! $google_map_api_key_status ) {
-				$respone_api = wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=Australia&key=" . trim( $this->google_map_api_key ),
-					array(
-						'sslverify' => false,
-						'timeout'   => 45
-					)
-				);
-
-				$response_map = array();
-
-				// Check it is a valid request
-				if ( ! is_wp_error( $respone_api ) ) {
-
-					$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body'];
-					$response_map = json_decode( $json_string, true );
-
-					// Make sure that the valid response from google is not an error message
-					if ( ! isset( $response_map['error_message'] ) ) {
-						$google_map_api_key_status = 'valid';
-					} else {
-						$google_map_api_key_status = 'invalid';
-					}
-
-				} else {
-					$google_map_api_key_status = 'invalid';
-				}
-
-				//caching google map api status for 24 hours
-				set_transient( $this->google_map_api_key_option . '_status', $google_map_api_key_status, 86400 );
-			}
-
-			if ( 'valid' == $google_map_api_key_status ) {
+				$is_valid = $this->validate_google_map_api_key( $this->google_map_api_key );
+			} elseif ( 'valid' == $google_map_api_key_status ) {
 				$is_valid = true;
 			}
 
+		}
+
+		return $is_valid;
+	}
+
+	public function validate_google_map_api_key( $g_key = '' ) {
+		$g_key = trim( $g_key );
+		$is_valid = false;
+
+		if ( ! empty( $g_key ) ) {
+			$respone_api = wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=Australia&key=" . $g_key,
+				array(
+					'sslverify' => false,
+					'timeout'   => 45
+				)
+			);
+
+			$response_map = array();
+
+			// Check it is a valid request
+			if ( ! is_wp_error( $respone_api ) ) {
+
+				$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body']; // @codingStandardsIgnoreLine // phpcs:ignore
+				$response_map = json_decode( $json_string, true );
+
+				// Make sure that the valid response from google is not an error message
+				if ( ! isset( $response_map['error_message'] ) ) {
+					$is_valid = true;
+				}
+			}
+
+			if ( $is_valid ) {
+				$google_map_api_key_status = 'valid';
+			} else {
+				$google_map_api_key_status = 'invalid';
+			}
+
+			//caching google map api status for 24 hours
+			set_transient( $this->google_map_api_key_option . '_status', $google_map_api_key_status, 86400 );
 		}
 
 		return $is_valid;
@@ -179,12 +189,9 @@ class Admin_UI
 			update_option( $this->google_map_api_key_option . '_enable', 1 );
 
 			$option_value = trim( sanitize_text_field( $_POST[ $this->google_map_api_key_option ] ) );
+			update_option( $this->google_map_api_key_option, $option_value );
 
-			$old_google_map_api_key_option = get_option( $this->google_map_api_key_option );
-
-			if ( 1 != $old_google_map_api_key_enable || $option_value != $old_google_map_api_key_option ) {
-
-				update_option( $this->google_map_api_key_option, $option_value );
+			if ( 1 != $old_google_map_api_key_enable ) {
 
 				// Clear cached of google map api key status
 				delete_transient( $this->google_map_api_key_option . '_status' );
