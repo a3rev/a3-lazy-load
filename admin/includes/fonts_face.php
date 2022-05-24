@@ -364,39 +364,6 @@ class Fonts_Face extends Admin_UI
 			return;
 		}
 
-		// Enable Google Font API Key
-		if ( isset( $_POST[ $this->google_api_key_option . '_enable' ] ) ) {
-			$old_google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
-
-			update_option( $this->google_api_key_option . '_enable', 1 );
-
-			$option_value = trim( sanitize_text_field( $_POST[ $this->google_api_key_option ] ) );
-
-			$old_google_api_key_option = get_option( $this->google_api_key_option );
-
-			if ( 1 != $old_google_api_key_enable || $option_value != $old_google_api_key_option ) {
-
-				update_option( $this->google_api_key_option, $option_value );
-
-				// Clear cached of google api key status
-				delete_transient( $this->google_api_key_option . '_status' );
-			}
-
-		// Disable Google Font API Key
-		} elseif ( isset( $_POST[ $this->google_api_key_option ] ) ) {
-			$old_google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
-
-			update_option( $this->google_api_key_option . '_enable', 0 );
-
-			$option_value = trim( sanitize_text_field( $_POST[ $this->google_api_key_option ] ) );
-			update_option( $this->google_api_key_option, $option_value );
-
-			if ( 0 != $old_google_api_key_enable ) {
-				// Clear cached of google api key status
-				delete_transient( $this->google_api_key_option . '_status' );
-			}
-		}
-
 		if ( apply_filters( $this->plugin_name . '_new_google_fonts_enable', true ) ) {
 			$this->is_valid_google_api_key();
 			$google_fonts = get_option( $this->plugin_name . '_google_font_list', array() );
@@ -417,6 +384,51 @@ class Fonts_Face extends Admin_UI
 
 		$this->google_fonts = $new_google_fonts;
 
+	}
+
+	public function update_google_font_api_key() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return false;
+		}
+
+		check_admin_referer( 'save_settings_' . $this->plugin_name );
+
+		if ( ! $this->is_load_google_fonts ) {
+			return;
+		}
+
+		// Enable Google Font API Key
+		if ( isset( $_POST[ $this->google_api_key_option . '_enable' ] ) ) {
+			$old_google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
+
+			update_option( $this->google_api_key_option . '_enable', 1 );
+
+			$option_value = trim( sanitize_text_field( wp_unslash( $_POST[ $this->google_api_key_option ] ) ) );
+
+			$old_google_api_key_option = get_option( $this->google_api_key_option );
+
+			if ( 1 != $old_google_api_key_enable || $option_value != $old_google_api_key_option ) {
+
+				update_option( $this->google_api_key_option, $option_value );
+
+				// Clear cached of google api key status
+				delete_transient( $this->google_api_key_option . '_status' );
+			}
+
+		// Disable Google Font API Key
+		} elseif ( isset( $_POST[ $this->google_api_key_option ] ) ) {
+			$old_google_api_key_enable = get_option( $this->google_api_key_option . '_enable', 0 );
+
+			update_option( $this->google_api_key_option . '_enable', 0 );
+
+			$option_value = trim( sanitize_text_field( wp_unslash( $_POST[ $this->google_api_key_option ] ) ) );
+			update_option( $this->google_api_key_option, $option_value );
+
+			if ( 0 != $old_google_api_key_enable ) {
+				// Clear cached of google api key status
+				delete_transient( $this->google_api_key_option . '_status' );
+			}
+		}
 	}
 
 	public function validate_google_api_key( $g_key = '' ) {
@@ -608,10 +620,14 @@ class Fonts_Face extends Admin_UI
             $line_height = $option['line_height'];
         }
 
+        $font_css = '';
+
 		if ( !@$option['style'] && !@$option['size'] && !@$option['color'] )
-			return 'font-family: '.stripslashes($option["face"]).' !important;';
+			$font_css = 'font-family: '.stripslashes($option["face"]).' !important;';
 		else
-			return 'font:'.$option['style'].' '.$option['size'].'/' . $line_height . ' ' .stripslashes($option['face']).' !important; color:'.$option['color'].' !important;';
+			$font_css = 'font:'.$option['style'].' '.$option['size'].'/' . $line_height . ' ' .stripslashes($option['face']).' !important; color:'.$option['color'].' !important;';
+
+		return apply_filters( $this->plugin_name . '_generate_font_css', $font_css, $option, $em );
 	}
 
 
@@ -641,14 +657,20 @@ class Fonts_Face extends Admin_UI
 			// Output google font css in header
 			if ( trim( $fonts ) != '' ) {
 				$fonts = str_replace( " ","+",$fonts);
-				$output .= "\n<!-- Google Webfonts -->\n";
-				$output .= '<link href="http'. ( is_ssl() ? 's' : '' ) .'://fonts.googleapis.com/css?family=' . $fonts .'" rel="stylesheet" type="text/css" />'."\n";
-				$output = str_replace( '|"','"',$output);
+
+				if ( $echo ) {
+					echo "\n<!-- Google Webfonts -->\n";
+					echo '<link href="http'. ( is_ssl() ? 's' : '' ) .'://fonts.googleapis.com/css?family=' . esc_attr( $fonts ) .'" rel="stylesheet" type="text/css" />'."\n";
+				} else {
+					$output .= "\n<!-- Google Webfonts -->\n";
+					$output .= '<link href="http'. ( is_ssl() ? 's' : '' ) .'://fonts.googleapis.com/css?family=' . esc_attr( $fonts ) .'" rel="stylesheet" type="text/css" />'."\n";
+					$output = str_replace( '|"','"',$output);
+				}
 			}
 		}
 
 		if ( $echo )
-			echo $output;
+			echo '';
 		else
 			return $output;
 
