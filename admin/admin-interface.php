@@ -908,7 +908,7 @@ class Admin_Interface extends Admin_UI
 								if ( is_array( $_POST[ $option_name ][ $id_attribute ] ) ) {
 									$option_value = array_map( 'sanitize_textarea_field', wp_unslash( $_POST[ $option_name ][ $id_attribute ] ) );
 								} else {
-									$option_value = sanitize_textarea_field( wp_unslash( _POST[ $option_name ][ $id_attribute ] ) );
+									$option_value = sanitize_textarea_field( wp_unslash( $_POST[ $option_name ][ $id_attribute ] ) );
 								}
 							} else {
 								if ( is_array( $_POST[ $option_name ][ $id_attribute ] ) ) {

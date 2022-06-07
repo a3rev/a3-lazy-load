@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.6
 Tested up to: 6.0
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -197,6 +197,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.5.1 - 2022/06/07 =
+* This maintenance release fixes a critical error when updating the plugin settings
+* Fix - Add missed $ to _POST constant from textarea control type
 
 = 2.5.0 - 2022/05/24 =
 * This release is for compatibility with WordPress major version 6.0 plus includes various tweaks to harden the plugins security. 
@@ -599,6 +603,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.5.1 =
+This maintenance release fixes a critical error when updating the plugin settings
 
 = 2.5.0 =
 This release is for compatibility with WordPress major version 6.0 plus includes various tweaks to harden the plugins security
