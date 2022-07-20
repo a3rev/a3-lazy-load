@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.6
 Tested up to: 6.0
-Stable tag: 2.5.1
+Stable tag: 2.6.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,9 +16,13 @@ a3 Lazy Load is a Mobile Oriented, very simple to use plugin that will speed up 
 a3 Lazy Load is inspired by and powered by the ressio [Lazy-Load-xt JavaScript](https://github.com/ressio/lazy-load-xt).
 
 
-= 100% COMPATABLE WITH WORDPRESS 5.9 =
+= 100% COMPATABLE WITH WORDPRESS 6.0 =
 
-WordPress 5.5 introduced lazy loading for all images uploaded to a sites media library and 5.7 introduces Core lazy load for iframes and 5.9 contains performance enhancements. a3 Lazy Load Image options work side-by-side with these, but then enhances it by lazy loading all the images loaded from outside of the media library, or on older browsers that do not support the new WP attribute and any iframes or videos that are not lazy loaded by WordPress. 
+WordPress 5.5 introduced lazy loading for all images uploaded to a sites media library and 5.7 introduces Core lazy load for iframes and 5.9 contained performance enhancements. a3 Lazy Load Image options work side-by-side with these, but then enhances it by lazy loading all the images loaded from outside of the media library, or on older browsers that do not support the new WP attribute and any iframes or videos that are not lazy loaded by WordPress. 
+
+= DISABLE WORDPRESS LAZY LOAD =
+
+The plugin includes an option to completely disable WordPress Core Lazy Load if that is what you want to do.
 
 = IMAGE LAZY LOAD =
 
@@ -197,6 +201,12 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.6.0 - 2022/07/20 =
+* This release adds the option to switch OFF WordPress Core Lazy Load.
+* Feature - Add Option to completely disable WordPress Core Lazy Load.
+* Tweak - Add the new option switch to the Lazy Load Activation option box.
+* Tweak - Updated the plugins description to include the new option to disable WordPress Core Lazy Load.
 
 = 2.5.1 - 2022/06/07 =
 * This maintenance release fixes a critical error when updating the plugin settings
@@ -603,6 +613,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.6.0 =
+This release adds the option to switch OFF WordPress Core Lazy Load.
 
 = 2.5.1 =
 This maintenance release fixes a critical error when updating the plugin settings

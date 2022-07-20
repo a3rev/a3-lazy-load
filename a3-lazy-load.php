@@ -2,7 +2,7 @@
 /*
 Plugin Name: a3 Lazy Load
 Description: Speed up your site and enhance frontend user's visual experience in PC's, Tablets and mobile with a3 Lazy Load.
-Version: 2.5.1
+Version: 2.6.0
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Requires at least: 5.6
@@ -31,7 +31,7 @@ define('A3_LAZY_LOAD_IMAGES_URL', A3_LAZY_LOAD_URL . '/assets/images');
 
 define( 'A3_LAZY_LOAD_KEY', 'a3_lazy_load' );
 define( 'A3_LAZY_LOAD_PREFIX', 'a3_lazy_load_' );
-define( 'A3_LAZY_VERSION', '2.5.1' );
+define( 'A3_LAZY_VERSION', '2.6.0' );
 define( 'A3_LAZY_LOAD_G_FONTS', false );
 
 use \A3Rev\LazyLoad\FrameWork;
@@ -87,7 +87,7 @@ include( 'classes/classes-backwards-compatibility.php' );
 include( 'admin/a3-lazy-load-admin.php' );
 
 // Defined this function for check Lazy Load is enabled that 3rd party plugins or theme can use to check
-$a3_lazy_load_global_settings = get_option( 'a3_lazy_load_global_settings', array( 'a3l_apply_lazyloadxt' => 1, 'a3l_apply_to_images' => 1, 'a3l_apply_to_videos' => 1 ) );
+$a3_lazy_load_global_settings = get_option( 'a3_lazy_load_global_settings', array( 'a3l_apply_lazyloadxt' => 1, 'a3l_wpcore_lazyload' => 1, 'a3l_apply_to_images' => 1, 'a3l_apply_to_videos' => 1 ) );
 if ( 1 == $a3_lazy_load_global_settings['a3l_apply_lazyloadxt'] && !is_admin() && ( 1 == $a3_lazy_load_global_settings['a3l_apply_to_images'] || 1 == $a3_lazy_load_global_settings['a3l_apply_to_videos'] ) ) {
 	function a3_lazy_load_enable() {
 		return true;
@@ -102,6 +102,9 @@ if ( 1 == $a3_lazy_load_global_settings['a3l_apply_lazyloadxt'] && !is_admin() &
 	function a3_lazy_load_video_enable() {
 		return true;
 	}
+}
+if ( !is_admin() && isset( $a3_lazy_load_global_settings['a3l_wpcore_lazyload'] ) && 0 == $a3_lazy_load_global_settings['a3l_wpcore_lazyload'] ) {
+	add_filter( 'wp_lazy_loading_enabled', '__return_false' );
 }
 
 /**
