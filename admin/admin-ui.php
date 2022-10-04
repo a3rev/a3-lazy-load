@@ -33,7 +33,7 @@ class Admin_UI
 	 * You must change to correct plugin name that you are working
 	 */
 
-	public $framework_version      = '2.6.0';
+	public $framework_version      = '2.6.2';
 	public $plugin_name            = A3_LAZY_LOAD_KEY;
 	public $plugin_path            = A3_LAZY_LOAD_NAME;
 	public $google_api_key_option  = '';
@@ -353,7 +353,7 @@ class Admin_UI
 		$output = apply_filters( $this->plugin_name . '_plugin_extension_start', $output );
 
 		if ( $echo )
-			echo $output;
+			echo wp_kses_post( $output );
 		else
 			return $output;
 	}

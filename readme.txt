@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.6
 Tested up to: 6.0
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.6.1 - 2022/10/04 =
+* This maintenance release has a security vulnerability patch, please run this update.
+* Security – This release has a patch for a security vulnerability identified by Wordfence scan
 
 = 2.6.0 - 2022/07/20 =
 * This release adds the option to switch OFF WordPress Core Lazy Load.
@@ -613,6 +617,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.6.1 =
+This maintenance release has a security vulnerability patch, please run this update.
 
 = 2.6.0 =
 This release adds the option to switch OFF WordPress Core Lazy Load.

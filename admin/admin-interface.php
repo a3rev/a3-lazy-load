@@ -618,6 +618,10 @@ class Admin_Interface extends Admin_UI
 		foreach ( $options as $value ) {
 			if ( ! isset( $value['type'] ) ) continue;
 			if ( in_array( $value['type'], array( 'row', 'column', 'heading', 'ajax_submit', 'ajax_multi_submit' ) ) ) continue;
+			if ( stristr( $value['type'], 'custom_' ) !== false ) {
+				do_action( $this->plugin_name . '_save_setting_' . $value['type'], $value );
+				continue;
+			}
 
 			// Save for global settings of plugin framework
 			switch ( $value['type'] ) {
@@ -1030,6 +1034,14 @@ class Admin_Interface extends Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 
 	public function reset_settings( $options, $option_name = '', $reset = false, $free_version = false ) {
+
+		if ( $reset ) {
+			check_admin_referer( 'save_settings_' . $this->plugin_name );
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return false;
+			}
+		}
 		
 		if ( !is_array( $options ) || count( $options ) < 1 ) return;
 		
@@ -1089,6 +1101,11 @@ class Admin_Interface extends Admin_UI
 			if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
 			if ( ! isset( $value['default'] ) ) $value['default'] = '';
 			if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
+
+			if ( stristr( $value['type'], 'custom_' ) !== false ) {
+				do_action( $this->plugin_name . '_reset_setting_' . $value['type'], $value );
+				continue;
+			}
 			
 			// For way it has an option name
 			if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
