@@ -217,7 +217,7 @@ class Admin_Init extends Admin_UI
 					$activated_first_tab = false;
 					$tab_data = false;
 					foreach ( $tabs as $tab ) {
-						echo '<a href="' . add_query_arg( array( 'page' => $current_page, 'tab' => $tab['name'] ), admin_url( $page_data['admin_url'] ) ) . '" class="nav-tab ';
+						echo '<a href="' . esc_url( add_query_arg( array( 'page' => $current_page, 'tab' => $tab['name'] ), admin_url( $page_data['admin_url'] ) ) ) . '" class="nav-tab ';
 						if ( $current_tab == '' && $activated_first_tab === false ) {
 							echo 'nav-tab-active';
 							$activated_first_tab = true;
