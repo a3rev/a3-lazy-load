@@ -593,6 +593,8 @@ class Fonts_Face extends Admin_UI
 
 		asort( $default_fonts );
 
+		$default_fonts = array_merge( array( '' => __( 'Default' ) ), $default_fonts );
+
 		return $default_fonts;
 	}
 
@@ -615,17 +617,37 @@ class Fonts_Face extends Admin_UI
 			$option['face'] = "'" . $option['face'] . "', arial, sans-serif";
 		}
 
-		$line_height = '1.4em';
-        if( isset( $option['line_height'] ) ){
-            $line_height = $option['line_height'];
-        }
+		$font_size        = $option['size'] ?? '';
+		$font_line_height = $option['line_height'] ?? '';
+		$font_face        = $option['face'] ?? '';
+		$font_style       = $option['style'] ?? '';
+		$font_color       = $option['color'] ?? '';
 
-        $font_css = '';
+		$font_css = '';
+		if ( ! empty( $font_size ) && ! empty( $font_line_height ) && ! empty( $font_face ) && ! empty( $font_style ) ) {
+			$font_css .= 'font:'.$font_style.' '.$font_size.'/' . $font_line_height . ' ' .stripslashes( str_replace( array( '"', "'" ), '', $font_face ) ).' !important;';
+		} else {
+			if ( ! empty( $font_size ) ) $font_css        .= 'font-size:'.$font_size.' !important;';
+			if ( ! empty( $font_line_height ) ) $font_css .= 'line-height:'.$font_line_height.' !important;';
+			if ( ! empty( $font_face ) ) $font_css        .= 'font-family:'.stripslashes( str_replace( array( '"', "'" ), '', $font_face ) ).' !important;';
+			if ( ! empty( $font_style ) ) {
+				// font style
+				if ( strstr( $font_style, 'italic' ) !== false ) $font_css .= 'font-style:italic !important;';
+				if ( strstr( $font_style, 'normal' ) !== false ) $font_css .= 'font-style:normal !important;';
 
-		if ( !@$option['style'] && !@$option['size'] && !@$option['color'] )
-			$font_css = 'font-family: '.stripslashes( str_replace( array( '"', "'" ), '', $option["face"] ) ).' !important;';
-		else
-			$font_css = 'font:'.$option['style'].' '.$option['size'].'/' . $line_height . ' ' .stripslashes( str_replace( array( '"', "'" ), '', $option['face'] ) ).' !important; color:'.$option['color'].' !important;';
+				// font weight
+				if ( strstr( $font_style, 'italic' ) !== false ) {
+					$font_style_ex = explode( ' ', $font_style );
+					if ( is_array( $font_style_ex ) && count( $font_style_ex ) > 1  ) {
+						$font_css .= 'font-weight:'.$font_style_ex[0].' !important;';
+					}
+				} else {
+					$font_css .= 'font-weight:'.$font_style.' !important;';
+				}
+			}
+		}
+
+		if ( ! empty( $font_color ) ) $font_css .= 'color:'.$font_color.' !important;';
 
 		return apply_filters( $this->plugin_name . '_generate_font_css', $font_css, $option, $em );
 	}

@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 5.6
 Tested up to: 6.1
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,15 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.0 - 2023/01/03 =
+* This feature release removes the fontawesome lib and replaces icons with SVGs plus adds Default Topography option to font controls.
+* Feature - Convert icon from font awesome to SVG
+* Feature - Update styling for new SVG icons
+* Plugin Framework - Update typography control from plugin framework to add support for Default value
+* Plugin Framework - Default value will get fonts set in the theme.
+* Plugin Framework - Change generate typography style for change on typography control
+* Plugin Framework - Remove fontawesome lib
 
 = 2.6.1 - 2022/10/04 =
 * This maintenance release has a security vulnerability patch, please run this update.
@@ -617,6 +626,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.0 =
+This feature release removes the fontawesome lib and replaces icons with SVGs plus adds Default Topography option to font controls.
 
 = 2.6.1 =
 This maintenance release has a security vulnerability patch, please run this update.
