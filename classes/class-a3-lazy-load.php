@@ -432,7 +432,10 @@ class LazyLoad
 				} elseif ( preg_match( "/ src=['\"]/is", $replaceHTML ) ) {
 					$replaceHTML = preg_replace( '/ src=(["\'])(.*?)["\']/is', ' src="' . $this->_placeholder_url . '"', $replaceHTML );
 				}
-
+                                // Add alt attribute value
+                                if (  ! preg_match( "/ alt=['\"]/is", $replaceHTML ) ) {
+					$replaceHTML = preg_replace( '/<img/is', '<img alt=""', $replaceHTML );
+				} 
 				$replaceHTML = preg_replace( '/<img(.*?)srcset=/is', '<img$1srcset="" data-srcset=', $replaceHTML );
 
 				// add the lazy class to the img element
