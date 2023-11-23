@@ -1,9 +1,9 @@
 === a3 Lazy Load ===
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
-Requires at least: 5.6
-Tested up to: 6.3
-Stable tag: 2.7.0
+Requires at least: 6.0
+Tested up to: 6.4.1
+Stable tag: 2.7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,12 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.1 - 2023/11/23 =
+* This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus compatibility with WordPress 6.4.1
+* Tweak - Test for compatibility with WordPress 6.4.1
+* Framework - Set parameter number of preg_match function from null to 0 for compatibility with PHP 8.1 onwards
+* Framework - Validate empty before call trim for option value
 
 = 2.7.0 - 2023/01/03 =
 * This feature release removes the fontawesome lib and replaces icons with SVGs plus adds Default Topography option to font controls.
@@ -626,6 +632,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.1 =
+This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus compatibility with WordPress 6.4.1
 
 = 2.7.0 =
 This feature release removes the fontawesome lib and replaces icons with SVGs plus adds Default Topography option to font controls.

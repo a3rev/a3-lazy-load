@@ -924,7 +924,7 @@ class Admin_Interface extends Admin_UI
 				}
 
 				// Just for Color type
-				if ( 'color' == $value['type'] && '' == trim( $option_value ) ) {
+				if ( 'color' == $value['type'] && ( empty( $option_value ) || '' == trim( $option_value ) ) ) {
 					$option_value = 'transparent';
 				}
 				// Just for Background Color type
