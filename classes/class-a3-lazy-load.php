@@ -422,7 +422,7 @@ class LazyLoad
 		foreach ( $matches[0] as $imgHTML ) {
 
 			// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
-			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) ) {
+			if ( ! ( is_array( $this->_skip_images_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) && ! preg_match( "/src=.*lazy_placeholder.gif['\"]/s", $imgHTML ) && ! $a3_lazy_load_excludes->has_skip_lazy_attribute( $imgHTML ) && strstr( $imgHTML, 'data-wp-bind--src=' ) == false ) {
 				$i++;
 				// replace the src and add the data-src attribute
 				$replaceHTML = $imgHTML;

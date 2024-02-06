@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 6.0
 Tested up to: 6.4.1
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.2 - 2024/02/06 =
+* This release has a fix for conflict with WordPress expand on click feature in the image block.
+* Fix - Update lazy load work compatibility with Expand on Click feature from core image block
 
 = 2.7.1 - 2023/11/23 =
 * This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus compatibility with WordPress 6.4.1
@@ -632,6 +636,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.2 =
+This release has a fix for conflict with WordPress expand on click feature in the image block.
 
 = 2.7.1 =
 This maintenance release has plugin framework updates for compatibility with PHP 8.1 onwards, plus compatibility with WordPress 6.4.1
