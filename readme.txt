@@ -2,8 +2,8 @@
 Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 6.0
-Tested up to: 6.6
-Stable tag: 2.7.3
+Tested up to: 6.8.1
+Stable tag: 2.7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,11 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.4 - 2025/06/17 =
+* This maintenance release has 1 bug fix and compatibility with WordPress 6.8.1
+* Tweak - Tested for compatibility with WordPress 6.8.1
+* Security - Escape all variable before output
 
 = 2.7.3 - 2024/07/15 =
 * This release has various tweaks for compatibility with WordPress 6.6
@@ -640,6 +645,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.4 =
+This maintenance release has 1 bug fix and compatibility with WordPress 6.8.1
 
 = 2.7.3 =
 This release has various tweaks for compatibility with WordPress 6.6
