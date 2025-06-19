@@ -63,8 +63,8 @@ class Settings extends FrameWork\Admin_UI
 		$page_data = array( 
 			'type'				=> 'submenu',
 			'parent_slug'		=> 'options-general.php',
-			'page_title'		=> __('a3 Lazy Load','a3-lazy-load' ),
-			'menu_title'		=> __('a3 Lazy Load','a3-lazy-load' ),
+			'page_title'		=> __('a3 Lazy Load'),
+			'menu_title'		=> __('a3 Lazy Load'),
 			'capability'		=> 'manage_options',
 			'menu_slug'			=> $this->menu_slug,
 			'function'			=> 'a3_lazy_load_settings_page_show',

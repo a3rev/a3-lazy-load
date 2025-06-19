@@ -84,9 +84,9 @@ class Global_Panel extends FrameWork\Admin_UI
 		$this->subtab_init();
 
 		$this->form_messages = array(
-				'success_message'	=> __( 'Settings successfully saved.', 'a3-lazy-load' ),
-				'error_message'		=> __( 'Error: Settings can not save.', 'a3-lazy-load' ),
-				'reset_message'		=> __( 'Settings successfully reseted.', 'a3-lazy-load' ),
+				'success_message'	=> __( 'Settings successfully saved.' ),
+				'error_message'		=> __( 'Error: Settings can not save.' ),
+				'reset_message'		=> __( 'Settings successfully reseted.' ),
 			);
 
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_end', array( $this, 'include_script' ) );

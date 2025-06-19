@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 6.0
 Tested up to: 6.8.1
-Stable tag: 2.7.4
+Stable tag: 2.7.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.5 - 2025/06/19 =
+* This maintenance release has 1 bug fix
+* Fix - Make the _load_textdomain_just_in_time is called correctly
 
 = 2.7.4 - 2025/06/17 =
 * This maintenance release has 1 bug fix and compatibility with WordPress 6.8.1
@@ -645,6 +649,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.5 =
+* This maintenance release has 1 bug fix
 
 = 2.7.4 =
 This maintenance release has 1 bug fix and compatibility with WordPress 6.8.1
