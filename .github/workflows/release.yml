@@ -1,0 +1,169 @@
+name: Auto Release and Deploy to S3
+
+# Repository variables (Settings → Secrets and variables → Actions → Variables), e.g.:
+#   MAIN_PLUGIN_FILE    — bootstrap PHP file containing the Version header, e.g. a3-lazy-load.php
+#   RELEASE_ZIP_NAME    — artifact filename, e.g. a3-lazy-load.zip
+#   S3_PRIVATE_FOLDER   — prefix on the private bucket, e.g. a3-lazy-load
+#   S3_PUBLIC_FOLDER    — prefix on the public bucket, e.g. a3-lazy-load
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - master
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from header
+        id: get_version
+        run: |
+          VERSION=$(grep -oP "Version:\s*\K[\d\.]+" "${{ vars.MAIN_PLUGIN_FILE }}")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Detected version: ${VERSION}"
+
+      - name: Check if tag exists
+        id: check_tag
+        run: |
+          if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Tag v${{ steps.get_version.outputs.version }} already exists"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Tag v${{ steps.get_version.outputs.version }} does not exist"
+          fi
+
+      - name: Delete existing release if exists
+        if: steps.check_tag.outputs.exists == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Delete existing GitHub release
+          gh release delete "v${{ steps.get_version.outputs.version }}" --yes || true
+          echo "✅ Deleted existing release v${{ steps.get_version.outputs.version }}"
+
+      - name: Delete existing tag if exists
+        if: steps.check_tag.outputs.exists == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Delete remote tag
+          git push --delete origin "v${{ steps.get_version.outputs.version }}" || true
+
+          # Delete local tag
+          git tag -d "v${{ steps.get_version.outputs.version }}" || true
+
+          echo "✅ Deleted existing tag v${{ steps.get_version.outputs.version }}"
+
+      - name: Create and push tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a "v${{ steps.get_version.outputs.version }}" -m "Release version ${{ steps.get_version.outputs.version }}"
+          git push origin "v${{ steps.get_version.outputs.version }}"
+          echo "✅ Created and pushed tag v${{ steps.get_version.outputs.version }}"
+
+      - name: Build release zip
+        id: build_zip
+        run: |
+          ZIP_FILE="${{ vars.RELEASE_ZIP_NAME }}"
+          PLUGIN_NAME="${ZIP_FILE%.zip}"
+
+          # Create a temporary directory for the release artifact
+          mkdir -p "/tmp/${PLUGIN_NAME}"
+
+          # Copy files excluding development-only paths
+          rsync -av --progress . "/tmp/${PLUGIN_NAME}/" \
+            --exclude='.git*' \
+            --exclude='node_modules' \
+            --exclude='.bit' \
+            --exclude='package-lock.json' \
+            --exclude='.DS_Store' \
+            --exclude='._*' \
+            --exclude='*.log' \
+            --exclude='.github'
+
+          # Create zip file
+          cd /tmp
+          zip -r "${ZIP_FILE}" "${PLUGIN_NAME}"
+          mv "${ZIP_FILE}" "$GITHUB_WORKSPACE/"
+
+          echo "zip_file=${ZIP_FILE}" >> $GITHUB_OUTPUT
+
+      - name: Upload ZIP to Private S3 Bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION_PRIVATE: ${{ secrets.AWS_REGION_PRIVATE }}
+          S3_BUCKET_PRIVATE: ${{ secrets.S3_BUCKET_PRIVATE }}
+        run: |
+          # Install AWS CLI
+          pip install awscli
+
+          BUCKET=$(printf '%s' "$S3_BUCKET_PRIVATE" | tr -d '\r\n')
+          aws s3 cp "${{ steps.build_zip.outputs.zip_file }}" \
+            "s3://${BUCKET}/${{ vars.S3_PRIVATE_FOLDER }}/${{ vars.RELEASE_ZIP_NAME }}" \
+            --region ${{ secrets.AWS_REGION_PRIVATE }}
+
+          echo "✅ Uploaded ${{ vars.RELEASE_ZIP_NAME }} to private S3 bucket"
+
+      - name: Upload Changelog to Public S3 Bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION_PUBLIC: ${{ secrets.AWS_REGION_PUBLIC }}
+          S3_BUCKET_PUBLIC: ${{ secrets.S3_BUCKET_PUBLIC }}
+        run: |
+          BUCKET=$(printf '%s' "$S3_BUCKET_PUBLIC" | tr -d '\r\n')
+          aws s3 cp changelog.txt \
+            "s3://${BUCKET}/${{ vars.S3_PUBLIC_FOLDER }}/changelog.txt" \
+            --region ${{ secrets.AWS_REGION_PUBLIC }} \
+            --acl public-read \
+            --content-type "text/plain; charset=utf-8"
+
+          echo "✅ Uploaded changelog.txt to public S3 bucket"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release ${{ steps.get_version.outputs.version }}
+          body: |
+            ## a3 Lazy Load v${{ steps.get_version.outputs.version }}
+
+            ### Download
+            - Plugin zip: `${{ vars.RELEASE_ZIP_NAME }}` (Available via CloudFront: https://${{ secrets.CLOUDFRONT_DOMAIN }}/${{ vars.S3_PRIVATE_FOLDER }}/${{ vars.RELEASE_ZIP_NAME }})
+            - Changelog: https://${{ secrets.CLOUDFRONT_DOMAIN }}/${{ vars.S3_PUBLIC_FOLDER }}/changelog.txt
+
+            ### Installation
+            1. Download the plugin zip file from CloudFront
+            2. Upload to WordPress via **Plugins → Add New → Upload Plugin**
+            3. Activate the plugin
+
+            ### Deployment Details
+            - ✅ Uploaded to private S3 bucket (no public access)
+            - ✅ Changelog published to public S3 bucket
+            - ✅ CloudFront cache invalidated
+
+            Automated release created by GitHub Actions.
+          files: |
+            ${{ steps.build_zip.outputs.zip_file }}
+            changelog.txt
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
