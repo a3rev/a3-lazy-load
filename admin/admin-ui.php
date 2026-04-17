@@ -33,17 +33,17 @@ class Admin_UI
 	 * You must change to correct plugin name that you are working
 	 */
 
-	public $framework_version      = '2.7.0';
-	public $plugin_name            = A3_LAZY_LOAD_KEY;
-	public $plugin_path            = A3_LAZY_LOAD_NAME;
-	public $google_api_key_option  = '';
+	public $framework_version         = '2.7.0';
+	public $plugin_name               = A3_LAZY_LOAD_KEY;
+	public $plugin_path               = A3_LAZY_LOAD_NAME;
+	public $google_api_key_option     = '';
 	public $google_map_api_key_option = '';
-	public $toggle_box_open_option = '';
-	public $version_transient      = '';
-	public $is_free_plugin         = true;
-	public $is_load_google_fonts   = true;
-	
-	public $support_url            = '';
+	public $google_map_api_key        = '';
+	public $toggle_box_open_option    = '';
+	public $version_transient         = '';
+	public $is_free_plugin            = true;
+	public $is_load_google_fonts      = true;
+	public $support_url               = '';
 
 
 	/**
@@ -86,7 +86,7 @@ class Admin_UI
 			$this->is_load_google_fonts = (boolean) A3_LAZY_LOAD_G_FONTS;
 		}
 
-		$this->support_url = 'https://wordpress.org/support/plugin/a3-lazy-load/';
+		$this->support_url = esc_url( 'https://wordpress.org/support/plugin/a3-lazy-load/' );
 	}
 	
 	
@@ -229,11 +229,11 @@ class Admin_UI
 				'image_url'    => A3_LAZY_LOAD_IMAGES_URL. '/video.jpg',
 				'video_url'    => 'https://www.youtube.com/embed/9dGw-ORfMIk?version=3&autoplay=1',
 				'left_title'   => __( 'Premium Version Enhanced Features', 'a3-lazy-load' ),
-				'left_text'    => __( 'WooCommerce Dynamic Gallery Premium', 'a3-lazy-load' )
-									. "\n\n" . __( 'Quick Video showing the main (not all) enhanced features that are built into the WooCommerce Dynamic Gallery Premium version', 'a3-lazy-load' ),
+				'left_text'    => __( 'a3 Lazy Load Premium', 'a3-lazy-load' )
+									. "\n\n" . __( 'Quick Video showing the main (not all) enhanced features that are built into the a3 Lazy Load Premium version', 'a3-lazy-load' ),
 				'right_title'  => __( 'Developer Support and Premium Features', 'a3-lazy-load' ),
 				'right_text'   => __( 'Limited Time Offer. Purchase the Premium Version Lifetime License. That is a Lifetime of maintenance updates, feature upgrades and developer support for a once only fee. Offer ending soon.', 'a3-lazy-load' )
-									. "\n\n" . '<a target="_blank" href="'.$this->pro_plugin_page_url.'" class="button-primary">' . __( 'Get Premium Features and Support', '' ) . '</a>',
+									. "\n\n" . '<a target="_blank" rel="noopener" href="'.$this->pro_plugin_page_url.'" class="button-primary">' . __( 'Get Premium Features and Support', '' ) . '</a>',
 			);
 
 		return $premium_video_data;
@@ -381,7 +381,7 @@ class Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 	public function upgrade_top_message( $echo = false, $setting_id = '' ) {
 		$upgrade_top_message = sprintf( '<div class="pro_feature_top_message">'
-			. __( 'Advanced Settings - Upgrade to the <a href="%s" target="_blank">%s License</a> to activate these settings.', 'a3-lazy-load' )
+			. __( 'Advanced Settings - Upgrade to the <a href="%s" target="_blank" rel="noopener">%s License</a> to activate these settings.', 'a3-lazy-load' )
 			. '</div>'
 			, apply_filters( $this->plugin_name . '_' . $setting_id . '_pro_plugin_page_url', apply_filters( $this->plugin_name . '_pro_plugin_page_url', $this->pro_plugin_page_url ) )
 			, apply_filters( $this->plugin_name . '_' . $setting_id . '_pro_version_name', apply_filters( $this->plugin_name . '_pro_version_name', __( 'Pro Version', 'a3-lazy-load' ) ) )
@@ -436,7 +436,7 @@ class Admin_UI
 			if ( false === $timeout ) {
 				$version_message = __( 'You should check now to see if have any new version is available', 'a3-lazy-load' );
 			} elseif ( 'cannot_connect_api' == $version_transient ) {
-				$version_message = sprintf( __( 'Connection Failure! Please try again. If this issue persists please create a support request on the plugin <a href="%s" target="_blank">a3rev support forum</a>.', 'a3-lazy-load' ), $this->support_url );
+				$version_message = sprintf( __( 'Connection Failure! Please try again. If this issue persists please create a support request on the plugin <a href="%s" target="_blank" rel="noopener">a3rev support forum</a>.', 'a3-lazy-load' ), $this->support_url );
 			} else {
 				$version_info = explode( '||', $version_transient );
 				if ( FALSE !== stristr( $version_transient, '||' )
@@ -444,7 +444,7 @@ class Admin_UI
 					&& isset( $version_info[1] ) && $version_info[1] == 'valid'
 					&& version_compare( A3_LAZY_VERSION , $version_info[0], '<' ) ) {
 
-						$version_message = sprintf( __( 'There is a new version <span class="a3rev-ui-new-plugin-version">%s</span> available, <a href="%s" target="_blank">update now</a> or download direct from <a href="%s" target="_blank">My Account</a> on a3rev.com', 'a3-lazy-load' ),
+						$version_message = sprintf( __( 'There is a new version <span class="a3rev-ui-new-plugin-version">%s</span> available, <a href="%s" target="_blank" rel="noopener">update now</a> or download direct from <a href="%s" target="_blank" rel="noopener">My Account</a> on a3rev.com', 'a3-lazy-load' ),
 							$version_info[0],
 							wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' . $this->plugin_path ), 'upgrade-plugin_' . $this->plugin_path ),
 							'https://a3rev.com/my-account/downloads/'

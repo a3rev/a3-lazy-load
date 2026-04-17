@@ -206,6 +206,8 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 * This maintenance release has compatibility with WordPress 7.0 and a small improvement for sites that use WP Rocket.
 * Tweak - Tested for compatibility with WordPress 7.0
 * Tweak - Lazy load works more reliably when WP Rocket is active on your site
+* Tweak - Admin LESS compiler and settings screen brought in line with our other plugins for smoother use on current PHP.
+* Tweak - Clearer premium-feature wording on admin pages and tidier support and upgrade links.
 
 = 2.7.6 - 2025/10/13 =
 * This release has a security hardening patch and compatibility with WordPress 6.8.3 - please upgrade now. 
