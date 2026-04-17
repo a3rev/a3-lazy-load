@@ -104,39 +104,6 @@ jobs:
 
           echo "zip_file=${ZIP_FILE}" >> $GITHUB_OUTPUT
 
-      - name: Upload ZIP to Private S3 Bucket
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION_PRIVATE: ${{ secrets.AWS_REGION_PRIVATE }}
-          S3_BUCKET_PRIVATE: ${{ secrets.S3_BUCKET_PRIVATE }}
-        run: |
-          # Install AWS CLI
-          pip install awscli
-
-          BUCKET=$(printf '%s' "$S3_BUCKET_PRIVATE" | tr -d '\r\n')
-          aws s3 cp "${{ steps.build_zip.outputs.zip_file }}" \
-            "s3://${BUCKET}/${{ vars.S3_PRIVATE_FOLDER }}/${{ vars.RELEASE_ZIP_NAME }}" \
-            --region ${{ secrets.AWS_REGION_PRIVATE }}
-
-          echo "✅ Uploaded ${{ vars.RELEASE_ZIP_NAME }} to private S3 bucket"
-
-      - name: Upload Changelog to Public S3 Bucket
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION_PUBLIC: ${{ secrets.AWS_REGION_PUBLIC }}
-          S3_BUCKET_PUBLIC: ${{ secrets.S3_BUCKET_PUBLIC }}
-        run: |
-          BUCKET=$(printf '%s' "$S3_BUCKET_PUBLIC" | tr -d '\r\n')
-          aws s3 cp changelog.txt \
-            "s3://${BUCKET}/${{ vars.S3_PUBLIC_FOLDER }}/changelog.txt" \
-            --region ${{ secrets.AWS_REGION_PUBLIC }} \
-            --acl public-read \
-            --content-type "text/plain; charset=utf-8"
-
-          echo "✅ Uploaded changelog.txt to public S3 bucket"
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
