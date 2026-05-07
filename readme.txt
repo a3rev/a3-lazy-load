@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 2.7.7
+Stable tag: 2.7.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.8 - 2026/05/07 =
+* This release contains an important security fix - please update right away.
+* Security - Fixed a cross-site scripting (XSS) issue.
 
 = 2.7.7 - 2026/04/17 =
 * This maintenance release has compatibility with WordPress 7.0 and a small improvement for sites that use WP Rocket.
@@ -661,6 +665,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.8 =
+Important security fix. Please upgrade now.
 
 = 2.7.7 =
 Compatibility with WordPress 7.0. Recommended if you use WP Rocket together with a3 Lazy Load.
