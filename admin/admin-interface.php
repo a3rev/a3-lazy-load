@@ -51,7 +51,6 @@ class Admin_Interface extends Admin_UI
 
 		// AJAX hide yellow message dontshow
 		add_action( 'wp_ajax_'.$this->plugin_name.'_a3_admin_ui_event', array( $this, 'a3_admin_ui_event' ) );
-		add_action( 'wp_ajax_nopriv_'.$this->plugin_name.'_a3_admin_ui_event', array( $this, 'a3_admin_ui_event' ) );
 
 	}
 
@@ -173,6 +172,9 @@ class Admin_Interface extends Admin_UI
 
 	public function a3_admin_ui_event() {
 		check_ajax_referer( $this->plugin_name. '_a3_admin_ui_event', 'security' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( -1, 403 );
+		}
 		if ( isset( $_REQUEST['type'] ) ) {
 			switch ( trim( sanitize_text_field( wp_unslash( $_REQUEST['type'] ) ) ) ) {
 				case 'open_close_panel_box':
@@ -194,8 +196,7 @@ class Admin_Interface extends Admin_UI
 					break;
 
 				case 'check_new_version':
-					$transient_name = sanitize_key( wp_unslash( $_REQUEST['transient_name'] ) );
-					delete_transient( $transient_name );
+					delete_transient( $this->version_transient );
 
 					$new_version = '';
 
