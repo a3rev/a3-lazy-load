@@ -147,7 +147,6 @@ class Admin_UI
 		if ( ! empty( $g_key ) ) {
 			$respone_api = wp_remote_get( "https://maps.googleapis.com/maps/api/geocode/json?address=Australia&key=" . $g_key,
 				array(
-					'sslverify' => false,
 					'timeout'   => 45
 				)
 			);
@@ -157,7 +156,7 @@ class Admin_UI
 			// Check it is a valid request
 			if ( ! is_wp_error( $respone_api ) ) {
 
-				$json_string = version_compare( PHP_VERSION, '7.4', '>=' ) || get_magic_quotes_gpc() ? stripslashes( $respone_api['body'] ) : $respone_api['body']; // @codingStandardsIgnoreLine // phpcs:ignore
+				$json_string = stripslashes( $respone_api['body'] );
 				$response_map = json_decode( $json_string, true );
 
 				// Make sure that the valid response from google is not an error message

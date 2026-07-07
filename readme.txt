@@ -3,7 +3,7 @@ Contributors: a3rev, a3rev Software, nguyencongtuan
 Tags: a3 lazy load, Lazy Loading, image lazy load, lazyload
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 2.7.8
+Stable tag: 2.7.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -201,6 +201,10 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Changelog ==
+
+= 2.7.9 - 2026/06/29 =
+* This release contains an important security fix - please update right away.
+* Security - Hardened the admin settings AJAX handler and tightened outbound API requests.
 
 = 2.7.8 - 2026/05/07 =
 * This release contains an important security fix - please update right away.
@@ -665,6 +669,9 @@ Filter tags to add to class name of theme to exclude lazy load on images or vide
 
 
 == Upgrade Notice ==
+
+= 2.7.9 =
+Important security fix. Please upgrade now.
 
 = 2.7.8 =
 Important security fix. Please upgrade now.
